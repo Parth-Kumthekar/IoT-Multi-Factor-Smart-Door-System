@@ -1,0 +1,32 @@
+import cv2
+import face_recognition
+
+video = cv2.VideoCapture(0)
+
+# Load known face
+known_image = face_recognition.load_image_file("known.jpg")
+known_encoding = face_recognition.face_encodings(known_image)[0]
+
+while True:
+    ret, frame = video.read()
+    rgb = frame[:, :, ::-1]
+
+    locations = face_recognition.face_locations(rgb)
+    encodings = face_recognition.face_encodings(rgb, locations)
+
+    for face_encoding, face_location in zip(encodings, locations):
+        match = face_recognition.compare_faces(
+            [known_encoding], face_encoding
+        )[0]
+
+        top, right, bottom, left = face_location
+        color = (0,255,0) if match else (0,0,255)
+
+        cv2.rectangle(frame,(left,top),(right,bottom),color,2)
+
+    cv2.imshow("Face Recognition", frame)
+    if cv2.waitKey(1) == 27:  # ESC
+        break
+
+video.release()
+cv2.destroyAllWindows()
