@@ -1,0 +1,11 @@
+Python (Enrollment + Logging)
+    ├── Extract embedding using DeepFace
+    ├── Store embedding in SQLite
+    ├── Store successful unlock images
+           ↓
+C++ (Authentication Engine)
+    ├── Generate embedding
+    ├── Compare with DB
+    ├── If match:
+           → Unlock
+           → Save image

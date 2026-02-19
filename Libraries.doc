@@ -1,0 +1,2 @@
+sudo apt install libopencv-dev libdlib-dev libsqlite3-dev libgpiod-dev
+pip install opencv-python dlib numpy
