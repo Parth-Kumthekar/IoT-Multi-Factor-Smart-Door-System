@@ -1,16 +1,44 @@
-﻿cmake_minimum_required(VERSION 3.20)
-project(API LANGUAGES CXX)
+﻿cmake_minimum_required(VERSION 3.15)
+project(FaceRecognitionSystem)
 
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_executable(API
-    src/main.cpp
-    src/system_state.cpp
-    src/api_server.cpp
+# Find OpenCV
+set(CMAKE_PREFIX_PATH "C:\\opencv\\build\\x64\\vc16\\lib" ${CMAKE_PREFIX_PATH})
+find_package(OpenCV REQUIRED)
+
+# Include headers
+include_directories(
+    ${OpenCV_INCLUDE_DIRS}
+    include 
 )
 
-target_include_directories(API PRIVATE
-    src
-    external
+
+# Main Face Recognition App
+
+add_executable(FaceRecognition
+    main.cpp
+    src/FaceRecognizer.cpp
+    src/Camera.cpp
 )
+
+target_link_libraries(FaceRecognition ${OpenCV_LIBS})
+
+
+# Dataset Capture Tool
+
+add_executable(CaptureDataset
+    tools/capture_dataset.cpp
+)
+
+target_link_libraries(CaptureDataset ${OpenCV_LIBS})
+
+
+# Database Builder Tool
+
+add_executable(BuildDatabase
+    tools/build_database.cpp
+)
+
+target_link_libraries(BuildDatabase ${OpenCV_LIBS})
