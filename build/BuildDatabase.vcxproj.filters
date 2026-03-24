@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\Parth\Desktop\Glasgow\Classes\Programming\FaceRecognitionSystem\tools\build_database.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Parth\Desktop\Glasgow\Classes\Programming\FaceRecognitionSystem\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{DA4860DE-D584-3E4F-AA11-B03904BE7A45}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
