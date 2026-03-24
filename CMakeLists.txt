@@ -17,13 +17,12 @@ include_directories(
 
 # Main Face Recognition App
 
-add_executable(FaceRecognition
+add_executable(FaceID
     main.cpp
     src/FaceRecognizer.cpp
-    src/Camera.cpp
 )
 
-target_link_libraries(FaceRecognition ${OpenCV_LIBS})
+target_link_libraries(FaceID ${OpenCV_LIBS})
 
 
 # Dataset Capture Tool
