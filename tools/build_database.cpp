@@ -49,12 +49,13 @@ int main() {
     std::map<std::string, cv::Mat> database;
 
     // CHECK DATASET 
+    if (!fs::exists(dataset_folder))  {
         std::cerr << "Dataset folder NOT found!\n";
         return -1;
     }
 
     // PROCESS IMAGES
-    for (auto& entry : fs::directory_iterator(dataset_folder)) {
+    for(auto& entry : fs::directory_iterator(dataset_folder)) {
 
         if (!entry.is_regular_file()) continue;
 

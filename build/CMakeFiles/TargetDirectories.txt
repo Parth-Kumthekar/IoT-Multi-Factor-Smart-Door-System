@@ -1,5 +1,5 @@
-C:/Users/Parth/Desktop/Glasgow/Classes/Programming/FaceRecognitionSystem/build/CMakeFiles/FaceRecognition.dir
-C:/Users/Parth/Desktop/Glasgow/Classes/Programming/FaceRecognitionSystem/build/CMakeFiles/CaptureDataset.dir
-C:/Users/Parth/Desktop/Glasgow/Classes/Programming/FaceRecognitionSystem/build/CMakeFiles/BuildDatabase.dir
-C:/Users/Parth/Desktop/Glasgow/Classes/Programming/FaceRecognitionSystem/build/CMakeFiles/ALL_BUILD.dir
-C:/Users/Parth/Desktop/Glasgow/Classes/Programming/FaceRecognitionSystem/build/CMakeFiles/ZERO_CHECK.dir
+C:/Users/Parth/Desktop/Glasgow/Classes/Programming/IoT-Multi-Factor-Smart-Door-System/build/CMakeFiles/FaceID.dir
+C:/Users/Parth/Desktop/Glasgow/Classes/Programming/IoT-Multi-Factor-Smart-Door-System/build/CMakeFiles/CaptureDataset.dir
+C:/Users/Parth/Desktop/Glasgow/Classes/Programming/IoT-Multi-Factor-Smart-Door-System/build/CMakeFiles/BuildDatabase.dir
+C:/Users/Parth/Desktop/Glasgow/Classes/Programming/IoT-Multi-Factor-Smart-Door-System/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/Parth/Desktop/Glasgow/Classes/Programming/IoT-Multi-Factor-Smart-Door-System/build/CMakeFiles/ZERO_CHECK.dir

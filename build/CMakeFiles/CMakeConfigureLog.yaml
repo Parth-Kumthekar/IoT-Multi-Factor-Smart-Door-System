@@ -35,6 +35,8 @@ events:
     found: "C:/Users/Parth/AppData/Local/Programs/Python/Python311/Lib/site-packages/cmake/data/share/cmake-4.2/Modules/CMakeCCompilerId.c.in"
     search_context:
       ENV{PATH}:
+        - "c:\\Users\\Parth\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
+        - "c:\\Users\\Parth\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Users\\Parth\\AppData\\Local\\Programs\\Microsoft VS Code"
         - "C:\\Program Files\\Common Files\\Oracle\\Java\\javapath"
         - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath"
@@ -64,6 +66,7 @@ events:
         - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
         - "C:\\MinGW\\mingw32\\bin"
         - "C:\\vcpkg\\installed\\x64-windows\\bin"
+        - "C:\\Program Files\\Git LFS"
         - "C:\\Users\\Parth\\LDOPE-1.7\\bin"
         - "C:\\Users\\Parth\\AppData\\Local\\Programs\\Python\\Python311\\Scripts\\"
         - "C:\\Users\\Parth\\AppData\\Local\\Programs\\Python\\Python311\\"
@@ -89,9 +92,9 @@ events:
       The output was:
       0
       MSBuild version 18.4.0+6e61e96ac for .NET Framework
-      Build started 19-03-2026 22:15:48.
+      Build started 25-03-2026 15:24:55.
       
-      Project "C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\FaceRecognitionSystem\\Build\\CMakeFiles\\4.2.1\\CompilerIdC\\CompilerIdC.vcxproj" on node 1 (default targets).
+      Project "C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\IoT-Multi-Factor-Smart-Door-System\\build\\CMakeFiles\\4.2.1\\CompilerIdC\\CompilerIdC.vcxproj" on node 1 (default targets).
       PrepareForBuild:
         Creating directory "Debug\\".
         Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
@@ -107,13 +110,13 @@ events:
         CMakeCCompilerId.c
       Link:
         C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:".\\CompilerIdC.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\lib" /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\lib\\manual-link" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib "C:\\vcpkg\\installed\\x64-windows\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\\CompilerIdC.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\\CompilerIdC.lib" /MACHINE:X64 Debug\\CMakeCCompilerId.obj
-        CompilerIdC.vcxproj -> C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\FaceRecognitionSystem\\Build\\CMakeFiles\\4.2.1\\CompilerIdC\\CompilerIdC.exe
+        CompilerIdC.vcxproj -> C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\IoT-Multi-Factor-Smart-Door-System\\build\\CMakeFiles\\4.2.1\\CompilerIdC\\CompilerIdC.exe
       AppLocalFromInstalled:
-        pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\FaceRecognitionSystem\\Build\\CMakeFiles\\4.2.1\\CompilerIdC\\CompilerIdC.exe" "C:\\vcpkg\\installed\\x64-windows\\bin" "Debug\\CompilerIdC.tlog\\CompilerIdC.write.1u.tlog" "Debug\\vcpkg.applocal.log"
+        pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\IoT-Multi-Factor-Smart-Door-System\\build\\CMakeFiles\\4.2.1\\CompilerIdC\\CompilerIdC.exe" "C:\\vcpkg\\installed\\x64-windows\\bin" "Debug\\CompilerIdC.tlog\\CompilerIdC.write.1u.tlog" "Debug\\vcpkg.applocal.log"
         'pwsh.exe' is not recognized as an internal or external command,
         operable program or batch file.
-        The command "pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\FaceRecognitionSystem\\Build\\CMakeFiles\\4.2.1\\CompilerIdC\\CompilerIdC.exe" "C:\\vcpkg\\installed\\x64-windows\\bin" "Debug\\CompilerIdC.tlog\\CompilerIdC.write.1u.tlog" "Debug\\vcpkg.applocal.log"" exited with code 9009.
-        "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -ExecutionPolicy Bypass -noprofile -File "C:\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\FaceRecognitionSystem\\Build\\CMakeFiles\\4.2.1\\CompilerIdC\\CompilerIdC.exe" "C:\\vcpkg\\installed\\x64-windows\\bin" "Debug\\CompilerIdC.tlog\\CompilerIdC.write.1u.tlog" "Debug\\vcpkg.applocal.log"
+        The command "pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\IoT-Multi-Factor-Smart-Door-System\\build\\CMakeFiles\\4.2.1\\CompilerIdC\\CompilerIdC.exe" "C:\\vcpkg\\installed\\x64-windows\\bin" "Debug\\CompilerIdC.tlog\\CompilerIdC.write.1u.tlog" "Debug\\vcpkg.applocal.log"" exited with code 9009.
+        "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -ExecutionPolicy Bypass -noprofile -File "C:\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\IoT-Multi-Factor-Smart-Door-System\\build\\CMakeFiles\\4.2.1\\CompilerIdC\\CompilerIdC.exe" "C:\\vcpkg\\installed\\x64-windows\\bin" "Debug\\CompilerIdC.tlog\\CompilerIdC.write.1u.tlog" "Debug\\vcpkg.applocal.log"
       PostBuildEvent:
         for %%i in (cl.exe) do @echo CMAKE_C_COMPILER=%%~$PATH:i
         :VCEnd
@@ -121,13 +124,13 @@ events:
       FinalizeBuildStatus:
         Deleting file "Debug\\CompilerIdC.tlog\\unsuccessfulbuild".
         Touching "Debug\\CompilerIdC.tlog\\CompilerIdC.lastbuildstate".
-      Done Building Project "C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\FaceRecognitionSystem\\Build\\CMakeFiles\\4.2.1\\CompilerIdC\\CompilerIdC.vcxproj" (default targets).
+      Done Building Project "C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\IoT-Multi-Factor-Smart-Door-System\\build\\CMakeFiles\\4.2.1\\CompilerIdC\\CompilerIdC.vcxproj" (default targets).
       
       Build succeeded.
           0 Warning(s)
           0 Error(s)
       
-      Time Elapsed 00:00:02.21
+      Time Elapsed 00:00:01.62
       
       
       Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.exe"
@@ -135,7 +138,7 @@ events:
       Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.vcxproj"
       
       The C compiler identification is MSVC, found in:
-        C:/Users/Parth/Desktop/Glasgow/Classes/Programming/FaceRecognitionSystem/Build/CMakeFiles/4.2.1/CompilerIdC/CompilerIdC.exe
+        C:/Users/Parth/Desktop/Glasgow/Classes/Programming/IoT-Multi-Factor-Smart-Door-System/build/CMakeFiles/4.2.1/CompilerIdC/CompilerIdC.exe
       
   -
     kind: "find-v1"
@@ -160,6 +163,8 @@ events:
       - "link"
     candidate_directories:
       - "C:/Program Files/Microsoft Visual Studio/18/Community/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/"
+      - "C:/Users/Parth/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/"
+      - "C:/Users/Parth/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "C:/Users/Parth/AppData/Local/Programs/Microsoft VS Code/"
       - "C:/Program Files/Common Files/Oracle/Java/javapath/"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/javapath/"
@@ -179,6 +184,7 @@ events:
       - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
       - "C:/MinGW/mingw32/bin/"
       - "C:/vcpkg/installed/x64-windows/bin/"
+      - "C:/Program Files/Git LFS/"
       - "C:/Users/Parth/LDOPE-1.7/bin/"
       - "C:/Users/Parth/AppData/Local/Programs/Python/Python311/Scripts/"
       - "C:/Users/Parth/AppData/Local/Programs/Python/Python311/"
@@ -193,6 +199,8 @@ events:
     found: "C:/Program Files/Microsoft Visual Studio/18/Community/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/link.exe"
     search_context:
       ENV{PATH}:
+        - "c:\\Users\\Parth\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
+        - "c:\\Users\\Parth\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Users\\Parth\\AppData\\Local\\Programs\\Microsoft VS Code"
         - "C:\\Program Files\\Common Files\\Oracle\\Java\\javapath"
         - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath"
@@ -222,6 +230,7 @@ events:
         - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
         - "C:\\MinGW\\mingw32\\bin"
         - "C:\\vcpkg\\installed\\x64-windows\\bin"
+        - "C:\\Program Files\\Git LFS"
         - "C:\\Users\\Parth\\LDOPE-1.7\\bin"
         - "C:\\Users\\Parth\\AppData\\Local\\Programs\\Python\\Python311\\Scripts\\"
         - "C:\\Users\\Parth\\AppData\\Local\\Programs\\Python\\Python311\\"
@@ -254,6 +263,8 @@ events:
       - "lld-link"
     candidate_directories:
       - "C:/Program Files/Microsoft Visual Studio/18/Community/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/"
+      - "C:/Users/Parth/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/"
+      - "C:/Users/Parth/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "C:/Users/Parth/AppData/Local/Programs/Microsoft VS Code/"
       - "C:/Program Files/Common Files/Oracle/Java/javapath/"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/javapath/"
@@ -273,6 +284,7 @@ events:
       - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
       - "C:/MinGW/mingw32/bin/"
       - "C:/vcpkg/installed/x64-windows/bin/"
+      - "C:/Program Files/Git LFS/"
       - "C:/Users/Parth/LDOPE-1.7/bin/"
       - "C:/Users/Parth/AppData/Local/Programs/Python/Python311/Scripts/"
       - "C:/Users/Parth/AppData/Local/Programs/Python/Python311/"
@@ -286,6 +298,12 @@ events:
       - "C:/Program Files/Microsoft Visual Studio/18/Community/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/lld-link.com"
       - "C:/Program Files/Microsoft Visual Studio/18/Community/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/lld-link.exe"
       - "C:/Program Files/Microsoft Visual Studio/18/Community/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/lld-link"
+      - "C:/Users/Parth/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/lld-link.com"
+      - "C:/Users/Parth/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/lld-link.exe"
+      - "C:/Users/Parth/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/lld-link"
+      - "C:/Users/Parth/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/lld-link.com"
+      - "C:/Users/Parth/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/lld-link.exe"
+      - "C:/Users/Parth/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/lld-link"
       - "C:/Users/Parth/AppData/Local/Programs/Microsoft VS Code/lld-link.com"
       - "C:/Users/Parth/AppData/Local/Programs/Microsoft VS Code/lld-link.exe"
       - "C:/Users/Parth/AppData/Local/Programs/Microsoft VS Code/lld-link"
@@ -343,6 +361,9 @@ events:
       - "C:/vcpkg/installed/x64-windows/bin/lld-link.com"
       - "C:/vcpkg/installed/x64-windows/bin/lld-link.exe"
       - "C:/vcpkg/installed/x64-windows/bin/lld-link"
+      - "C:/Program Files/Git LFS/lld-link.com"
+      - "C:/Program Files/Git LFS/lld-link.exe"
+      - "C:/Program Files/Git LFS/lld-link"
       - "C:/Users/Parth/LDOPE-1.7/bin/lld-link.com"
       - "C:/Users/Parth/LDOPE-1.7/bin/lld-link.exe"
       - "C:/Users/Parth/LDOPE-1.7/bin/lld-link"
@@ -373,6 +394,8 @@ events:
     found: false
     search_context:
       ENV{PATH}:
+        - "c:\\Users\\Parth\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
+        - "c:\\Users\\Parth\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Users\\Parth\\AppData\\Local\\Programs\\Microsoft VS Code"
         - "C:\\Program Files\\Common Files\\Oracle\\Java\\javapath"
         - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath"
@@ -402,6 +425,7 @@ events:
         - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
         - "C:\\MinGW\\mingw32\\bin"
         - "C:\\vcpkg\\installed\\x64-windows\\bin"
+        - "C:\\Program Files\\Git LFS"
         - "C:\\Users\\Parth\\LDOPE-1.7\\bin"
         - "C:\\Users\\Parth\\AppData\\Local\\Programs\\Python\\Python311\\Scripts\\"
         - "C:\\Users\\Parth\\AppData\\Local\\Programs\\Python\\Python311\\"
@@ -432,6 +456,8 @@ events:
       - "link"
     candidate_directories:
       - "C:/Program Files/Microsoft Visual Studio/18/Community/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/"
+      - "C:/Users/Parth/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/"
+      - "C:/Users/Parth/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "C:/Users/Parth/AppData/Local/Programs/Microsoft VS Code/"
       - "C:/Program Files/Common Files/Oracle/Java/javapath/"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/javapath/"
@@ -451,6 +477,7 @@ events:
       - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
       - "C:/MinGW/mingw32/bin/"
       - "C:/vcpkg/installed/x64-windows/bin/"
+      - "C:/Program Files/Git LFS/"
       - "C:/Users/Parth/LDOPE-1.7/bin/"
       - "C:/Users/Parth/AppData/Local/Programs/Python/Python311/Scripts/"
       - "C:/Users/Parth/AppData/Local/Programs/Python/Python311/"
@@ -465,6 +492,8 @@ events:
     found: "C:/Program Files/Microsoft Visual Studio/18/Community/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/link.exe"
     search_context:
       ENV{PATH}:
+        - "c:\\Users\\Parth\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
+        - "c:\\Users\\Parth\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Users\\Parth\\AppData\\Local\\Programs\\Microsoft VS Code"
         - "C:\\Program Files\\Common Files\\Oracle\\Java\\javapath"
         - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath"
@@ -494,6 +523,7 @@ events:
         - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
         - "C:\\MinGW\\mingw32\\bin"
         - "C:\\vcpkg\\installed\\x64-windows\\bin"
+        - "C:\\Program Files\\Git LFS"
         - "C:\\Users\\Parth\\LDOPE-1.7\\bin"
         - "C:\\Users\\Parth\\AppData\\Local\\Programs\\Python\\Python311\\Scripts\\"
         - "C:\\Users\\Parth\\AppData\\Local\\Programs\\Python\\Python311\\"
@@ -524,6 +554,8 @@ events:
       - "mt"
     candidate_directories:
       - "C:/Program Files/Microsoft Visual Studio/18/Community/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/"
+      - "C:/Users/Parth/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/"
+      - "C:/Users/Parth/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "C:/Users/Parth/AppData/Local/Programs/Microsoft VS Code/"
       - "C:/Program Files/Common Files/Oracle/Java/javapath/"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/javapath/"
@@ -543,6 +575,7 @@ events:
       - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
       - "C:/MinGW/mingw32/bin/"
       - "C:/vcpkg/installed/x64-windows/bin/"
+      - "C:/Program Files/Git LFS/"
       - "C:/Users/Parth/LDOPE-1.7/bin/"
       - "C:/Users/Parth/AppData/Local/Programs/Python/Python311/Scripts/"
       - "C:/Users/Parth/AppData/Local/Programs/Python/Python311/"
@@ -556,6 +589,12 @@ events:
       - "C:/Program Files/Microsoft Visual Studio/18/Community/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/mt.com"
       - "C:/Program Files/Microsoft Visual Studio/18/Community/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/mt.exe"
       - "C:/Program Files/Microsoft Visual Studio/18/Community/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/mt"
+      - "C:/Users/Parth/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/mt.com"
+      - "C:/Users/Parth/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/mt.exe"
+      - "C:/Users/Parth/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/mt"
+      - "C:/Users/Parth/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/mt.com"
+      - "C:/Users/Parth/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/mt.exe"
+      - "C:/Users/Parth/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/mt"
       - "C:/Users/Parth/AppData/Local/Programs/Microsoft VS Code/mt.com"
       - "C:/Users/Parth/AppData/Local/Programs/Microsoft VS Code/mt.exe"
       - "C:/Users/Parth/AppData/Local/Programs/Microsoft VS Code/mt"
@@ -613,6 +652,9 @@ events:
       - "C:/vcpkg/installed/x64-windows/bin/mt.com"
       - "C:/vcpkg/installed/x64-windows/bin/mt.exe"
       - "C:/vcpkg/installed/x64-windows/bin/mt"
+      - "C:/Program Files/Git LFS/mt.com"
+      - "C:/Program Files/Git LFS/mt.exe"
+      - "C:/Program Files/Git LFS/mt"
       - "C:/Users/Parth/LDOPE-1.7/bin/mt.com"
       - "C:/Users/Parth/LDOPE-1.7/bin/mt.exe"
       - "C:/Users/Parth/LDOPE-1.7/bin/mt"
@@ -643,6 +685,8 @@ events:
     found: false
     search_context:
       ENV{PATH}:
+        - "c:\\Users\\Parth\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
+        - "c:\\Users\\Parth\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Users\\Parth\\AppData\\Local\\Programs\\Microsoft VS Code"
         - "C:\\Program Files\\Common Files\\Oracle\\Java\\javapath"
         - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath"
@@ -672,6 +716,7 @@ events:
         - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
         - "C:\\MinGW\\mingw32\\bin"
         - "C:\\vcpkg\\installed\\x64-windows\\bin"
+        - "C:\\Program Files\\Git LFS"
         - "C:\\Users\\Parth\\LDOPE-1.7\\bin"
         - "C:\\Users\\Parth\\AppData\\Local\\Programs\\Python\\Python311\\Scripts\\"
         - "C:\\Users\\Parth\\AppData\\Local\\Programs\\Python\\Python311\\"
@@ -702,6 +747,8 @@ events:
       - "lib"
     candidate_directories:
       - "C:/Program Files/Microsoft Visual Studio/18/Community/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/"
+      - "C:/Users/Parth/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/"
+      - "C:/Users/Parth/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "C:/Users/Parth/AppData/Local/Programs/Microsoft VS Code/"
       - "C:/Program Files/Common Files/Oracle/Java/javapath/"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/javapath/"
@@ -721,6 +768,7 @@ events:
       - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
       - "C:/MinGW/mingw32/bin/"
       - "C:/vcpkg/installed/x64-windows/bin/"
+      - "C:/Program Files/Git LFS/"
       - "C:/Users/Parth/LDOPE-1.7/bin/"
       - "C:/Users/Parth/AppData/Local/Programs/Python/Python311/Scripts/"
       - "C:/Users/Parth/AppData/Local/Programs/Python/Python311/"
@@ -735,6 +783,8 @@ events:
     found: "C:/Program Files/Microsoft Visual Studio/18/Community/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/lib.exe"
     search_context:
       ENV{PATH}:
+        - "c:\\Users\\Parth\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
+        - "c:\\Users\\Parth\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Users\\Parth\\AppData\\Local\\Programs\\Microsoft VS Code"
         - "C:\\Program Files\\Common Files\\Oracle\\Java\\javapath"
         - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath"
@@ -764,6 +814,7 @@ events:
         - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
         - "C:\\MinGW\\mingw32\\bin"
         - "C:\\vcpkg\\installed\\x64-windows\\bin"
+        - "C:\\Program Files\\Git LFS"
         - "C:\\Users\\Parth\\LDOPE-1.7\\bin"
         - "C:\\Users\\Parth\\AppData\\Local\\Programs\\Python\\Python311\\Scripts\\"
         - "C:\\Users\\Parth\\AppData\\Local\\Programs\\Python\\Python311\\"
@@ -800,6 +851,8 @@ events:
     found: "C:/Users/Parth/AppData/Local/Programs/Python/Python311/Lib/site-packages/cmake/data/share/cmake-4.2/Modules/CMakeCXXCompilerId.cpp.in"
     search_context:
       ENV{PATH}:
+        - "c:\\Users\\Parth\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
+        - "c:\\Users\\Parth\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Users\\Parth\\AppData\\Local\\Programs\\Microsoft VS Code"
         - "C:\\Program Files\\Common Files\\Oracle\\Java\\javapath"
         - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath"
@@ -829,6 +882,7 @@ events:
         - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
         - "C:\\MinGW\\mingw32\\bin"
         - "C:\\vcpkg\\installed\\x64-windows\\bin"
+        - "C:\\Program Files\\Git LFS"
         - "C:\\Users\\Parth\\LDOPE-1.7\\bin"
         - "C:\\Users\\Parth\\AppData\\Local\\Programs\\Python\\Python311\\Scripts\\"
         - "C:\\Users\\Parth\\AppData\\Local\\Programs\\Python\\Python311\\"
@@ -854,9 +908,9 @@ events:
       The output was:
       0
       MSBuild version 18.4.0+6e61e96ac for .NET Framework
-      Build started 19-03-2026 22:15:51.
+      Build started 25-03-2026 15:24:57.
       
-      Project "C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\FaceRecognitionSystem\\Build\\CMakeFiles\\4.2.1\\CompilerIdCXX\\CompilerIdCXX.vcxproj" on node 1 (default targets).
+      Project "C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\IoT-Multi-Factor-Smart-Door-System\\build\\CMakeFiles\\4.2.1\\CompilerIdCXX\\CompilerIdCXX.vcxproj" on node 1 (default targets).
       PrepareForBuild:
         Creating directory "Debug\\".
         Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
@@ -872,13 +926,13 @@ events:
         CMakeCXXCompilerId.cpp
       Link:
         C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:".\\CompilerIdCXX.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\lib" /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\lib\\manual-link" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib "C:\\vcpkg\\installed\\x64-windows\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\\CompilerIdCXX.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\\CompilerIdCXX.lib" /MACHINE:X64 Debug\\CMakeCXXCompilerId.obj
-        CompilerIdCXX.vcxproj -> C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\FaceRecognitionSystem\\Build\\CMakeFiles\\4.2.1\\CompilerIdCXX\\CompilerIdCXX.exe
+        CompilerIdCXX.vcxproj -> C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\IoT-Multi-Factor-Smart-Door-System\\build\\CMakeFiles\\4.2.1\\CompilerIdCXX\\CompilerIdCXX.exe
       AppLocalFromInstalled:
-        pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\FaceRecognitionSystem\\Build\\CMakeFiles\\4.2.1\\CompilerIdCXX\\CompilerIdCXX.exe" "C:\\vcpkg\\installed\\x64-windows\\bin" "Debug\\CompilerIdCXX.tlog\\CompilerIdCXX.write.1u.tlog" "Debug\\vcpkg.applocal.log"
+        pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\IoT-Multi-Factor-Smart-Door-System\\build\\CMakeFiles\\4.2.1\\CompilerIdCXX\\CompilerIdCXX.exe" "C:\\vcpkg\\installed\\x64-windows\\bin" "Debug\\CompilerIdCXX.tlog\\CompilerIdCXX.write.1u.tlog" "Debug\\vcpkg.applocal.log"
         'pwsh.exe' is not recognized as an internal or external command,
         operable program or batch file.
-        The command "pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\FaceRecognitionSystem\\Build\\CMakeFiles\\4.2.1\\CompilerIdCXX\\CompilerIdCXX.exe" "C:\\vcpkg\\installed\\x64-windows\\bin" "Debug\\CompilerIdCXX.tlog\\CompilerIdCXX.write.1u.tlog" "Debug\\vcpkg.applocal.log"" exited with code 9009.
-        "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -ExecutionPolicy Bypass -noprofile -File "C:\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\FaceRecognitionSystem\\Build\\CMakeFiles\\4.2.1\\CompilerIdCXX\\CompilerIdCXX.exe" "C:\\vcpkg\\installed\\x64-windows\\bin" "Debug\\CompilerIdCXX.tlog\\CompilerIdCXX.write.1u.tlog" "Debug\\vcpkg.applocal.log"
+        The command "pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\IoT-Multi-Factor-Smart-Door-System\\build\\CMakeFiles\\4.2.1\\CompilerIdCXX\\CompilerIdCXX.exe" "C:\\vcpkg\\installed\\x64-windows\\bin" "Debug\\CompilerIdCXX.tlog\\CompilerIdCXX.write.1u.tlog" "Debug\\vcpkg.applocal.log"" exited with code 9009.
+        "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -ExecutionPolicy Bypass -noprofile -File "C:\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\IoT-Multi-Factor-Smart-Door-System\\build\\CMakeFiles\\4.2.1\\CompilerIdCXX\\CompilerIdCXX.exe" "C:\\vcpkg\\installed\\x64-windows\\bin" "Debug\\CompilerIdCXX.tlog\\CompilerIdCXX.write.1u.tlog" "Debug\\vcpkg.applocal.log"
       PostBuildEvent:
         for %%i in (cl.exe) do @echo CMAKE_CXX_COMPILER=%%~$PATH:i
         :VCEnd
@@ -886,13 +940,13 @@ events:
       FinalizeBuildStatus:
         Deleting file "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild".
         Touching "Debug\\CompilerIdCXX.tlog\\CompilerIdCXX.lastbuildstate".
-      Done Building Project "C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\FaceRecognitionSystem\\Build\\CMakeFiles\\4.2.1\\CompilerIdCXX\\CompilerIdCXX.vcxproj" (default targets).
+      Done Building Project "C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\IoT-Multi-Factor-Smart-Door-System\\build\\CMakeFiles\\4.2.1\\CompilerIdCXX\\CompilerIdCXX.vcxproj" (default targets).
       
       Build succeeded.
           0 Warning(s)
           0 Error(s)
       
-      Time Elapsed 00:00:01.58
+      Time Elapsed 00:00:01.11
       
       
       Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
@@ -900,7 +954,7 @@ events:
       Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.vcxproj"
       
       The CXX compiler identification is MSVC, found in:
-        C:/Users/Parth/Desktop/Glasgow/Classes/Programming/FaceRecognitionSystem/Build/CMakeFiles/4.2.1/CompilerIdCXX/CompilerIdCXX.exe
+        C:/Users/Parth/Desktop/Glasgow/Classes/Programming/IoT-Multi-Factor-Smart-Door-System/build/CMakeFiles/4.2.1/CompilerIdCXX/CompilerIdCXX.exe
       
   -
     kind: "find-v1"
@@ -925,6 +979,8 @@ events:
       - "lld-link"
     candidate_directories:
       - "C:/Program Files/Microsoft Visual Studio/18/Community/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/"
+      - "C:/Users/Parth/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/"
+      - "C:/Users/Parth/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "C:/Users/Parth/AppData/Local/Programs/Microsoft VS Code/"
       - "C:/Program Files/Common Files/Oracle/Java/javapath/"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/javapath/"
@@ -944,6 +1000,7 @@ events:
       - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
       - "C:/MinGW/mingw32/bin/"
       - "C:/vcpkg/installed/x64-windows/bin/"
+      - "C:/Program Files/Git LFS/"
       - "C:/Users/Parth/LDOPE-1.7/bin/"
       - "C:/Users/Parth/AppData/Local/Programs/Python/Python311/Scripts/"
       - "C:/Users/Parth/AppData/Local/Programs/Python/Python311/"
@@ -957,6 +1014,12 @@ events:
       - "C:/Program Files/Microsoft Visual Studio/18/Community/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/lld-link.com"
       - "C:/Program Files/Microsoft Visual Studio/18/Community/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/lld-link.exe"
       - "C:/Program Files/Microsoft Visual Studio/18/Community/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/lld-link"
+      - "C:/Users/Parth/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/lld-link.com"
+      - "C:/Users/Parth/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/lld-link.exe"
+      - "C:/Users/Parth/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/lld-link"
+      - "C:/Users/Parth/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/lld-link.com"
+      - "C:/Users/Parth/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/lld-link.exe"
+      - "C:/Users/Parth/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/lld-link"
       - "C:/Users/Parth/AppData/Local/Programs/Microsoft VS Code/lld-link.com"
       - "C:/Users/Parth/AppData/Local/Programs/Microsoft VS Code/lld-link.exe"
       - "C:/Users/Parth/AppData/Local/Programs/Microsoft VS Code/lld-link"
@@ -1014,6 +1077,9 @@ events:
       - "C:/vcpkg/installed/x64-windows/bin/lld-link.com"
       - "C:/vcpkg/installed/x64-windows/bin/lld-link.exe"
       - "C:/vcpkg/installed/x64-windows/bin/lld-link"
+      - "C:/Program Files/Git LFS/lld-link.com"
+      - "C:/Program Files/Git LFS/lld-link.exe"
+      - "C:/Program Files/Git LFS/lld-link"
       - "C:/Users/Parth/LDOPE-1.7/bin/lld-link.com"
       - "C:/Users/Parth/LDOPE-1.7/bin/lld-link.exe"
       - "C:/Users/Parth/LDOPE-1.7/bin/lld-link"
@@ -1044,6 +1110,8 @@ events:
     found: false
     search_context:
       ENV{PATH}:
+        - "c:\\Users\\Parth\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
+        - "c:\\Users\\Parth\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Users\\Parth\\AppData\\Local\\Programs\\Microsoft VS Code"
         - "C:\\Program Files\\Common Files\\Oracle\\Java\\javapath"
         - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath"
@@ -1073,6 +1141,7 @@ events:
         - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
         - "C:\\MinGW\\mingw32\\bin"
         - "C:\\vcpkg\\installed\\x64-windows\\bin"
+        - "C:\\Program Files\\Git LFS"
         - "C:\\Users\\Parth\\LDOPE-1.7\\bin"
         - "C:\\Users\\Parth\\AppData\\Local\\Programs\\Python\\Python311\\Scripts\\"
         - "C:\\Users\\Parth\\AppData\\Local\\Programs\\Python\\Python311\\"
@@ -1105,6 +1174,8 @@ events:
     names:
       - "rc"
     candidate_directories:
+      - "C:/Users/Parth/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/"
+      - "C:/Users/Parth/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "C:/Users/Parth/AppData/Local/Programs/Microsoft VS Code/"
       - "C:/Program Files/Common Files/Oracle/Java/javapath/"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/javapath/"
@@ -1124,6 +1195,7 @@ events:
       - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
       - "C:/MinGW/mingw32/bin/"
       - "C:/vcpkg/installed/x64-windows/bin/"
+      - "C:/Program Files/Git LFS/"
       - "C:/Users/Parth/LDOPE-1.7/bin/"
       - "C:/Users/Parth/AppData/Local/Programs/Python/Python311/Scripts/"
       - "C:/Users/Parth/AppData/Local/Programs/Python/Python311/"
@@ -1146,6 +1218,12 @@ events:
       - "C:/Program Files (x86)/FaceRecognitionSystem/sbin/"
       - "C:/Program Files (x86)/FaceRecognitionSystem/"
     searched_directories:
+      - "C:/Users/Parth/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/rc.com"
+      - "C:/Users/Parth/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/rc.exe"
+      - "C:/Users/Parth/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/rc"
+      - "C:/Users/Parth/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/rc.com"
+      - "C:/Users/Parth/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/rc.exe"
+      - "C:/Users/Parth/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/rc"
       - "C:/Users/Parth/AppData/Local/Programs/Microsoft VS Code/rc.com"
       - "C:/Users/Parth/AppData/Local/Programs/Microsoft VS Code/rc.exe"
       - "C:/Users/Parth/AppData/Local/Programs/Microsoft VS Code/rc"
@@ -1203,6 +1281,9 @@ events:
       - "C:/vcpkg/installed/x64-windows/bin/rc.com"
       - "C:/vcpkg/installed/x64-windows/bin/rc.exe"
       - "C:/vcpkg/installed/x64-windows/bin/rc"
+      - "C:/Program Files/Git LFS/rc.com"
+      - "C:/Program Files/Git LFS/rc.exe"
+      - "C:/Program Files/Git LFS/rc"
       - "C:/Users/Parth/LDOPE-1.7/bin/rc.com"
       - "C:/Users/Parth/LDOPE-1.7/bin/rc.exe"
       - "C:/Users/Parth/LDOPE-1.7/bin/rc"
@@ -1269,6 +1350,8 @@ events:
     found: false
     search_context:
       ENV{PATH}:
+        - "c:\\Users\\Parth\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
+        - "c:\\Users\\Parth\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Users\\Parth\\AppData\\Local\\Programs\\Microsoft VS Code"
         - "C:\\Program Files\\Common Files\\Oracle\\Java\\javapath"
         - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath"
@@ -1298,6 +1381,7 @@ events:
         - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
         - "C:\\MinGW\\mingw32\\bin"
         - "C:\\vcpkg\\installed\\x64-windows\\bin"
+        - "C:\\Program Files\\Git LFS"
         - "C:\\Users\\Parth\\LDOPE-1.7\\bin"
         - "C:\\Users\\Parth\\AppData\\Local\\Programs\\Python\\Python311\\Scripts\\"
         - "C:\\Users\\Parth\\AppData\\Local\\Programs\\Python\\Python311\\"
@@ -1322,8 +1406,8 @@ events:
     checks:
       - "Detecting C compiler ABI info"
     directories:
-      source: "C:/Users/Parth/Desktop/Glasgow/Classes/Programming/FaceRecognitionSystem/Build/CMakeFiles/CMakeScratch/TryCompile-9y1kh9"
-      binary: "C:/Users/Parth/Desktop/Glasgow/Classes/Programming/FaceRecognitionSystem/Build/CMakeFiles/CMakeScratch/TryCompile-9y1kh9"
+      source: "C:/Users/Parth/Desktop/Glasgow/Classes/Programming/IoT-Multi-Factor-Smart-Door-System/build/CMakeFiles/CMakeScratch/TryCompile-wtawu4"
+      binary: "C:/Users/Parth/Desktop/Glasgow/Classes/Programming/IoT-Multi-Factor-Smart-Door-System/build/CMakeFiles/CMakeScratch/TryCompile-wtawu4"
     cmakeVariables:
       CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
       CMAKE_C_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
@@ -1332,48 +1416,48 @@ events:
       variable: "CMAKE_C_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/Parth/Desktop/Glasgow/Classes/Programming/FaceRecognitionSystem/Build/CMakeFiles/CMakeScratch/TryCompile-9y1kh9'
+        Change Dir: 'C:/Users/Parth/Desktop/Glasgow/Classes/Programming/IoT-Multi-Factor-Smart-Door-System/build/CMakeFiles/CMakeScratch/TryCompile-wtawu4'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/18/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_d9f5c.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=18.0 /v:n
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/18/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_a840d.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=18.0 /v:n
         MSBuild version 18.4.0+6e61e96ac for .NET Framework
-        Build started 19-03-2026 22:15:53.
+        Build started 25-03-2026 15:24:58.
         
-        Project "C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\FaceRecognitionSystem\\Build\\CMakeFiles\\CMakeScratch\\TryCompile-9y1kh9\\cmTC_d9f5c.vcxproj" on node 1 (default targets).
+        Project "C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\IoT-Multi-Factor-Smart-Door-System\\build\\CMakeFiles\\CMakeScratch\\TryCompile-wtawu4\\cmTC_a840d.vcxproj" on node 1 (default targets).
         PrepareForBuild:
           Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
-          Creating directory "C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\FaceRecognitionSystem\\Build\\CMakeFiles\\CMakeScratch\\TryCompile-9y1kh9\\Debug\\".
-          Creating directory "cmTC_d9f5c.dir\\Debug\\cmTC_d9f5c.tlog\\".
+          Creating directory "C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\IoT-Multi-Factor-Smart-Door-System\\build\\CMakeFiles\\CMakeScratch\\TryCompile-wtawu4\\Debug\\".
+          Creating directory "cmTC_a840d.dir\\Debug\\cmTC_a840d.tlog\\".
         InitializeBuildStatus:
-          Creating "cmTC_d9f5c.dir\\Debug\\cmTC_d9f5c.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
-          Touching "cmTC_d9f5c.dir\\Debug\\cmTC_d9f5c.tlog\\unsuccessfulbuild".
+          Creating "cmTC_a840d.dir\\Debug\\cmTC_a840d.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_a840d.dir\\Debug\\cmTC_a840d.tlog\\unsuccessfulbuild".
         VcpkgTripletSelection:
           Using triplet "x64-windows" from "C:\\vcpkg\\installed\\x64-windows\\"
           Using normalized configuration "Debug"
         ClCompile:
-          C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_d9f5c.dir\\Debug\\\\" /Fd"cmTC_d9f5c.dir\\Debug\\vc145.pdb" /external:W1 /TC /errorReport:queue "C:\\Users\\Parth\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\cmake\\data\\share\\cmake-4.2\\Modules\\CMakeCCompilerABI.c"
+          C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_a840d.dir\\Debug\\\\" /Fd"cmTC_a840d.dir\\Debug\\vc145.pdb" /external:W1 /TC /errorReport:queue "C:\\Users\\Parth\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\cmake\\data\\share\\cmake-4.2\\Modules\\CMakeCCompilerABI.c"
           Microsoft (R) C/C++ Optimizing Compiler Version 19.50.35727 for x64
           Copyright (C) Microsoft Corporation.  All rights reserved.
-          cl /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_d9f5c.dir\\Debug\\\\" /Fd"cmTC_d9f5c.dir\\Debug\\vc145.pdb" /external:W1 /TC /errorReport:queue "C:\\Users\\Parth\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\cmake\\data\\share\\cmake-4.2\\Modules\\CMakeCCompilerABI.c"
+          cl /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_a840d.dir\\Debug\\\\" /Fd"cmTC_a840d.dir\\Debug\\vc145.pdb" /external:W1 /TC /errorReport:queue "C:\\Users\\Parth\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\cmake\\data\\share\\cmake-4.2\\Modules\\CMakeCCompilerABI.c"
           CMakeCCompilerABI.c
         Link:
-          C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\FaceRecognitionSystem\\Build\\CMakeFiles\\CMakeScratch\\TryCompile-9y1kh9\\Debug\\cmTC_d9f5c.exe" /INCREMENTAL /ILK:"cmTC_d9f5c.dir\\Debug\\cmTC_d9f5c.ilk" /NOLOGO /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\debug\\lib" /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\debug\\lib\\manual-link" kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib "C:\\vcpkg\\installed\\x64-windows\\debug\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/Parth/Desktop/Glasgow/Classes/Programming/FaceRecognitionSystem/Build/CMakeFiles/CMakeScratch/TryCompile-9y1kh9/Debug/cmTC_d9f5c.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/Users/Parth/Desktop/Glasgow/Classes/Programming/FaceRecognitionSystem/Build/CMakeFiles/CMakeScratch/TryCompile-9y1kh9/Debug/cmTC_d9f5c.lib" /MACHINE:X64  /machine:x64 cmTC_d9f5c.dir\\Debug\\CMakeCCompilerABI.obj
-          cmTC_d9f5c.vcxproj -> C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\FaceRecognitionSystem\\Build\\CMakeFiles\\CMakeScratch\\TryCompile-9y1kh9\\Debug\\cmTC_d9f5c.exe
+          C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\IoT-Multi-Factor-Smart-Door-System\\build\\CMakeFiles\\CMakeScratch\\TryCompile-wtawu4\\Debug\\cmTC_a840d.exe" /INCREMENTAL /ILK:"cmTC_a840d.dir\\Debug\\cmTC_a840d.ilk" /NOLOGO /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\debug\\lib" /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\debug\\lib\\manual-link" kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib "C:\\vcpkg\\installed\\x64-windows\\debug\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/Parth/Desktop/Glasgow/Classes/Programming/IoT-Multi-Factor-Smart-Door-System/build/CMakeFiles/CMakeScratch/TryCompile-wtawu4/Debug/cmTC_a840d.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/Users/Parth/Desktop/Glasgow/Classes/Programming/IoT-Multi-Factor-Smart-Door-System/build/CMakeFiles/CMakeScratch/TryCompile-wtawu4/Debug/cmTC_a840d.lib" /MACHINE:X64  /machine:x64 cmTC_a840d.dir\\Debug\\CMakeCCompilerABI.obj
+          cmTC_a840d.vcxproj -> C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\IoT-Multi-Factor-Smart-Door-System\\build\\CMakeFiles\\CMakeScratch\\TryCompile-wtawu4\\Debug\\cmTC_a840d.exe
         AppLocalFromInstalled:
-          pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\FaceRecognitionSystem\\Build\\CMakeFiles\\CMakeScratch\\TryCompile-9y1kh9\\Debug\\cmTC_d9f5c.exe" "C:\\vcpkg\\installed\\x64-windows\\debug\\bin" "cmTC_d9f5c.dir\\Debug\\cmTC_d9f5c.tlog\\cmTC_d9f5c.write.1u.tlog" "cmTC_d9f5c.dir\\Debug\\vcpkg.applocal.log"
+          pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\IoT-Multi-Factor-Smart-Door-System\\build\\CMakeFiles\\CMakeScratch\\TryCompile-wtawu4\\Debug\\cmTC_a840d.exe" "C:\\vcpkg\\installed\\x64-windows\\debug\\bin" "cmTC_a840d.dir\\Debug\\cmTC_a840d.tlog\\cmTC_a840d.write.1u.tlog" "cmTC_a840d.dir\\Debug\\vcpkg.applocal.log"
           'pwsh.exe' is not recognized as an internal or external command,
           operable program or batch file.
-          The command "pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\FaceRecognitionSystem\\Build\\CMakeFiles\\CMakeScratch\\TryCompile-9y1kh9\\Debug\\cmTC_d9f5c.exe" "C:\\vcpkg\\installed\\x64-windows\\debug\\bin" "cmTC_d9f5c.dir\\Debug\\cmTC_d9f5c.tlog\\cmTC_d9f5c.write.1u.tlog" "cmTC_d9f5c.dir\\Debug\\vcpkg.applocal.log"" exited with code 9009.
-          "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -ExecutionPolicy Bypass -noprofile -File "C:\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\FaceRecognitionSystem\\Build\\CMakeFiles\\CMakeScratch\\TryCompile-9y1kh9\\Debug\\cmTC_d9f5c.exe" "C:\\vcpkg\\installed\\x64-windows\\debug\\bin" "cmTC_d9f5c.dir\\Debug\\cmTC_d9f5c.tlog\\cmTC_d9f5c.write.1u.tlog" "cmTC_d9f5c.dir\\Debug\\vcpkg.applocal.log"
+          The command "pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\IoT-Multi-Factor-Smart-Door-System\\build\\CMakeFiles\\CMakeScratch\\TryCompile-wtawu4\\Debug\\cmTC_a840d.exe" "C:\\vcpkg\\installed\\x64-windows\\debug\\bin" "cmTC_a840d.dir\\Debug\\cmTC_a840d.tlog\\cmTC_a840d.write.1u.tlog" "cmTC_a840d.dir\\Debug\\vcpkg.applocal.log"" exited with code 9009.
+          "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -ExecutionPolicy Bypass -noprofile -File "C:\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\IoT-Multi-Factor-Smart-Door-System\\build\\CMakeFiles\\CMakeScratch\\TryCompile-wtawu4\\Debug\\cmTC_a840d.exe" "C:\\vcpkg\\installed\\x64-windows\\debug\\bin" "cmTC_a840d.dir\\Debug\\cmTC_a840d.tlog\\cmTC_a840d.write.1u.tlog" "cmTC_a840d.dir\\Debug\\vcpkg.applocal.log"
         FinalizeBuildStatus:
-          Deleting file "cmTC_d9f5c.dir\\Debug\\cmTC_d9f5c.tlog\\unsuccessfulbuild".
-          Touching "cmTC_d9f5c.dir\\Debug\\cmTC_d9f5c.tlog\\cmTC_d9f5c.lastbuildstate".
-        Done Building Project "C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\FaceRecognitionSystem\\Build\\CMakeFiles\\CMakeScratch\\TryCompile-9y1kh9\\cmTC_d9f5c.vcxproj" (default targets).
+          Deleting file "cmTC_a840d.dir\\Debug\\cmTC_a840d.tlog\\unsuccessfulbuild".
+          Touching "cmTC_a840d.dir\\Debug\\cmTC_a840d.tlog\\cmTC_a840d.lastbuildstate".
+        Done Building Project "C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\IoT-Multi-Factor-Smart-Door-System\\build\\CMakeFiles\\CMakeScratch\\TryCompile-wtawu4\\cmTC_a840d.vcxproj" (default targets).
         
         Build succeeded.
             0 Warning(s)
             0 Error(s)
         
-        Time Elapsed 00:00:01.74
+        Time Elapsed 00:00:01.22
         
       exitCode: 0
   -
@@ -1413,8 +1497,8 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "C:/Users/Parth/Desktop/Glasgow/Classes/Programming/FaceRecognitionSystem/Build/CMakeFiles/CMakeScratch/TryCompile-epx1ub"
-      binary: "C:/Users/Parth/Desktop/Glasgow/Classes/Programming/FaceRecognitionSystem/Build/CMakeFiles/CMakeScratch/TryCompile-epx1ub"
+      source: "C:/Users/Parth/Desktop/Glasgow/Classes/Programming/IoT-Multi-Factor-Smart-Door-System/build/CMakeFiles/CMakeScratch/TryCompile-zqbwuf"
+      binary: "C:/Users/Parth/Desktop/Glasgow/Classes/Programming/IoT-Multi-Factor-Smart-Door-System/build/CMakeFiles/CMakeScratch/TryCompile-zqbwuf"
     cmakeVariables:
       CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /GR /EHsc"
       CMAKE_CXX_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
@@ -1424,48 +1508,48 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/Parth/Desktop/Glasgow/Classes/Programming/FaceRecognitionSystem/Build/CMakeFiles/CMakeScratch/TryCompile-epx1ub'
+        Change Dir: 'C:/Users/Parth/Desktop/Glasgow/Classes/Programming/IoT-Multi-Factor-Smart-Door-System/build/CMakeFiles/CMakeScratch/TryCompile-zqbwuf'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/18/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_0ccf8.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=18.0 /v:n
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/18/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_8ff09.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=18.0 /v:n
         MSBuild version 18.4.0+6e61e96ac for .NET Framework
-        Build started 19-03-2026 22:15:56.
+        Build started 25-03-2026 15:25:00.
         
-        Project "C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\FaceRecognitionSystem\\Build\\CMakeFiles\\CMakeScratch\\TryCompile-epx1ub\\cmTC_0ccf8.vcxproj" on node 1 (default targets).
+        Project "C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\IoT-Multi-Factor-Smart-Door-System\\build\\CMakeFiles\\CMakeScratch\\TryCompile-zqbwuf\\cmTC_8ff09.vcxproj" on node 1 (default targets).
         PrepareForBuild:
           Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
-          Creating directory "C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\FaceRecognitionSystem\\Build\\CMakeFiles\\CMakeScratch\\TryCompile-epx1ub\\Debug\\".
-          Creating directory "cmTC_0ccf8.dir\\Debug\\cmTC_0ccf8.tlog\\".
+          Creating directory "C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\IoT-Multi-Factor-Smart-Door-System\\build\\CMakeFiles\\CMakeScratch\\TryCompile-zqbwuf\\Debug\\".
+          Creating directory "cmTC_8ff09.dir\\Debug\\cmTC_8ff09.tlog\\".
         InitializeBuildStatus:
-          Creating "cmTC_0ccf8.dir\\Debug\\cmTC_0ccf8.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
-          Touching "cmTC_0ccf8.dir\\Debug\\cmTC_0ccf8.tlog\\unsuccessfulbuild".
+          Creating "cmTC_8ff09.dir\\Debug\\cmTC_8ff09.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_8ff09.dir\\Debug\\cmTC_8ff09.tlog\\unsuccessfulbuild".
         VcpkgTripletSelection:
           Using triplet "x64-windows" from "C:\\vcpkg\\installed\\x64-windows\\"
           Using normalized configuration "Debug"
         ClCompile:
-          C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GR /Fo"cmTC_0ccf8.dir\\Debug\\\\" /Fd"cmTC_0ccf8.dir\\Debug\\vc145.pdb" /external:W1 /TP /errorReport:queue "C:\\Users\\Parth\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\cmake\\data\\share\\cmake-4.2\\Modules\\CMakeCXXCompilerABI.cpp"
+          C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GR /Fo"cmTC_8ff09.dir\\Debug\\\\" /Fd"cmTC_8ff09.dir\\Debug\\vc145.pdb" /external:W1 /TP /errorReport:queue "C:\\Users\\Parth\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\cmake\\data\\share\\cmake-4.2\\Modules\\CMakeCXXCompilerABI.cpp"
           Microsoft (R) C/C++ Optimizing Compiler Version 19.50.35727 for x64
           Copyright (C) Microsoft Corporation.  All rights reserved.
-          cl /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GR /Fo"cmTC_0ccf8.dir\\Debug\\\\" /Fd"cmTC_0ccf8.dir\\Debug\\vc145.pdb" /external:W1 /TP /errorReport:queue "C:\\Users\\Parth\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\cmake\\data\\share\\cmake-4.2\\Modules\\CMakeCXXCompilerABI.cpp"
+          cl /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GR /Fo"cmTC_8ff09.dir\\Debug\\\\" /Fd"cmTC_8ff09.dir\\Debug\\vc145.pdb" /external:W1 /TP /errorReport:queue "C:\\Users\\Parth\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\cmake\\data\\share\\cmake-4.2\\Modules\\CMakeCXXCompilerABI.cpp"
           CMakeCXXCompilerABI.cpp
         Link:
-          C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\FaceRecognitionSystem\\Build\\CMakeFiles\\CMakeScratch\\TryCompile-epx1ub\\Debug\\cmTC_0ccf8.exe" /INCREMENTAL /ILK:"cmTC_0ccf8.dir\\Debug\\cmTC_0ccf8.ilk" /NOLOGO /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\debug\\lib" /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\debug\\lib\\manual-link" kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib "C:\\vcpkg\\installed\\x64-windows\\debug\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/Parth/Desktop/Glasgow/Classes/Programming/FaceRecognitionSystem/Build/CMakeFiles/CMakeScratch/TryCompile-epx1ub/Debug/cmTC_0ccf8.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/Users/Parth/Desktop/Glasgow/Classes/Programming/FaceRecognitionSystem/Build/CMakeFiles/CMakeScratch/TryCompile-epx1ub/Debug/cmTC_0ccf8.lib" /MACHINE:X64  /machine:x64 cmTC_0ccf8.dir\\Debug\\CMakeCXXCompilerABI.obj
-          cmTC_0ccf8.vcxproj -> C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\FaceRecognitionSystem\\Build\\CMakeFiles\\CMakeScratch\\TryCompile-epx1ub\\Debug\\cmTC_0ccf8.exe
+          C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\IoT-Multi-Factor-Smart-Door-System\\build\\CMakeFiles\\CMakeScratch\\TryCompile-zqbwuf\\Debug\\cmTC_8ff09.exe" /INCREMENTAL /ILK:"cmTC_8ff09.dir\\Debug\\cmTC_8ff09.ilk" /NOLOGO /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\debug\\lib" /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\debug\\lib\\manual-link" kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib "C:\\vcpkg\\installed\\x64-windows\\debug\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/Parth/Desktop/Glasgow/Classes/Programming/IoT-Multi-Factor-Smart-Door-System/build/CMakeFiles/CMakeScratch/TryCompile-zqbwuf/Debug/cmTC_8ff09.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/Users/Parth/Desktop/Glasgow/Classes/Programming/IoT-Multi-Factor-Smart-Door-System/build/CMakeFiles/CMakeScratch/TryCompile-zqbwuf/Debug/cmTC_8ff09.lib" /MACHINE:X64  /machine:x64 cmTC_8ff09.dir\\Debug\\CMakeCXXCompilerABI.obj
+          cmTC_8ff09.vcxproj -> C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\IoT-Multi-Factor-Smart-Door-System\\build\\CMakeFiles\\CMakeScratch\\TryCompile-zqbwuf\\Debug\\cmTC_8ff09.exe
         AppLocalFromInstalled:
-          pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\FaceRecognitionSystem\\Build\\CMakeFiles\\CMakeScratch\\TryCompile-epx1ub\\Debug\\cmTC_0ccf8.exe" "C:\\vcpkg\\installed\\x64-windows\\debug\\bin" "cmTC_0ccf8.dir\\Debug\\cmTC_0ccf8.tlog\\cmTC_0ccf8.write.1u.tlog" "cmTC_0ccf8.dir\\Debug\\vcpkg.applocal.log"
+          pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\IoT-Multi-Factor-Smart-Door-System\\build\\CMakeFiles\\CMakeScratch\\TryCompile-zqbwuf\\Debug\\cmTC_8ff09.exe" "C:\\vcpkg\\installed\\x64-windows\\debug\\bin" "cmTC_8ff09.dir\\Debug\\cmTC_8ff09.tlog\\cmTC_8ff09.write.1u.tlog" "cmTC_8ff09.dir\\Debug\\vcpkg.applocal.log"
           'pwsh.exe' is not recognized as an internal or external command,
           operable program or batch file.
-          The command "pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\FaceRecognitionSystem\\Build\\CMakeFiles\\CMakeScratch\\TryCompile-epx1ub\\Debug\\cmTC_0ccf8.exe" "C:\\vcpkg\\installed\\x64-windows\\debug\\bin" "cmTC_0ccf8.dir\\Debug\\cmTC_0ccf8.tlog\\cmTC_0ccf8.write.1u.tlog" "cmTC_0ccf8.dir\\Debug\\vcpkg.applocal.log"" exited with code 9009.
-          "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -ExecutionPolicy Bypass -noprofile -File "C:\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\FaceRecognitionSystem\\Build\\CMakeFiles\\CMakeScratch\\TryCompile-epx1ub\\Debug\\cmTC_0ccf8.exe" "C:\\vcpkg\\installed\\x64-windows\\debug\\bin" "cmTC_0ccf8.dir\\Debug\\cmTC_0ccf8.tlog\\cmTC_0ccf8.write.1u.tlog" "cmTC_0ccf8.dir\\Debug\\vcpkg.applocal.log"
+          The command "pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\IoT-Multi-Factor-Smart-Door-System\\build\\CMakeFiles\\CMakeScratch\\TryCompile-zqbwuf\\Debug\\cmTC_8ff09.exe" "C:\\vcpkg\\installed\\x64-windows\\debug\\bin" "cmTC_8ff09.dir\\Debug\\cmTC_8ff09.tlog\\cmTC_8ff09.write.1u.tlog" "cmTC_8ff09.dir\\Debug\\vcpkg.applocal.log"" exited with code 9009.
+          "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -ExecutionPolicy Bypass -noprofile -File "C:\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\IoT-Multi-Factor-Smart-Door-System\\build\\CMakeFiles\\CMakeScratch\\TryCompile-zqbwuf\\Debug\\cmTC_8ff09.exe" "C:\\vcpkg\\installed\\x64-windows\\debug\\bin" "cmTC_8ff09.dir\\Debug\\cmTC_8ff09.tlog\\cmTC_8ff09.write.1u.tlog" "cmTC_8ff09.dir\\Debug\\vcpkg.applocal.log"
         FinalizeBuildStatus:
-          Deleting file "cmTC_0ccf8.dir\\Debug\\cmTC_0ccf8.tlog\\unsuccessfulbuild".
-          Touching "cmTC_0ccf8.dir\\Debug\\cmTC_0ccf8.tlog\\cmTC_0ccf8.lastbuildstate".
-        Done Building Project "C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\FaceRecognitionSystem\\Build\\CMakeFiles\\CMakeScratch\\TryCompile-epx1ub\\cmTC_0ccf8.vcxproj" (default targets).
+          Deleting file "cmTC_8ff09.dir\\Debug\\cmTC_8ff09.tlog\\unsuccessfulbuild".
+          Touching "cmTC_8ff09.dir\\Debug\\cmTC_8ff09.tlog\\cmTC_8ff09.lastbuildstate".
+        Done Building Project "C:\\Users\\Parth\\Desktop\\Glasgow\\Classes\\Programming\\IoT-Multi-Factor-Smart-Door-System\\build\\CMakeFiles\\CMakeScratch\\TryCompile-zqbwuf\\cmTC_8ff09.vcxproj" (default targets).
         
         Build succeeded.
             0 Warning(s)
             0 Error(s)
         
-        Time Elapsed 00:00:01.35
+        Time Elapsed 00:00:01.05
         
       exitCode: 0
   -
@@ -1532,11 +1616,11 @@ events:
         CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
     candidates:
       -
-        path: "C:/Users/Parth/Desktop/Glasgow/Classes/Programming/FaceRecognitionSystem/Build/CMakeFiles/pkgRedirects/OpenCVConfig.cmake"
+        path: "C:/Users/Parth/Desktop/Glasgow/Classes/Programming/IoT-Multi-Factor-Smart-Door-System/build/CMakeFiles/pkgRedirects/OpenCVConfig.cmake"
         mode: "config"
         reason: "no_exist"
       -
-        path: "C:/Users/Parth/Desktop/Glasgow/Classes/Programming/FaceRecognitionSystem/Build/CMakeFiles/pkgRedirects/opencv-config.cmake"
+        path: "C:/Users/Parth/Desktop/Glasgow/Classes/Programming/IoT-Multi-Factor-Smart-Door-System/build/CMakeFiles/pkgRedirects/opencv-config.cmake"
         mode: "config"
         reason: "no_exist"
     found:
@@ -1547,6 +1631,8 @@ events:
       CMAKE_PREFIX_PATH:
         - "C:\\opencv\\build\\x64\\vc16\\lib"
       ENV{PATH}:
+        - "c:\\Users\\Parth\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
+        - "c:\\Users\\Parth\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Users\\Parth\\AppData\\Local\\Programs\\Microsoft VS Code"
         - "C:\\Program Files\\Common Files\\Oracle\\Java\\javapath"
         - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath"
@@ -1576,6 +1662,7 @@ events:
         - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
         - "C:\\MinGW\\mingw32\\bin"
         - "C:\\vcpkg\\installed\\x64-windows\\bin"
+        - "C:\\Program Files\\Git LFS"
         - "C:\\Users\\Parth\\LDOPE-1.7\\bin"
         - "C:\\Users\\Parth\\AppData\\Local\\Programs\\Python\\Python311\\Scripts\\"
         - "C:\\Users\\Parth\\AppData\\Local\\Programs\\Python\\Python311\\"

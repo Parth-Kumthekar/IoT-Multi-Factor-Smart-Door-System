@@ -1,7 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="C:\Users\Parth\Desktop\Glasgow\Classes\Programming\IoT-Multi-Factor-Smart-Door-System\tools\capture_dataset.cpp">
+    <ClCompile Include="C:\Users\Parth\Desktop\Glasgow\Classes\Programming\IoT-Multi-Factor-Smart-Door-System\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Parth\Desktop\Glasgow\Classes\Programming\IoT-Multi-Factor-Smart-Door-System\src\FaceRecognizer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
