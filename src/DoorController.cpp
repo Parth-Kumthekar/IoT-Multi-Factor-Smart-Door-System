@@ -16,7 +16,9 @@ DoorController::~DoorController() {
 bool DoorController::initialize() {
     try {
         // 1. Initialize GPIO for Reed Switch (Pi 5 uses chip 4)
-        auto chip = gpiod::make_chip("/dev/gpiochip4");
+        //auto chip = gpiod::make_chip("/dev/gpiochip4");
+        // You instantiate the chip object directly using the path
+        gpiod::chip chip("/dev/gpiochip4");
         
         reed_request = std::move(chip.prepare_config()
             .add_line_settings(

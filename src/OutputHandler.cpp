@@ -8,7 +8,9 @@ OutputHandler::OutputHandler(unsigned int relayPin, unsigned int greenPin, unsig
 bool OutputHandler::init() {
     try {
         // Raspberry Pi 5 header pins are controlled by /dev/gpiochip4
-        auto chip = gpiod::make_chip("/dev/gpiochip4");
+       // auto chip = gpiod::make_chip("/dev/gpiochip4");
+       // You instantiate the chip object directly using the path
+        gpiod::chip chip("/dev/gpiochip4");     
 
         // We assign the request to the optional using std::move
         // This is the key fix for the "private constructor" error
