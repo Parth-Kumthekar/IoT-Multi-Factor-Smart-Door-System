@@ -7,24 +7,24 @@
 		<BuildType Name="RelWithDebInfo"/>
 		<Platform Name="x64"/>
 	</Configurations>
-	<Project Path="ALL_BUILD.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="00cdfb31-8e63-30a5-b23a-3ea649849093" DefaultStartup="true">
+	<Project Path="ALL_BUILD.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="7c2de12f-6b76-3016-9ad6-3d14be0e38a7" DefaultStartup="true">
 		<BuildDependency Project="BuildDatabase.vcxproj"/>
 		<BuildDependency Project="CaptureDataset.vcxproj"/>
-		<BuildDependency Project="FaceRecognition.vcxproj"/>
+		<BuildDependency Project="FaceID.vcxproj"/>
 		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
 		<Build Solution="Debug|*" Project="false"/>
 		<Build Solution="Release|*" Project="false"/>
 		<Build Solution="MinSizeRel|*" Project="false"/>
 		<Build Solution="RelWithDebInfo|*" Project="false"/>
 	</Project>
-	<Project Path="BuildDatabase.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="af3dec61-acaa-3da6-9837-0b4859dfc15f">
+	<Project Path="BuildDatabase.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="e39d2c8f-e7bd-332d-afa2-9c2c013bcc88">
 		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
 	</Project>
-	<Project Path="CaptureDataset.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="011ec453-3754-3ff4-b733-14013e0e2012">
+	<Project Path="CaptureDataset.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="58d09e80-d8cb-3c22-afc3-89e3834a5d5d">
 		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
 	</Project>
-	<Project Path="FaceRecognition.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="b1dcdd2f-34c4-36bf-a590-7cebb695ac81">
+	<Project Path="FaceID.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="7d838d67-a6f7-37d3-9b0c-4f1f7f8dffb2">
 		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
 	</Project>
-	<Project Path="ZERO_CHECK.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="981dade2-26f2-3fe4-9314-ae2a39bf93bc"/>
+	<Project Path="ZERO_CHECK.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="7ca15b39-88fe-3ad3-ac7a-565671ce4ba8"/>
 </Solution>

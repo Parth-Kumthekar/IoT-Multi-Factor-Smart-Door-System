@@ -9,7 +9,7 @@ int main() {
 
     FaceSystem system(frameQueue);
 
-    // Camera Thread (Pi optimized)
+    
     std::thread cam([&]() {
 
         cv::VideoCapture cap(0, cv::CAP_V4L2);
