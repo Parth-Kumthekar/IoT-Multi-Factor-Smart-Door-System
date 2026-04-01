@@ -4,7 +4,7 @@
 #include <gpiod.hpp>
 #include <nfc/nfc.h>
 #include <string>
-#include <memory>
+#include <optional> // Required for Pi 5 / libgpiod v2
 
 class DoorController {
 public:
@@ -16,19 +16,18 @@ public:
     void processNFC();
 
 private:
-    // GPIO Members for Pi 5 (v2.x)
+    bool isDoorOpen();
+
+    // GPIO Members
     unsigned int reedPinNum;
     int lastDoorState = -1;
     
-    // In v2.x, we keep the line_request rather than 'line' or 'chip'
-    gpiod::line_request reed_request;
+    // Wrap in optional to bypass the private constructor error
+    std::optional<gpiod::line_request> reed_request;
 
     // NFC Members
     nfc_context *context = nullptr;
     nfc_device *pnd = nullptr;
-
-    // Helper to read the physical pin
-    bool isDoorOpen();
 };
 
 #endif
