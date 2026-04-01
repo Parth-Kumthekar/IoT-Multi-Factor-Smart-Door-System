@@ -29,7 +29,7 @@ target_link_libraries(smart_door_demo PRIVATE
 # 6. Add the Test Executable
 # Note: Ensure test_door.cpp doesn't have its own 'main' if it conflicts with src/main.cpp
 add_executable(run_tests 
-    test/test_door.cpp 
+    tests/test_door.cpp 
     src/OutputHandler.cpp  # Added specifically for hardware logic
     src/DoorController.cpp
     src/NFCReader.cpp
