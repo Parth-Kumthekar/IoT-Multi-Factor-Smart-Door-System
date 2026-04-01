@@ -1,29 +1,30 @@
 #include "DoorController.hpp"
+#include "OutputHandler.hpp"
 #include <thread>
 #include <chrono>
-#include <csignal>
-#include <iostream>
-
-bool running = true;
-void handleExit(int s) { running = false; }
 
 int main() {
-    std::signal(SIGINT, handleExit);
+    // Pin Definitions for Pi 5
+    const int REED_PIN = 17;
+    const int RELAY_PIN = 6;
+    const int GREEN_LED = 26;
+    const int RED_LED = 19;
+    const int BUZZER_PIN = 13;
 
-    DoorController door(17); // Use BCM Pin 17
+    DoorController reader(REED_PIN);
+    OutputHandler hardware(RELAY_PIN, GREEN_LED, RED_LED, BUZZER_PIN);
 
-    if (!door.initialize()) {
-        std::cerr << "System startup failed. Check wiring/I2C." << std::endl;
+    if (!reader.initialize() || !hardware.init()) {
+        std::cerr << "Hardware Initialization Failed!" << std::endl;
         return 1;
     }
 
-    std::cout << "System running. Monitoring Door and NFC..." << std::endl;
+    hardware.lock(); // Start in locked state (Red LED on)
 
-    while (running) {
-        door.checkDoorStatus();
-        door.processNFC();
+    while (true) {
+        reader.checkDoorStatus(); // Monitor Reed Switch
+        reader.processNFC(hardware); // Pass output object to NFC logic
         
-        // Balance between responsiveness and CPU usage
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
 

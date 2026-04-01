@@ -1,62 +1,41 @@
 #include "DoorController.hpp"
+#include "OutputHandler.hpp"
 #include <iostream>
-#include <iomanip>
+#include <vector>
 
-DoorController::DoorController(unsigned int pin) : reedPin(pin) {}
+// Add a list of authorized UIDs for the demo
+std::vector<std::string> authorizedUIDs = {"046732ca", "a1b2c3d4"}; 
 
-DoorController::~DoorController() {
-    if (pnd) nfc_close(pnd);
-    if (context) nfc_exit(context);
-}
-
-bool DoorController::initialize() {
-    // Initialize GPIO (Raspberry Pi 5 RP1)
-    try {
-        chip = gpiod::make_chip("gpiochip4");
-        line = chip.get_line(reedPin);
-        line.request({
-            "DoorSensor", 
-            gpiod::line_request::DIRECTION_INPUT, 
-            gpiod::line_request::FLAG_BIAS_PULL_UP
-        }, 0);
-    } catch (const std::exception& e) {
-        std::cerr << "GPIO Init Error: " << e.what() << std::endl;
-        return false;
-    }
-
-    // Initialize NFC
-    nfc_init(&context);
-    if (!context) return false;
-
-    pnd = nfc_open(context, NULL);
-    if (!pnd) {
-        std::cerr << "ReadPi NFC not detected!" << std::endl;
-        return false;
-    }
-
-    return (nfc_initiator_init(pnd) >= 0);
-}
-
-void DoorController::checkDoorStatus() {
-    int currentState = line.get_value();
-    if (currentState != lastDoorState) {
-        std::cout << "[SENSOR] Door is now: " 
-                  << (currentState == 0 ? "CLOSED" : "OPEN") << std::endl;
-        lastDoorState = currentState;
-    }
-}
-
-void DoorController::processNFC() {
+void DoorController::processNFC(OutputHandler& outputs) {
     nfc_target nt;
     const nfc_modulation nm = { .nmt = NMT_ISO14443A, .nbr = NBR_106 };
 
-    // Poll for 100ms so we don't block the door sensor check
     if (nfc_initiator_poll_target(pnd, &nm, 1, 1, 2, &nt) > 0) {
-        std::cout << "[NFC] Access Attempt - UID: ";
+        // Convert hex UID to string for comparison
+        std::string uid = "";
         for (size_t i = 0; i < nt.nti.nai.szUidLen; i++) {
-            std::cout << std::hex << std::setw(2) << std::setfill('0') 
-                      << (int)nt.nti.nai.abtUid[i];
+            char buf[3];
+            sprintf(buf, "%02x", nt.nti.nai.abtUid[i]);
+            uid += buf;
         }
-        std::cout << std::dec << std::endl;
+
+        std::cout << "[NFC] Scanned: " << uid << std::endl;
+
+        // Check if UID is authorized
+        bool found = false;
+        for(const auto& id : authorizedUIDs) {
+            if(id == uid) { found = true; break; }
+        }
+
+        if (found) {
+            outputs.setAccessGranted();
+            // Wait for user to open and close door via Reed sensor
+            std::cout << "Waiting for door to close..." << std::endl;
+            std::this_thread::sleep_for(std::chrono::seconds(5)); 
+            outputs.lock();
+        } else {
+            outputs.setAccessDenied();
+            outputs.lock();
+        }
     }
 }
