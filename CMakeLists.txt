@@ -5,6 +5,9 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Find Libraries
+
+# Link the library to your executable
+target_link_libraries(smart_door_demo PRIVATE ${GPIOD_LIBRARIES})
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(GPIOD REQUIRED libgpiodcxx)
 pkg_check_modules(NFC REQUIRED libnfc)
@@ -22,4 +25,17 @@ add_executable(smart_door_demo ${SOURCES})
 target_link_libraries(smart_door_demo PRIVATE 
     ${GPIOD_LIBRARIES} 
     ${NFC_LIBRARIES}
+
+#5. Add the test executable
+add_executable(run_tests 
+    test/test_door.cpp 
+    src/DoorController.cpp 
+    # Add other .cpp files needed for testing
+)
+
+target_link_libraries(run_tests PRIVATE 
+    ${GPIOD_LIBRARIES} 
+    ${NFC_LIBRARIES}
+)
+
 )

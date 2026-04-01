@@ -4,6 +4,7 @@
 #include <gpiod.hpp>
 #include <thread>
 #include <chrono>
+#include <vector>
 
 class OutputHandler {
 public:
@@ -12,57 +13,62 @@ public:
 
     bool init() {
         try {
-            chip = gpiod::make_chip("gpiochip4");
-            // Request all pins as outputs
-            relay = chip.get_line(rp);
-            green = chip.get_line(gp);
-            red = chip.get_line(rdp);
-            buzzer = chip.get_line(bp);
+            // Pi 5 GPIOs are managed by gpiochip4
+            auto chip = gpiod::make_chip("/dev/gpiochip4");
 
-            relay.request({"Relay", gpiod::line_request::DIRECTION_OUTPUT, 0}, 0);
-            green.request({"GreenLED", gpiod::line_request::DIRECTION_OUTPUT, 0}, 0);
-            red.request({"RedLED", gpiod::line_request::DIRECTION_OUTPUT, 0}, 0);
-            buzzer.request({"Buzzer", gpiod::line_request::DIRECTION_OUTPUT, 0}, 0);
-            
+            // In v2.0, we create a "request" for all output pins at once
+            line_request = chip.prepare_config()
+                .add_line_settings(
+                    {rp, gp, rdp, bp},
+                    gpiod::line_settings()
+                        .set_direction(gpiod::line_config::direction::OUTPUT)
+                        .set_output_value(gpiod::line::value::INACTIVE)
+                )
+                .request();
+
             return true;
-        } catch (...) { return false; }
+        } catch (...) { 
+            return false; 
+        }
     }
 
     void setAccessGranted() {
-        relay.set_value(1);  // Unlock Solenoid
-        green.set_value(1);  // Green LED On
-        red.set_value(0);
-        beep(100);           // Short success beep
+        // Use the request object to set multiple values
+        line_request.set_value(rp, gpiod::line::value::ACTIVE);   // Unlock
+        line_request.set_value(gp, gpiod::line::value::ACTIVE);   // Green ON
+        line_request.set_value(rdp, gpiod::line::value::INACTIVE); // Red OFF
+        beep(100);
     }
 
     void setAccessDenied() {
-        green.set_value(0);
-        for(int i=0; i<3; i++) { // Flash Red & Beep 3 times
-            red.set_value(1);
-            buzzer.set_value(1);
+        line_request.set_value(gp, gpiod::line::value::INACTIVE);
+        for(int i=0; i<3; i++) {
+            line_request.set_value(rdp, gpiod::line::value::ACTIVE);
+            line_request.set_value(bp, gpiod::line::value::ACTIVE);
             std::this_thread::sleep_for(std::chrono::milliseconds(200));
-            red.set_value(0);
-            buzzer.set_value(0);
+            
+            line_request.set_value(rdp, gpiod::line::value::INACTIVE);
+            line_request.set_value(bp, gpiod::line::value::INACTIVE);
             std::this_thread::sleep_for(std::chrono::milliseconds(100));
         }
     }
 
     void lock() {
-        relay.set_value(0);
-        green.set_value(0);
-        red.set_value(1); // Red means locked
+        line_request.set_value(rp, gpiod::line::value::INACTIVE);
+        line_request.set_value(gp, gpiod::line::value::INACTIVE);
+        line_request.set_value(rdp, gpiod::line::value::ACTIVE);
     }
 
 private:
     void beep(int duration_ms) {
-        buzzer.set_value(1);
+        line_request.set_value(bp, gpiod::line::value::ACTIVE);
         std::this_thread::sleep_for(std::chrono::milliseconds(duration_ms));
-        buzzer.set_value(0);
+        line_request.set_value(bp, gpiod::line::value::INACTIVE);
     }
 
     unsigned int rp, gp, rdp, bp;
-    gpiod::chip chip;
-    gpiod::line relay, green, red, buzzer;
+    // In v2.x, the 'line_request' holds the connection to your pins
+    gpiod::line_request line_request; 
 };
 
 #endif
