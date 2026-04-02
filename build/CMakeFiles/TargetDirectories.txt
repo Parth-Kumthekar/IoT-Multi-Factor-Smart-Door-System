@@ -1,0 +1,3 @@
+D:/C++/door-alarm-thread-desgin/build/CMakeFiles/door_alarm.dir
+D:/C++/door-alarm-thread-desgin/build/CMakeFiles/edit_cache.dir
+D:/C++/door-alarm-thread-desgin/build/CMakeFiles/rebuild_cache.dir
