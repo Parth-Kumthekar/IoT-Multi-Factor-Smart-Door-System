@@ -8,10 +8,12 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 add_executable(door_alarm_api
     src/main.cpp
+    src/EmailAlert.cpp
 )
 
 target_include_directories(door_alarm_api PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/vendor
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
 if (MSVC)
@@ -21,4 +23,9 @@ else()
 endif()
 
 find_package(Threads REQUIRED)
-target_link_libraries(door_alarm_api PRIVATE Threads::Threads)
+find_package(CURL REQUIRED)
+
+target_link_libraries(door_alarm_api PRIVATE
+    Threads::Threads
+    CURL::libcurl
+)

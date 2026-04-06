@@ -1,5 +1,6 @@
 #include <chrono>
 #include <ctime>
+#include <cstdlib>
 #include <iomanip>
 #include <iostream>
 #include <mutex>
@@ -9,6 +10,7 @@
 #include <vector>
 
 #include "httplib.h"
+#include "EmailAlert.h"
 
 struct LogEntry {
     std::string id;
@@ -48,6 +50,30 @@ namespace {
 
     constexpr int MAX_LOGS = 300;
     constexpr int VERIFICATION_WINDOW_SECONDS = 5;
+
+    std::string getEnvOrEmpty(const char* key) {
+        const char* value = std::getenv(key);
+        return value ? std::string(value) : std::string();
+    }
+
+    int getEnvOrDefaultInt(const char* key, int defaultValue) {
+        const char* value = std::getenv(key);
+        if (!value) return defaultValue;
+
+        try {
+            return std::stoi(value);
+        } catch (...) {
+            return defaultValue;
+        }
+    }
+
+    EmailAlert g_emailAlert(
+        getEnvOrEmpty("ALERT_SMTP_SERVER"),
+        getEnvOrDefaultInt("ALERT_SMTP_PORT", 587),
+        getEnvOrEmpty("ALERT_EMAIL"),
+        getEnvOrEmpty("ALERT_EMAIL_PASSWORD"),
+        getEnvOrEmpty("ALERT_EMAIL_RECEIVER")
+    );
 
     std::string nowIso8601() {
         auto now = std::chrono::system_clock::now();
@@ -142,6 +168,33 @@ namespace {
         g_state.pendingVerification = false;
         updateLedStatus();
         addLog("alarm", "Alarm triggered", reason);
+
+        std::thread([reason]() {
+            std::string subject = "Door Intrusion Alarm Alert";
+
+            std::ostringstream body;
+            body << "Door Intrusion Alarm Triggered\n\n";
+            body << "Time: " << nowIso8601() << "\n";
+            body << "Reason: " << reason << "\n";
+
+            {
+                std::lock_guard<std::mutex> lock(g_mutex);
+                body << "System Armed: " << (g_state.systemArmed ? "true" : "false") << "\n";
+                body << "Door Open: " << (g_state.doorOpen ? "true" : "false") << "\n";
+                body << "Intrusion Detected: " << (g_state.intrusionDetected ? "true" : "false") << "\n";
+                body << "Lock State: " << g_state.lockState << "\n";
+                body << "LED Status: " << g_state.ledStatus << "\n";
+            }
+
+            bool ok = g_emailAlert.sendIntrusionAlert(subject, body.str());
+
+            std::lock_guard<std::mutex> lock(g_mutex);
+            if (ok) {
+                addLog("email", "Email alert sent");
+            } else {
+                addLog("email", "Email alert failed");
+            }
+        }).detach();
     }
 
     void clearAlarm() {
@@ -261,12 +314,22 @@ namespace {
     void setJsonResponse(httplib::Response& res, const std::string& body, int status = 200) {
         res.status = status;
         res.set_header("Content-Type", "application/json");
+        res.set_header("Access-Control-Allow-Origin", "*");
+        res.set_header("Access-Control-Allow-Headers", "Content-Type");
+        res.set_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
         res.set_content(body, "application/json");
     }
 }
 
 int main() {
     httplib::Server server;
+
+    server.Options(R"(.*)", [](const httplib::Request&, httplib::Response& res) {
+        res.status = 200;
+        res.set_header("Access-Control-Allow-Origin", "*");
+        res.set_header("Access-Control-Allow-Headers", "Content-Type");
+        res.set_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    });
 
     server.Get("/", [](const httplib::Request&, httplib::Response& res) {
         setJsonResponse(
@@ -288,7 +351,8 @@ int main() {
             "\"POST /api/door/close\","
             "\"POST /api/alarm/trigger\","
             "\"POST /api/alarm/clear\","
-            "\"POST /api/devices/update\""
+            "\"POST /api/devices/update\","
+            "\"POST /api/email/test\""
             "]"
             "}"
         );
@@ -515,6 +579,24 @@ int main() {
         );
     });
 
+    server.Post("/api/email/test", [](const httplib::Request&, httplib::Response& res) {
+        std::thread([]() {
+            bool ok = g_emailAlert.sendIntrusionAlert(
+                "Test Email Alert",
+                "This is a test email from Door Intrusion Alarm System."
+            );
+
+            std::lock_guard<std::mutex> lock(g_mutex);
+            if (ok) {
+                addLog("email", "Test email sent");
+            } else {
+                addLog("email", "Test email failed");
+            }
+        }).detach();
+
+        setJsonResponse(res, "{\"ok\":true,\"message\":\"Test email request sent\"}");
+    });
+
     server.set_error_handler([](const httplib::Request&, httplib::Response& res) {
         if (res.status == 404) {
             setJsonResponse(res, "{\"ok\":false,\"message\":\"Route not found\"}", 404);
@@ -524,6 +606,11 @@ int main() {
     {
         std::lock_guard<std::mutex> lock(g_mutex);
         addLog("system", "API server started on port 3000");
+        if (g_emailAlert.isConfigured()) {
+            addLog("email", "Email alert configured");
+        } else {
+            addLog("email", "Email alert not configured");
+        }
     }
 
     std::cout << "Door Alarm C++ API running at http://localhost:3000" << std::endl;
