@@ -24,8 +24,9 @@ bool DoorController::initialize() {
         gpiod::line::offsets offsets{reedPinNum};
         line_cfg.add_line_settings(offsets, settings);
 
-        // v1.x style: construct line_request directly
-        reed_request.emplace(chip, line_cfg, "DoorController");
+        // Request lines
+        gpiod::line_request request(line_cfg);
+        reed_request = std::move(request);
 
         // NFC initialization
         nfc_init(&context);
@@ -45,7 +46,7 @@ bool DoorController::initialize() {
             return false;
         }
 
-        std::cout << "Door Controller & NFC Initialized (v1.x)" << std::endl;
+        std::cout << "Door Controller & NFC Initialized" << std::endl;
         return true;
 
     } catch (const std::exception& e) {
@@ -69,10 +70,7 @@ std::string DoorController::scanNFC() {
     if (!pnd) return "";
 
     nfc_target nt;
-    const nfc_modulation nm = {
-        .nmt = NMT_ISO14443A,
-        .nbr = NBR_106,
-    };
+    const nfc_modulation nm = { .nmt = NMT_ISO14443A, .nbr = NBR_106 };
 
     if (nfc_initiator_select_passive_target(pnd, nm, NULL, 0, &nt) > 0) {
         std::stringstream ss;

@@ -18,10 +18,11 @@ bool OutputHandler::init() {
         gpiod::line::offsets offsets{rp, gp, rdp, bp};
         line_cfg.add_line_settings(offsets, settings);
 
-        // v1.x style: construct line_request directly
-        line_request.emplace(chip, line_cfg, "OutputHandler");
+        // Create line_request directly (no string name)
+        gpiod::line_request request(line_cfg);
+        line_request = std::move(request);
 
-        std::cout << "GPIO Outputs Initialized successfully (v1.x)" << std::endl;
+        std::cout << "GPIO Outputs Initialized successfully" << std::endl;
 
         // Start with Red LED active (door locked)
         line_request->set_value(rdp, gpiod::line::value::ACTIVE);
@@ -37,11 +38,11 @@ bool OutputHandler::init() {
 void OutputHandler::setAccessGranted() {
     if (!line_request) return;
 
-    line_request->set_value(rp, gpiod::line::value::ACTIVE);    // Relay ON
-    line_request->set_value(gp, gpiod::line::value::ACTIVE);    // Green ON
-    line_request->set_value(rdp, gpiod::line::value::INACTIVE); // Red OFF
+    line_request->set_value(rp, gpiod::line::value::ACTIVE);
+    line_request->set_value(gp, gpiod::line::value::ACTIVE);
+    line_request->set_value(rdp, gpiod::line::value::INACTIVE);
 
-    beep(150); // Audible confirmation
+    beep(150);
 }
 
 void OutputHandler::setAccessDenied() {
@@ -63,9 +64,9 @@ void OutputHandler::setAccessDenied() {
 void OutputHandler::lock() {
     if (!line_request) return;
 
-    line_request->set_value(rp, gpiod::line::value::INACTIVE);   // Relay OFF
-    line_request->set_value(gp, gpiod::line::value::INACTIVE);   // Green OFF
-    line_request->set_value(rdp, gpiod::line::value::ACTIVE);    // Red ON
+    line_request->set_value(rp, gpiod::line::value::INACTIVE);
+    line_request->set_value(gp, gpiod::line::value::INACTIVE);
+    line_request->set_value(rdp, gpiod::line::value::ACTIVE);
 }
 
 void OutputHandler::beep(int duration_ms) {

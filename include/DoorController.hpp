@@ -14,7 +14,7 @@ public:
 
     bool initialize();
     void checkDoorStatus();
-    std::string scanNFC(); // Returns UID string if found
+    std::string scanNFC();
 
 private:
     unsigned int reedPinNum;
