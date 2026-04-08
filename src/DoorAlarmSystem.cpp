@@ -35,8 +35,13 @@ void DoorAlarmSystem::stop()
         return;
     }
 
-    postEvent(EventType::Shutdown, "main");
     running_ = false;
+
+    // Push a shutdown event so the control loop can exit cleanly.
+    postEvent(EventType::Shutdown, "main");
+
+    // Also shut down the queue to wake any waiting thread safely.
+    eventQueue_.shutdown();
 
     if (controlThread_.joinable())
     {
@@ -84,7 +89,12 @@ void DoorAlarmSystem::controlLoop()
     while (true)
     {
         Event event(EventType::PrintStatus);
-        eventQueue_.waitAndPop(event);
+
+        if (!eventQueue_.waitAndPop(event))
+        {
+            logger_.log("CONTROL: event queue shutdown detected.");
+            break;
+        }
 
         if (event.type == EventType::Shutdown)
         {
@@ -131,25 +141,32 @@ void DoorAlarmSystem::handleEvent(const Event& event)
     case EventType::ArmSystem:
         handleArm(event.source);
         break;
+
     case EventType::DisarmSystem:
         handleDisarm(event.source);
         break;
+
     case EventType::DoorOpened:
         handleDoorOpened(event.source);
         break;
+
     case EventType::DoorClosed:
         handleDoorClosed(event.source);
         break;
+
     case EventType::AuthorizedByNfc:
     case EventType::AuthorizedByApp:
         handleAuthorization(event);
         break;
+
     case EventType::VerificationTimeout:
         handleVerificationTimeout(event.source);
         break;
+
     case EventType::PrintStatus:
         printStatus();
         break;
+
     case EventType::Shutdown:
         break;
     }
@@ -163,6 +180,7 @@ void DoorAlarmSystem::handleArm(const std::string& source)
         doorOpen_ = false;
         clearAuthorizationWindow();
         alarmManager_.clearAlarm();
+
         logger_.log("CONTROL: system ARMED by " + source + ". New state = " + toString(state_));
     }
     else
@@ -176,6 +194,7 @@ void DoorAlarmSystem::handleDisarm(const std::string& source)
     state_ = SystemState::Disarmed;
     clearAuthorizationWindow();
     alarmManager_.clearAlarm();
+
     logger_.log("CONTROL: system DISARMED by " + source + ". New state = " + toString(state_));
 }
 
@@ -194,8 +213,10 @@ void DoorAlarmSystem::handleDoorOpened(const std::string& source)
     {
         state_ = SystemState::PendingVerification;
         verificationDeadline_ = Clock::now() + authorizationWindow_;
-        logger_.log("CONTROL: state -> PendingVerification. Waiting for NFC/App auth for "
-                    + std::to_string(authorizationWindow_.count()) + " ms.");
+
+        logger_.log(
+            "CONTROL: state -> PendingVerification. Waiting for NFC/App auth for "
+            + std::to_string(authorizationWindow_.count()) + " ms.");
         return;
     }
 
@@ -223,7 +244,8 @@ void DoorAlarmSystem::handleDoorClosed(const std::string& source)
 
 void DoorAlarmSystem::handleAuthorization(const Event& event)
 {
-    const std::string method = (event.type == EventType::AuthorizedByNfc) ? "NFC" : "APP";
+    const std::string method =
+        (event.type == EventType::AuthorizedByNfc) ? "NFC" : "APP";
 
     if (state_ == SystemState::PendingVerification && verificationDeadline_.has_value())
     {
@@ -232,6 +254,7 @@ void DoorAlarmSystem::handleAuthorization(const Event& event)
             state_ = SystemState::AuthorizedEntry;
             clearAuthorizationWindow();
             alarmManager_.clearAlarm();
+
             logger_.log("CONTROL: valid authorization by " + method + ". State -> AuthorizedEntry.");
         }
         else
@@ -243,13 +266,17 @@ void DoorAlarmSystem::handleAuthorization(const Event& event)
 
     if (state_ == SystemState::ArmedIdle)
     {
-        logger_.log("CONTROL: pre-authorization by " + method + " received, but this demo only accepts it after door opens.");
+        logger_.log(
+            "CONTROL: pre-authorization by " + method
+            + " received, but this demo only accepts it after door opens.");
         return;
     }
 
     if (state_ == SystemState::AlarmActive)
     {
-        logger_.log("CONTROL: authorization by " + method + " ignored because alarm is already active. Use disarm.");
+        logger_.log(
+            "CONTROL: authorization by " + method
+            + " ignored because alarm is already active. Use disarm.");
         return;
     }
 
@@ -262,7 +289,9 @@ void DoorAlarmSystem::handleVerificationTimeout(const std::string& source)
     {
         state_ = SystemState::AlarmActive;
         clearAuthorizationWindow();
-        alarmManager_.triggerAlarm("Unauthorized door opening (timeout, source=" + source + ")");
+        alarmManager_.triggerAlarm(
+            "Unauthorized door opening (timeout, source=" + source + ")");
+
         logger_.log("CONTROL: verification timeout. State -> AlarmActive.");
     }
 }
@@ -274,6 +303,7 @@ void DoorAlarmSystem::printStatus()
         << "state=" << toString(state_)
         << ", doorOpen=" << (doorOpen_ ? "true" : "false")
         << ", alarm=" << (alarmManager_.isAlarmActive() ? "ON" : "OFF");
+
     logger_.log(oss.str());
 }
 
