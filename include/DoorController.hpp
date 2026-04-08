@@ -1,11 +1,11 @@
 #ifndef DOOR_CONTROLLER_HPP
 #define DOOR_CONTROLLER_HPP
 
-#include <gpiod.hpp>
 #include <nfc/nfc.h>
 #include <string>
 #include <optional>
 #include <vector>
+#include <gpiod.hpp>
 
 class DoorController {
 public:

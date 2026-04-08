@@ -3,10 +3,10 @@
 #include <iomanip>
 #include <sstream>
 
-// Constructor: Initializes the BCM pin number for the Reed Switch
+// Constructor
 DoorController::DoorController(unsigned int reedPin) : reedPinNum(reedPin) {}
 
-// Destructor: Ensures NFC hardware is released properly
+// Destructor
 DoorController::~DoorController() {
     if (pnd) nfc_close(pnd);
     if (context) nfc_exit(context);
@@ -14,22 +14,19 @@ DoorController::~DoorController() {
 
 bool DoorController::initialize() {
     try {
-        // 1. Initialize GPIO for Reed Switch (Pi 5 chip 4)
         gpiod::chip chip("/dev/gpiochip4");
 
-        // Define settings for Input with a Pull-Up resistor
         auto settings = gpiod::line_settings()
             .set_direction(gpiod::line::direction::INPUT)
             .set_bias(gpiod::line::bias::PULL_UP);
 
-        // Map settings to the Reed Pin
         auto line_cfg = gpiod::line_config();
-        line_cfg.add_line_settings({reedPinNum}, settings);
+        gpiod::line::offsets offsets{reedPinNum};
+        line_cfg.add_line_settings(offsets, settings);
 
-        // Submit request and move it into the class member (std::optional)
-        reed_request = std::move(chip.request_lines(line_cfg));
+        reed_request = chip.request(line_cfg);
 
-        // 2. Initialize libnfc
+        // Initialize NFC
         nfc_init(&context);
         if (!context) {
             std::cerr << "NFC Context Init Failed" << std::endl;
@@ -59,11 +56,8 @@ bool DoorController::initialize() {
 void DoorController::checkDoorStatus() {
     if (!reed_request) return;
 
-    // Read the current physical state of the magnet
-    // With PULL_UP: 1 (ACTIVE) means the magnet is AWAY (Door Open)
     bool isOpen = (reed_request->get_value(reedPinNum) == gpiod::line::value::ACTIVE);
 
-    // Only print when the state changes to avoid flooding the terminal
     if (static_cast<int>(isOpen) != lastDoorState) {
         std::cout << "--- Door State Changed: " << (isOpen ? "OPEN" : "CLOSED") << " ---" << std::endl;
         lastDoorState = static_cast<int>(isOpen);
@@ -79,8 +73,6 @@ std::string DoorController::scanNFC() {
         .nbr = NBR_106,
     };
 
-    // Non-blocking poll for a single target
-    // We pass 0 for timeout to make it a quick check inside the main loop
     if (nfc_initiator_select_passive_target(pnd, nm, NULL, 0, &nt) > 0) {
         std::stringstream ss;
         for (size_t i = 0; i < nt.nti.nai.szUidLen; i++) {
@@ -88,6 +80,6 @@ std::string DoorController::scanNFC() {
         }
         return ss.str();
     }
-    
+
     return "";
 }
