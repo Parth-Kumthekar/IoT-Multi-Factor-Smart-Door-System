@@ -1,39 +1,54 @@
 #include "NFCReader.hpp"
+#include <fcntl.h>
+#include <unistd.h>
+#include <sys/ioctl.h>
+#include <linux/i2c-dev.h>
 #include <iostream>
-#include <iomanip>
 #include <sstream>
+#include <iomanip>
 
-NFCReader::NFCReader() : context(nullptr), device(nullptr) {}
+#define PN532_COMMAND_INLISTPASSIVETARGET 0x4A
+
+NFCReader::NFCReader() : i2c_fd(-1) {}
 
 NFCReader::~NFCReader() {
-    if (device) nfc_close(device);
-    if (context) nfc_exit(context);
+    if (i2c_fd >= 0) close(i2c_fd);
 }
 
-bool NFCReader::connect() {
-    nfc_init(&context);
-    if (context == nullptr) return false;
+bool NFCReader::init() {
+    i2c_fd = open("/dev/i2c-1", O_RDWR);
+    if (i2c_fd < 0) return false;
 
-    // This opens the device defined in /etc/nfc/libnfc.conf
-    device = nfc_open(context, nullptr);
-    if (device == nullptr) return false;
+    if (ioctl(i2c_fd, I2C_SLAVE, addr) < 0) return false;
 
-    // Set the ReadPi to "Initiator" mode (looking for cards)
-    return (nfc_initiator_init(device) >= 0);
+    return true;
 }
 
-std::string NFCReader::scanCard() {
-    nfc_target nt;
-    const nfc_modulation nm = { .nmt = NMT_ISO14443A, .nbr = NBR_106 };
+bool NFCReader::writeCommand(const std::vector<uint8_t>& cmd) {
+    return write(i2c_fd, cmd.data(), cmd.size()) == (int)cmd.size();
+}
 
-    // Poll for a card (non-blocking for 100ms)
-    if (nfc_initiator_poll_target(device, &nm, 1, 1, 2, &nt) > 0) {
-        std::stringstream ss;
-        for (size_t i = 0; i < nt.nti.nai.szUidLen; i++) {
-            ss << std::hex << std::setw(2) << std::setfill('0') 
-               << (int)nt.nti.nai.abtUid[i];
-        }
-        return ss.str();
+std::vector<uint8_t> NFCReader::readResponse(int len) {
+    std::vector<uint8_t> buffer(len);
+    read(i2c_fd, buffer.data(), len);
+    return buffer;
+}
+
+std::string NFCReader::readUID() {
+    std::vector<uint8_t> cmd = {0x00, 0x00, 0xFF, 0x04, 0xFC, 0xD4, 0x4A, 0x01, 0x00, 0xE1, 0x00};
+
+    writeCommand(cmd);
+    usleep(50000);
+
+    auto resp = readResponse(32);
+
+    int uid_len = resp[12];
+
+    std::stringstream ss;
+    for (int i = 0; i < uid_len; i++) {
+        ss << std::hex << std::setw(2) << std::setfill('0')
+           << (int)resp[13 + i];
     }
-    return ""; // Return empty string if no card found
+
+    return ss.str();
 }

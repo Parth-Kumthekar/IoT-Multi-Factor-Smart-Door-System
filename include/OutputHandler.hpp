@@ -1,25 +1,21 @@
-#ifndef OUTPUT_HANDLER_HPP
-#define OUTPUT_HANDLER_HPP
-
+#pragma once
 #include <gpiod.hpp>
-#include <thread>
-#include <chrono>
-#include <optional>
+#include <memory>
 
-class OutputHandler {
-public:
-    OutputHandler(unsigned int relayPin, unsigned int greenPin, unsigned int redPin, unsigned int buzzerPin);
-
-    bool init();
-    void setAccessGranted();
-    void setAccessDenied();
-    void lock();
-
+class OutputController {
 private:
-    void beep(int duration_ms);
+    std::shared_ptr<gpiod::chip> chip;
 
-    unsigned int rp, gp, rdp, bp;
-    std::optional<gpiod::line_request> line_request; 
+    std::shared_ptr<gpiod::line_request> green;
+    std::shared_ptr<gpiod::line_request> red;
+    std::shared_ptr<gpiod::line_request> buzzer;
+
+    std::shared_ptr<gpiod::line_request> createOutput(int pin);
+    void set(std::shared_ptr<gpiod::line_request> line, bool val);
+
+public:
+    void init();
+
+    void accessGranted();
+    void accessDenied();
 };
-
-#endif
