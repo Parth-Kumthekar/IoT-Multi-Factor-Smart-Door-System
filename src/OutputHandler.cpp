@@ -9,6 +9,7 @@ bool OutputHandler::init() {
     try {
         gpiod::chip chip("/dev/gpiochip4");
 
+        // Configure pins as OUTPUT, start inactive
         auto settings = gpiod::line_settings()
             .set_direction(gpiod::line::direction::OUTPUT)
             .set_output_value(gpiod::line::value::INACTIVE);
@@ -17,9 +18,10 @@ bool OutputHandler::init() {
         gpiod::line::offsets offsets{rp, gp, rdp, bp};
         line_cfg.add_line_settings(offsets, settings);
 
-        line_request = chip.request(line_cfg);
+        // v1.x style: construct line_request directly
+        line_request.emplace(chip, line_cfg, "OutputHandler");
 
-        std::cout << "GPIO Outputs Initialized successfully (v2.2.1)" << std::endl;
+        std::cout << "GPIO Outputs Initialized successfully (v1.x)" << std::endl;
 
         // Start with Red LED active (door locked)
         line_request->set_value(rdp, gpiod::line::value::ACTIVE);
@@ -38,8 +40,8 @@ void OutputHandler::setAccessGranted() {
     line_request->set_value(rp, gpiod::line::value::ACTIVE);    // Relay ON
     line_request->set_value(gp, gpiod::line::value::ACTIVE);    // Green ON
     line_request->set_value(rdp, gpiod::line::value::INACTIVE); // Red OFF
-    
-    beep(150);
+
+    beep(150); // Audible confirmation
 }
 
 void OutputHandler::setAccessDenied() {

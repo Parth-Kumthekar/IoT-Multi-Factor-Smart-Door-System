@@ -24,9 +24,10 @@ bool DoorController::initialize() {
         gpiod::line::offsets offsets{reedPinNum};
         line_cfg.add_line_settings(offsets, settings);
 
-        reed_request = chip.request(line_cfg);
+        // v1.x style: construct line_request directly
+        reed_request.emplace(chip, line_cfg, "DoorController");
 
-        // Initialize NFC
+        // NFC initialization
         nfc_init(&context);
         if (!context) {
             std::cerr << "NFC Context Init Failed" << std::endl;
@@ -35,7 +36,7 @@ bool DoorController::initialize() {
 
         pnd = nfc_open(context, nullptr);
         if (!pnd) {
-            std::cerr << "NFC Device Open Failed (Check I2C/Permissions)" << std::endl;
+            std::cerr << "NFC Device Open Failed" << std::endl;
             return false;
         }
 
@@ -44,7 +45,7 @@ bool DoorController::initialize() {
             return false;
         }
 
-        std::cout << "Door Controller & NFC Initialized (v2.2.1)" << std::endl;
+        std::cout << "Door Controller & NFC Initialized (v1.x)" << std::endl;
         return true;
 
     } catch (const std::exception& e) {

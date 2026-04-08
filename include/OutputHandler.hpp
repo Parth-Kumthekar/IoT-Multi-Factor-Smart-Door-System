@@ -9,7 +9,7 @@
 class OutputHandler {
 public:
     OutputHandler(unsigned int relayPin, unsigned int greenPin, unsigned int redPin, unsigned int buzzerPin);
-    
+
     bool init();
     void setAccessGranted();
     void setAccessDenied();
