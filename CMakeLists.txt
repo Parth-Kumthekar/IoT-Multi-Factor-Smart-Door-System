@@ -9,6 +9,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 add_executable(door_alarm
     src/main.cpp
     src/DoorAlarmSystem.cpp
+    src/DoorAlarmFSM.cpp
 )
 
 target_include_directories(door_alarm PRIVATE include)

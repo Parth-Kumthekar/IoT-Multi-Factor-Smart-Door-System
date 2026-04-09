@@ -11,502 +11,6 @@ events:
   -
     kind: "find-v1"
     backtrace:
-      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeMinGWFindMake.cmake:5 (find_program)"
-      - "CMakeLists.txt:3 (project)"
-    mode: "program"
-    variable: "CMAKE_MAKE_PROGRAM"
-    description: "Path to a program."
-    settings:
-      SearchFramework: "NEVER"
-      SearchAppBundle: "NEVER"
-      CMAKE_FIND_USE_CMAKE_PATH: true
-      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
-      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
-      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
-      CMAKE_FIND_USE_INSTALL_PREFIX: true
-    names:
-      - "mingw32-make.exe"
-    candidate_directories:
-      - "C:/Program Files/PowerShell/7/"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/"
-      - "C:/Windows/System32/"
-      - "C:/Windows/"
-      - "C:/Windows/System32/wbem/"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
-      - "C:/Windows/System32/OpenSSH/"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
-      - "C:/Program Files/dotnet/"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/"
-      - "D:/Bandizip/"
-      - "C:/Program Files/Git/cmd/"
-      - "C:/Program Files/nodejs/"
-      - "C:/Program Files/CMake/bin/"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/"
-      - "C:/msys64/ucrt64/bin/"
-      - "/REGISTRY-NOTFOUND/bin/"
-      - "c:/MinGW/bin/"
-      - "/MinGW/bin/"
-      - "/REGISTRY-NOTFOUND/MinGW/bin/"
-    searched_directories:
-      - "C:/Program Files/PowerShell/7/mingw32-make.exe.com"
-      - "C:/Program Files/PowerShell/7/mingw32-make.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/mingw32-make.exe.com"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/mingw32-make.exe"
-      - "C:/Windows/System32/mingw32-make.exe.com"
-      - "C:/Windows/System32/mingw32-make.exe"
-      - "C:/Windows/mingw32-make.exe.com"
-      - "C:/Windows/mingw32-make.exe"
-      - "C:/Windows/System32/wbem/mingw32-make.exe.com"
-      - "C:/Windows/System32/wbem/mingw32-make.exe"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/mingw32-make.exe.com"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/mingw32-make.exe"
-      - "C:/Windows/System32/OpenSSH/mingw32-make.exe.com"
-      - "C:/Windows/System32/OpenSSH/mingw32-make.exe"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/mingw32-make.exe.com"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/mingw32-make.exe"
-      - "C:/Program Files/dotnet/mingw32-make.exe.com"
-      - "C:/Program Files/dotnet/mingw32-make.exe"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/mingw32-make.exe.com"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/mingw32-make.exe"
-      - "D:/Bandizip/mingw32-make.exe.com"
-      - "D:/Bandizip/mingw32-make.exe"
-      - "C:/Program Files/Git/cmd/mingw32-make.exe.com"
-      - "C:/Program Files/Git/cmd/mingw32-make.exe"
-      - "C:/Program Files/nodejs/mingw32-make.exe.com"
-      - "C:/Program Files/nodejs/mingw32-make.exe"
-      - "C:/Program Files/CMake/bin/mingw32-make.exe.com"
-      - "C:/Program Files/CMake/bin/mingw32-make.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/mingw32-make.exe.com"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/mingw32-make.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/mingw32-make.exe.com"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/mingw32-make.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/mingw32-make.exe.com"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/mingw32-make.exe"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/mingw32-make.exe.com"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/mingw32-make.exe"
-      - "C:/msys64/ucrt64/bin/mingw32-make.exe.com"
-    found: "C:/msys64/ucrt64/bin/mingw32-make.exe"
-    search_context:
-      ENV{PATH}:
-        - "C:\\Program Files\\PowerShell\\7"
-        - "C:\\Users\\YUANJINYU\\AppData\\Local\\Programs\\Microsoft VS Code"
-        - "C:\\WINDOWS\\system32"
-        - "C:\\WINDOWS"
-        - "C:\\WINDOWS\\System32\\Wbem"
-        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
-        - "C:\\WINDOWS\\System32\\OpenSSH\\"
-        - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
-        - "C:\\Program Files\\dotnet\\"
-        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA app\\NvDLISR"
-        - "D:\\Bandizip\\"
-        - "C:\\Program Files\\Git\\cmd"
-        - "C:\\Program Files\\nodejs\\"
-        - "C:\\Program Files\\PowerShell\\7\\"
-        - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Users\\YUANJINYU\\AppData\\Local\\Microsoft\\WindowsApps"
-        - "C:\\Users\\YUANJINYU\\AppData\\Local\\gitkraken\\bin"
-        - "C:\\Users\\YUANJINYU\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
-        - "C:\\Users\\YUANJINYU\\AppData\\Roaming\\npm"
-        - "C:\\msys64\\ucrt64\\bin"
-  -
-    kind: "find-v1"
-    backtrace:
-      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompiler.cmake:63 (find_program)"
-      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCXXCompiler.cmake:69 (_cmake_find_compiler)"
-      - "CMakeLists.txt:3 (project)"
-    mode: "program"
-    variable: "CMAKE_CXX_COMPILER"
-    description: "CXX compiler"
-    settings:
-      SearchFramework: "NEVER"
-      SearchAppBundle: "NEVER"
-      CMAKE_FIND_USE_CMAKE_PATH: false
-      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
-      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
-      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: false
-      CMAKE_FIND_USE_INSTALL_PREFIX: true
-    names:
-      - "c++"
-      - "g++"
-      - "cl"
-      - "bcc"
-      - "icx"
-      - "clang++"
-    candidate_directories:
-      - "C:/Program Files/PowerShell/7/"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/"
-      - "C:/Windows/System32/"
-      - "C:/Windows/"
-      - "C:/Windows/System32/wbem/"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
-      - "C:/Windows/System32/OpenSSH/"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
-      - "C:/Program Files/dotnet/"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/"
-      - "D:/Bandizip/"
-      - "C:/Program Files/Git/cmd/"
-      - "C:/Program Files/nodejs/"
-      - "C:/Program Files/CMake/bin/"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/"
-      - "C:/msys64/ucrt64/bin/"
-    searched_directories:
-      - "C:/Program Files/PowerShell/7/c++.com"
-      - "C:/Program Files/PowerShell/7/c++.exe"
-      - "C:/Program Files/PowerShell/7/c++"
-      - "C:/Program Files/PowerShell/7/g++.com"
-      - "C:/Program Files/PowerShell/7/g++.exe"
-      - "C:/Program Files/PowerShell/7/g++"
-      - "C:/Program Files/PowerShell/7/cl.com"
-      - "C:/Program Files/PowerShell/7/cl.exe"
-      - "C:/Program Files/PowerShell/7/cl"
-      - "C:/Program Files/PowerShell/7/bcc.com"
-      - "C:/Program Files/PowerShell/7/bcc.exe"
-      - "C:/Program Files/PowerShell/7/bcc"
-      - "C:/Program Files/PowerShell/7/icx.com"
-      - "C:/Program Files/PowerShell/7/icx.exe"
-      - "C:/Program Files/PowerShell/7/icx"
-      - "C:/Program Files/PowerShell/7/clang++.com"
-      - "C:/Program Files/PowerShell/7/clang++.exe"
-      - "C:/Program Files/PowerShell/7/clang++"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/c++.com"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/c++.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/c++"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/g++.com"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/g++.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/g++"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/cl.com"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/cl.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/cl"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bcc.com"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bcc.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bcc"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/icx.com"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/icx.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/icx"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/clang++.com"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/clang++.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/clang++"
-      - "C:/Windows/System32/c++.com"
-      - "C:/Windows/System32/c++.exe"
-      - "C:/Windows/System32/c++"
-      - "C:/Windows/System32/g++.com"
-      - "C:/Windows/System32/g++.exe"
-      - "C:/Windows/System32/g++"
-      - "C:/Windows/System32/cl.com"
-      - "C:/Windows/System32/cl.exe"
-      - "C:/Windows/System32/cl"
-      - "C:/Windows/System32/bcc.com"
-      - "C:/Windows/System32/bcc.exe"
-      - "C:/Windows/System32/bcc"
-      - "C:/Windows/System32/icx.com"
-      - "C:/Windows/System32/icx.exe"
-      - "C:/Windows/System32/icx"
-      - "C:/Windows/System32/clang++.com"
-      - "C:/Windows/System32/clang++.exe"
-      - "C:/Windows/System32/clang++"
-      - "C:/Windows/c++.com"
-      - "C:/Windows/c++.exe"
-      - "C:/Windows/c++"
-      - "C:/Windows/g++.com"
-      - "C:/Windows/g++.exe"
-      - "C:/Windows/g++"
-      - "C:/Windows/cl.com"
-      - "C:/Windows/cl.exe"
-      - "C:/Windows/cl"
-      - "C:/Windows/bcc.com"
-      - "C:/Windows/bcc.exe"
-      - "C:/Windows/bcc"
-      - "C:/Windows/icx.com"
-      - "C:/Windows/icx.exe"
-      - "C:/Windows/icx"
-      - "C:/Windows/clang++.com"
-      - "C:/Windows/clang++.exe"
-      - "C:/Windows/clang++"
-      - "C:/Windows/System32/wbem/c++.com"
-      - "C:/Windows/System32/wbem/c++.exe"
-      - "C:/Windows/System32/wbem/c++"
-      - "C:/Windows/System32/wbem/g++.com"
-      - "C:/Windows/System32/wbem/g++.exe"
-      - "C:/Windows/System32/wbem/g++"
-      - "C:/Windows/System32/wbem/cl.com"
-      - "C:/Windows/System32/wbem/cl.exe"
-      - "C:/Windows/System32/wbem/cl"
-      - "C:/Windows/System32/wbem/bcc.com"
-      - "C:/Windows/System32/wbem/bcc.exe"
-      - "C:/Windows/System32/wbem/bcc"
-      - "C:/Windows/System32/wbem/icx.com"
-      - "C:/Windows/System32/wbem/icx.exe"
-      - "C:/Windows/System32/wbem/icx"
-      - "C:/Windows/System32/wbem/clang++.com"
-      - "C:/Windows/System32/wbem/clang++.exe"
-      - "C:/Windows/System32/wbem/clang++"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/c++.com"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/c++.exe"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/c++"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/g++.com"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/g++.exe"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/g++"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/cl.com"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/cl.exe"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/cl"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/bcc.com"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/bcc.exe"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/bcc"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/icx.com"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/icx.exe"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/icx"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/clang++.com"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/clang++.exe"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/clang++"
-      - "C:/Windows/System32/OpenSSH/c++.com"
-      - "C:/Windows/System32/OpenSSH/c++.exe"
-      - "C:/Windows/System32/OpenSSH/c++"
-      - "C:/Windows/System32/OpenSSH/g++.com"
-      - "C:/Windows/System32/OpenSSH/g++.exe"
-      - "C:/Windows/System32/OpenSSH/g++"
-      - "C:/Windows/System32/OpenSSH/cl.com"
-      - "C:/Windows/System32/OpenSSH/cl.exe"
-      - "C:/Windows/System32/OpenSSH/cl"
-      - "C:/Windows/System32/OpenSSH/bcc.com"
-      - "C:/Windows/System32/OpenSSH/bcc.exe"
-      - "C:/Windows/System32/OpenSSH/bcc"
-      - "C:/Windows/System32/OpenSSH/icx.com"
-      - "C:/Windows/System32/OpenSSH/icx.exe"
-      - "C:/Windows/System32/OpenSSH/icx"
-      - "C:/Windows/System32/OpenSSH/clang++.com"
-      - "C:/Windows/System32/OpenSSH/clang++.exe"
-      - "C:/Windows/System32/OpenSSH/clang++"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/c++.com"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/c++.exe"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/c++"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/g++.com"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/g++.exe"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/g++"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/cl.com"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/cl.exe"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/cl"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/bcc.com"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/bcc.exe"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/bcc"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/icx.com"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/icx.exe"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/icx"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/clang++.com"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/clang++.exe"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/clang++"
-      - "C:/Program Files/dotnet/c++.com"
-      - "C:/Program Files/dotnet/c++.exe"
-      - "C:/Program Files/dotnet/c++"
-      - "C:/Program Files/dotnet/g++.com"
-      - "C:/Program Files/dotnet/g++.exe"
-      - "C:/Program Files/dotnet/g++"
-      - "C:/Program Files/dotnet/cl.com"
-      - "C:/Program Files/dotnet/cl.exe"
-      - "C:/Program Files/dotnet/cl"
-      - "C:/Program Files/dotnet/bcc.com"
-      - "C:/Program Files/dotnet/bcc.exe"
-      - "C:/Program Files/dotnet/bcc"
-      - "C:/Program Files/dotnet/icx.com"
-      - "C:/Program Files/dotnet/icx.exe"
-      - "C:/Program Files/dotnet/icx"
-      - "C:/Program Files/dotnet/clang++.com"
-      - "C:/Program Files/dotnet/clang++.exe"
-      - "C:/Program Files/dotnet/clang++"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/c++.com"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/c++.exe"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/c++"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/g++.com"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/g++.exe"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/g++"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/cl.com"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/cl.exe"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/cl"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/bcc.com"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/bcc.exe"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/bcc"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/icx.com"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/icx.exe"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/icx"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/clang++.com"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/clang++.exe"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/clang++"
-      - "D:/Bandizip/c++.com"
-      - "D:/Bandizip/c++.exe"
-      - "D:/Bandizip/c++"
-      - "D:/Bandizip/g++.com"
-      - "D:/Bandizip/g++.exe"
-      - "D:/Bandizip/g++"
-      - "D:/Bandizip/cl.com"
-      - "D:/Bandizip/cl.exe"
-      - "D:/Bandizip/cl"
-      - "D:/Bandizip/bcc.com"
-      - "D:/Bandizip/bcc.exe"
-      - "D:/Bandizip/bcc"
-      - "D:/Bandizip/icx.com"
-      - "D:/Bandizip/icx.exe"
-      - "D:/Bandizip/icx"
-      - "D:/Bandizip/clang++.com"
-      - "D:/Bandizip/clang++.exe"
-      - "D:/Bandizip/clang++"
-      - "C:/Program Files/Git/cmd/c++.com"
-      - "C:/Program Files/Git/cmd/c++.exe"
-      - "C:/Program Files/Git/cmd/c++"
-      - "C:/Program Files/Git/cmd/g++.com"
-      - "C:/Program Files/Git/cmd/g++.exe"
-      - "C:/Program Files/Git/cmd/g++"
-      - "C:/Program Files/Git/cmd/cl.com"
-      - "C:/Program Files/Git/cmd/cl.exe"
-      - "C:/Program Files/Git/cmd/cl"
-      - "C:/Program Files/Git/cmd/bcc.com"
-      - "C:/Program Files/Git/cmd/bcc.exe"
-      - "C:/Program Files/Git/cmd/bcc"
-      - "C:/Program Files/Git/cmd/icx.com"
-      - "C:/Program Files/Git/cmd/icx.exe"
-      - "C:/Program Files/Git/cmd/icx"
-      - "C:/Program Files/Git/cmd/clang++.com"
-      - "C:/Program Files/Git/cmd/clang++.exe"
-      - "C:/Program Files/Git/cmd/clang++"
-      - "C:/Program Files/nodejs/c++.com"
-      - "C:/Program Files/nodejs/c++.exe"
-      - "C:/Program Files/nodejs/c++"
-      - "C:/Program Files/nodejs/g++.com"
-      - "C:/Program Files/nodejs/g++.exe"
-      - "C:/Program Files/nodejs/g++"
-      - "C:/Program Files/nodejs/cl.com"
-      - "C:/Program Files/nodejs/cl.exe"
-      - "C:/Program Files/nodejs/cl"
-      - "C:/Program Files/nodejs/bcc.com"
-      - "C:/Program Files/nodejs/bcc.exe"
-      - "C:/Program Files/nodejs/bcc"
-      - "C:/Program Files/nodejs/icx.com"
-      - "C:/Program Files/nodejs/icx.exe"
-      - "C:/Program Files/nodejs/icx"
-      - "C:/Program Files/nodejs/clang++.com"
-      - "C:/Program Files/nodejs/clang++.exe"
-      - "C:/Program Files/nodejs/clang++"
-      - "C:/Program Files/CMake/bin/c++.com"
-      - "C:/Program Files/CMake/bin/c++.exe"
-      - "C:/Program Files/CMake/bin/c++"
-      - "C:/Program Files/CMake/bin/g++.com"
-      - "C:/Program Files/CMake/bin/g++.exe"
-      - "C:/Program Files/CMake/bin/g++"
-      - "C:/Program Files/CMake/bin/cl.com"
-      - "C:/Program Files/CMake/bin/cl.exe"
-      - "C:/Program Files/CMake/bin/cl"
-      - "C:/Program Files/CMake/bin/bcc.com"
-      - "C:/Program Files/CMake/bin/bcc.exe"
-      - "C:/Program Files/CMake/bin/bcc"
-      - "C:/Program Files/CMake/bin/icx.com"
-      - "C:/Program Files/CMake/bin/icx.exe"
-      - "C:/Program Files/CMake/bin/icx"
-      - "C:/Program Files/CMake/bin/clang++.com"
-      - "C:/Program Files/CMake/bin/clang++.exe"
-      - "C:/Program Files/CMake/bin/clang++"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/c++.com"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/c++.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/c++"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/g++.com"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/g++.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/g++"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/cl.com"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/cl.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/cl"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/bcc.com"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/bcc.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/bcc"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/icx.com"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/icx.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/icx"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/clang++.com"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/clang++.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/clang++"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/c++.com"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/c++.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/c++"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/g++.com"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/g++.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/g++"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/cl.com"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/cl.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/cl"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/bcc.com"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/bcc.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/bcc"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/icx.com"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/icx.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/icx"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/clang++.com"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/clang++.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/clang++"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/c++.com"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/c++.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/c++"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/g++.com"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/g++.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/g++"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/cl.com"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/cl.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/cl"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/bcc.com"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/bcc.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/bcc"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/icx.com"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/icx.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/icx"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/clang++.com"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/clang++.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/clang++"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/c++.com"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/c++.exe"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/c++"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/g++.com"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/g++.exe"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/g++"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/cl.com"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/cl.exe"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/cl"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/bcc.com"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/bcc.exe"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/bcc"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/icx.com"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/icx.exe"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/icx"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/clang++.com"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/clang++.exe"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/clang++"
-      - "C:/msys64/ucrt64/bin/c++.com"
-    found: "C:/msys64/ucrt64/bin/c++.exe"
-    search_context:
-      ENV{PATH}:
-        - "C:\\Program Files\\PowerShell\\7"
-        - "C:\\Users\\YUANJINYU\\AppData\\Local\\Programs\\Microsoft VS Code"
-        - "C:\\WINDOWS\\system32"
-        - "C:\\WINDOWS"
-        - "C:\\WINDOWS\\System32\\Wbem"
-        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
-        - "C:\\WINDOWS\\System32\\OpenSSH\\"
-        - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
-        - "C:\\Program Files\\dotnet\\"
-        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA app\\NvDLISR"
-        - "D:\\Bandizip\\"
-        - "C:\\Program Files\\Git\\cmd"
-        - "C:\\Program Files\\nodejs\\"
-        - "C:\\Program Files\\PowerShell\\7\\"
-        - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Users\\YUANJINYU\\AppData\\Local\\Microsoft\\WindowsApps"
-        - "C:\\Users\\YUANJINYU\\AppData\\Local\\gitkraken\\bin"
-        - "C:\\Users\\YUANJINYU\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
-        - "C:\\Users\\YUANJINYU\\AppData\\Roaming\\npm"
-        - "C:\\msys64\\ucrt64\\bin"
-  -
-    kind: "find-v1"
-    backtrace:
       - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:468 (find_file)"
       - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:506 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
       - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
@@ -560,27 +64,62 @@ events:
       - "CMakeLists.txt:3 (project)"
     message: |
       Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
-      Compiler: C:/msys64/ucrt64/bin/c++.exe 
+      Compiler:  
       Build flags: 
       Id flags:  
       
       The output was:
       0
+      閫傜敤浜?.NET Framework MSBuild 鐗堟湰 18.4.0+6e61e96ac
+      鐢熸垚鍚姩鏃堕棿涓?09/04/2026 11:08:20銆?
+      
+      鑺傜偣 1 涓婄殑椤圭洰鈥淒:\\C++\\door-alarm-thread-desgin\\build\\CMakeFiles\\4.3.1\\CompilerIdCXX\\CompilerIdCXX.vcxproj鈥?榛樿鐩爣)銆?
+      PrepareForBuild:
+        姝ｅ湪鍒涘缓鐩綍鈥淒ebug\\鈥濄€?
+        宸插惎鐢ㄧ粨鏋勫寲杈撳嚭銆傜紪璇戝櫒璇婃柇鐨勬牸寮忚缃皢鍙嶆槧閿欒灞傛缁撴瀯銆傛湁鍏宠缁嗕俊鎭紝璇峰弬闃?https://aka.ms/cpp/structured-output銆?
+        姝ｅ湪鍒涘缓鐩綍鈥淒ebug\\CompilerIdCXX.tlog\\鈥濄€?
+      InitializeBuildStatus:
+        姝ｅ湪鍒涘缓鈥淒ebug\\CompilerIdCXX.tlog\\unsuccessfulbuild鈥濓紝鍥犱负宸叉寚瀹氣€淎lwaysCreate鈥濄€?
+        姝ｅ湪瀵光€淒ebug\\CompilerIdCXX.tlog\\unsuccessfulbuild鈥濇墽琛?Touch 浠诲姟銆?
+      ClCompile:
+        C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX64\\x64\\CL.exe /c /nologo /W0 /WX- /diagnostics:column /Od /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\\\" /Fd"Debug\\vc145.pdb" /external:W0 /Gd /TP /FC /errorReport:queue CMakeCXXCompilerId.cpp
+        CMakeCXXCompilerId.cpp
+      Link:
+        C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:".\\CompilerIdCXX.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\\CompilerIdCXX.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\\CompilerIdCXX.lib" /MACHINE:X64 Debug\\CMakeCXXCompilerId.obj
+        CompilerIdCXX.vcxproj -> D:\\C++\\door-alarm-thread-desgin\\build\\CMakeFiles\\4.3.1\\CompilerIdCXX\\CompilerIdCXX.exe
+      PostBuildEvent:
+        for %%i in (cl.exe) do @echo CMAKE_CXX_COMPILER=%%~$PATH:i
+        :VCEnd
+        CMAKE_CXX_COMPILER=C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\VC\\Tools\\MSVC\\14.50.35717\\bin\\Hostx64\\x64\\cl.exe
+      FinalizeBuildStatus:
+        姝ｅ湪鍒犻櫎鏂囦欢鈥淒ebug\\CompilerIdCXX.tlog\\unsuccessfulbuild鈥濄€?
+        姝ｅ湪瀵光€淒ebug\\CompilerIdCXX.tlog\\CompilerIdCXX.lastbuildstate鈥濇墽琛?Touch 浠诲姟銆?
+      宸插畬鎴愮敓鎴愰」鐩€淒:\\C++\\door-alarm-thread-desgin\\build\\CMakeFiles\\4.3.1\\CompilerIdCXX\\CompilerIdCXX.vcxproj鈥?榛樿鐩爣)鐨勬搷浣溿€?
+      
+      宸叉垚鍔熺敓鎴愩€?
+          0 涓鍛?
+          0 涓敊璇?
+      
+      宸茬敤鏃堕棿 00:00:00.74
       
       
-      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.exe"
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
       
-      The CXX compiler identification is GNU, found in:
-        D:/C++/door-alarm-thread-desgin/build/CMakeFiles/4.3.1/CompilerIdCXX/a.exe
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.vcxproj"
+      
+      The CXX compiler identification is MSVC, found in:
+        D:/C++/door-alarm-thread-desgin/build/CMakeFiles/4.3.1/CompilerIdCXX/CompilerIdCXX.exe
       
   -
     kind: "find-v1"
     backtrace:
-      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:37 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:65 (__resolve_tool_path)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:103 (__resolve_linker_path)"
       - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
       - "CMakeLists.txt:3 (project)"
     mode: "program"
-    variable: "CMAKE_AR"
+    variable: "_CMAKE_TOOL_WITH_PATH"
     description: "Path to a program."
     settings:
       SearchFramework: "NEVER"
@@ -591,9 +130,9 @@ events:
       CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
       CMAKE_FIND_USE_INSTALL_PREFIX: true
     names:
-      - "ar"
+      - "link"
     candidate_directories:
-      - "C:/msys64/ucrt64/bin/"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/"
       - "C:/Program Files/PowerShell/7/"
       - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/"
       - "C:/Windows/System32/"
@@ -612,9 +151,10 @@ events:
       - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/"
       - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/"
       - "C:/Users/YUANJINYU/AppData/Roaming/npm/"
+      - "C:/msys64/ucrt64/bin/"
     searched_directories:
-      - "C:/msys64/ucrt64/bin/ar.com"
-    found: "C:/msys64/ucrt64/bin/ar.exe"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/link.com"
+    found: "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/link.exe"
     search_context:
       ENV{PATH}:
         - "C:\\Program Files\\PowerShell\\7"
@@ -640,11 +180,13 @@ events:
   -
     kind: "find-v1"
     backtrace:
-      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:37 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:65 (__resolve_tool_path)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:104 (__resolve_linker_path)"
       - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
       - "CMakeLists.txt:3 (project)"
     mode: "program"
-    variable: "CMAKE_RANLIB"
+    variable: "_CMAKE_TOOL_WITH_PATH"
     description: "Path to a program."
     settings:
       SearchFramework: "NEVER"
@@ -655,9 +197,9 @@ events:
       CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
       CMAKE_FIND_USE_INSTALL_PREFIX: true
     names:
-      - "ranlib"
+      - "lld-link"
     candidate_directories:
-      - "C:/msys64/ucrt64/bin/"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/"
       - "C:/Program Files/PowerShell/7/"
       - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/"
       - "C:/Windows/System32/"
@@ -676,73 +218,69 @@ events:
       - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/"
       - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/"
       - "C:/Users/YUANJINYU/AppData/Roaming/npm/"
-    searched_directories:
-      - "C:/msys64/ucrt64/bin/ranlib.com"
-    found: "C:/msys64/ucrt64/bin/ranlib.exe"
-    search_context:
-      ENV{PATH}:
-        - "C:\\Program Files\\PowerShell\\7"
-        - "C:\\Users\\YUANJINYU\\AppData\\Local\\Programs\\Microsoft VS Code"
-        - "C:\\WINDOWS\\system32"
-        - "C:\\WINDOWS"
-        - "C:\\WINDOWS\\System32\\Wbem"
-        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
-        - "C:\\WINDOWS\\System32\\OpenSSH\\"
-        - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
-        - "C:\\Program Files\\dotnet\\"
-        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA app\\NvDLISR"
-        - "D:\\Bandizip\\"
-        - "C:\\Program Files\\Git\\cmd"
-        - "C:\\Program Files\\nodejs\\"
-        - "C:\\Program Files\\PowerShell\\7\\"
-        - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Users\\YUANJINYU\\AppData\\Local\\Microsoft\\WindowsApps"
-        - "C:\\Users\\YUANJINYU\\AppData\\Local\\gitkraken\\bin"
-        - "C:\\Users\\YUANJINYU\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
-        - "C:\\Users\\YUANJINYU\\AppData\\Roaming\\npm"
-        - "C:\\msys64\\ucrt64\\bin"
-  -
-    kind: "find-v1"
-    backtrace:
-      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
-      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
-      - "CMakeLists.txt:3 (project)"
-    mode: "program"
-    variable: "CMAKE_STRIP"
-    description: "Path to a program."
-    settings:
-      SearchFramework: "NEVER"
-      SearchAppBundle: "NEVER"
-      CMAKE_FIND_USE_CMAKE_PATH: false
-      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
-      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
-      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
-      CMAKE_FIND_USE_INSTALL_PREFIX: true
-    names:
-      - "strip"
-    candidate_directories:
       - "C:/msys64/ucrt64/bin/"
-      - "C:/Program Files/PowerShell/7/"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/"
-      - "C:/Windows/System32/"
-      - "C:/Windows/"
-      - "C:/Windows/System32/wbem/"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
-      - "C:/Windows/System32/OpenSSH/"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
-      - "C:/Program Files/dotnet/"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/"
-      - "D:/Bandizip/"
-      - "C:/Program Files/Git/cmd/"
-      - "C:/Program Files/nodejs/"
-      - "C:/Program Files/CMake/bin/"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/"
     searched_directories:
-      - "C:/msys64/ucrt64/bin/strip.com"
-    found: "C:/msys64/ucrt64/bin/strip.exe"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/lld-link.com"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/lld-link.exe"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/lld-link"
+      - "C:/Program Files/PowerShell/7/lld-link.com"
+      - "C:/Program Files/PowerShell/7/lld-link.exe"
+      - "C:/Program Files/PowerShell/7/lld-link"
+      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/lld-link.com"
+      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/lld-link.exe"
+      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/lld-link"
+      - "C:/Windows/System32/lld-link.com"
+      - "C:/Windows/System32/lld-link.exe"
+      - "C:/Windows/System32/lld-link"
+      - "C:/Windows/lld-link.com"
+      - "C:/Windows/lld-link.exe"
+      - "C:/Windows/lld-link"
+      - "C:/Windows/System32/wbem/lld-link.com"
+      - "C:/Windows/System32/wbem/lld-link.exe"
+      - "C:/Windows/System32/wbem/lld-link"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/lld-link.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/lld-link.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/lld-link"
+      - "C:/Windows/System32/OpenSSH/lld-link.com"
+      - "C:/Windows/System32/OpenSSH/lld-link.exe"
+      - "C:/Windows/System32/OpenSSH/lld-link"
+      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/lld-link.com"
+      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/lld-link.exe"
+      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/lld-link"
+      - "C:/Program Files/dotnet/lld-link.com"
+      - "C:/Program Files/dotnet/lld-link.exe"
+      - "C:/Program Files/dotnet/lld-link"
+      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/lld-link.com"
+      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/lld-link.exe"
+      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/lld-link"
+      - "D:/Bandizip/lld-link.com"
+      - "D:/Bandizip/lld-link.exe"
+      - "D:/Bandizip/lld-link"
+      - "C:/Program Files/Git/cmd/lld-link.com"
+      - "C:/Program Files/Git/cmd/lld-link.exe"
+      - "C:/Program Files/Git/cmd/lld-link"
+      - "C:/Program Files/nodejs/lld-link.com"
+      - "C:/Program Files/nodejs/lld-link.exe"
+      - "C:/Program Files/nodejs/lld-link"
+      - "C:/Program Files/CMake/bin/lld-link.com"
+      - "C:/Program Files/CMake/bin/lld-link.exe"
+      - "C:/Program Files/CMake/bin/lld-link"
+      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/lld-link.com"
+      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/lld-link.exe"
+      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/lld-link"
+      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/lld-link.com"
+      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/lld-link.exe"
+      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/lld-link"
+      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/lld-link.com"
+      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/lld-link.exe"
+      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/lld-link"
+      - "C:/Users/YUANJINYU/AppData/Roaming/npm/lld-link.com"
+      - "C:/Users/YUANJINYU/AppData/Roaming/npm/lld-link.exe"
+      - "C:/Users/YUANJINYU/AppData/Roaming/npm/lld-link"
+      - "C:/msys64/ucrt64/bin/lld-link.com"
+      - "C:/msys64/ucrt64/bin/lld-link.exe"
+      - "C:/msys64/ucrt64/bin/lld-link"
+    found: false
     search_context:
       ENV{PATH}:
         - "C:\\Program Files\\PowerShell\\7"
@@ -783,9 +321,9 @@ events:
       CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
       CMAKE_FIND_USE_INSTALL_PREFIX: true
     names:
-      - "ld"
+      - "link"
     candidate_directories:
-      - "C:/msys64/ucrt64/bin/"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/"
       - "C:/Program Files/PowerShell/7/"
       - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/"
       - "C:/Windows/System32/"
@@ -804,9 +342,10 @@ events:
       - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/"
       - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/"
       - "C:/Users/YUANJINYU/AppData/Roaming/npm/"
+      - "C:/msys64/ucrt64/bin/"
     searched_directories:
-      - "C:/msys64/ucrt64/bin/ld.com"
-    found: "C:/msys64/ucrt64/bin/ld.exe"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/link.com"
+    found: "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/link.exe"
     search_context:
       ENV{PATH}:
         - "C:\\Program Files\\PowerShell\\7"
@@ -836,7 +375,7 @@ events:
       - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
       - "CMakeLists.txt:3 (project)"
     mode: "program"
-    variable: "CMAKE_NM"
+    variable: "CMAKE_MT"
     description: "Path to a program."
     settings:
       SearchFramework: "NEVER"
@@ -847,9 +386,9 @@ events:
       CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
       CMAKE_FIND_USE_INSTALL_PREFIX: true
     names:
-      - "nm"
+      - "mt"
     candidate_directories:
-      - "C:/msys64/ucrt64/bin/"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/"
       - "C:/Program Files/PowerShell/7/"
       - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/"
       - "C:/Windows/System32/"
@@ -868,448 +407,68 @@ events:
       - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/"
       - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/"
       - "C:/Users/YUANJINYU/AppData/Roaming/npm/"
-    searched_directories:
-      - "C:/msys64/ucrt64/bin/nm.com"
-    found: "C:/msys64/ucrt64/bin/nm.exe"
-    search_context:
-      ENV{PATH}:
-        - "C:\\Program Files\\PowerShell\\7"
-        - "C:\\Users\\YUANJINYU\\AppData\\Local\\Programs\\Microsoft VS Code"
-        - "C:\\WINDOWS\\system32"
-        - "C:\\WINDOWS"
-        - "C:\\WINDOWS\\System32\\Wbem"
-        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
-        - "C:\\WINDOWS\\System32\\OpenSSH\\"
-        - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
-        - "C:\\Program Files\\dotnet\\"
-        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA app\\NvDLISR"
-        - "D:\\Bandizip\\"
-        - "C:\\Program Files\\Git\\cmd"
-        - "C:\\Program Files\\nodejs\\"
-        - "C:\\Program Files\\PowerShell\\7\\"
-        - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Users\\YUANJINYU\\AppData\\Local\\Microsoft\\WindowsApps"
-        - "C:\\Users\\YUANJINYU\\AppData\\Local\\gitkraken\\bin"
-        - "C:\\Users\\YUANJINYU\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
-        - "C:\\Users\\YUANJINYU\\AppData\\Roaming\\npm"
-        - "C:\\msys64\\ucrt64\\bin"
-  -
-    kind: "find-v1"
-    backtrace:
-      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
-      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
-      - "CMakeLists.txt:3 (project)"
-    mode: "program"
-    variable: "CMAKE_OBJDUMP"
-    description: "Path to a program."
-    settings:
-      SearchFramework: "NEVER"
-      SearchAppBundle: "NEVER"
-      CMAKE_FIND_USE_CMAKE_PATH: false
-      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
-      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
-      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
-      CMAKE_FIND_USE_INSTALL_PREFIX: true
-    names:
-      - "objdump"
-    candidate_directories:
       - "C:/msys64/ucrt64/bin/"
-      - "C:/Program Files/PowerShell/7/"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/"
-      - "C:/Windows/System32/"
-      - "C:/Windows/"
-      - "C:/Windows/System32/wbem/"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
-      - "C:/Windows/System32/OpenSSH/"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
-      - "C:/Program Files/dotnet/"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/"
-      - "D:/Bandizip/"
-      - "C:/Program Files/Git/cmd/"
-      - "C:/Program Files/nodejs/"
-      - "C:/Program Files/CMake/bin/"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/"
     searched_directories:
-      - "C:/msys64/ucrt64/bin/objdump.com"
-    found: "C:/msys64/ucrt64/bin/objdump.exe"
-    search_context:
-      ENV{PATH}:
-        - "C:\\Program Files\\PowerShell\\7"
-        - "C:\\Users\\YUANJINYU\\AppData\\Local\\Programs\\Microsoft VS Code"
-        - "C:\\WINDOWS\\system32"
-        - "C:\\WINDOWS"
-        - "C:\\WINDOWS\\System32\\Wbem"
-        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
-        - "C:\\WINDOWS\\System32\\OpenSSH\\"
-        - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
-        - "C:\\Program Files\\dotnet\\"
-        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA app\\NvDLISR"
-        - "D:\\Bandizip\\"
-        - "C:\\Program Files\\Git\\cmd"
-        - "C:\\Program Files\\nodejs\\"
-        - "C:\\Program Files\\PowerShell\\7\\"
-        - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Users\\YUANJINYU\\AppData\\Local\\Microsoft\\WindowsApps"
-        - "C:\\Users\\YUANJINYU\\AppData\\Local\\gitkraken\\bin"
-        - "C:\\Users\\YUANJINYU\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
-        - "C:\\Users\\YUANJINYU\\AppData\\Roaming\\npm"
-        - "C:\\msys64\\ucrt64\\bin"
-  -
-    kind: "find-v1"
-    backtrace:
-      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
-      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
-      - "CMakeLists.txt:3 (project)"
-    mode: "program"
-    variable: "CMAKE_OBJCOPY"
-    description: "Path to a program."
-    settings:
-      SearchFramework: "NEVER"
-      SearchAppBundle: "NEVER"
-      CMAKE_FIND_USE_CMAKE_PATH: false
-      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
-      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
-      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
-      CMAKE_FIND_USE_INSTALL_PREFIX: true
-    names:
-      - "objcopy"
-    candidate_directories:
-      - "C:/msys64/ucrt64/bin/"
-      - "C:/Program Files/PowerShell/7/"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/"
-      - "C:/Windows/System32/"
-      - "C:/Windows/"
-      - "C:/Windows/System32/wbem/"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
-      - "C:/Windows/System32/OpenSSH/"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
-      - "C:/Program Files/dotnet/"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/"
-      - "D:/Bandizip/"
-      - "C:/Program Files/Git/cmd/"
-      - "C:/Program Files/nodejs/"
-      - "C:/Program Files/CMake/bin/"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/"
-    searched_directories:
-      - "C:/msys64/ucrt64/bin/objcopy.com"
-    found: "C:/msys64/ucrt64/bin/objcopy.exe"
-    search_context:
-      ENV{PATH}:
-        - "C:\\Program Files\\PowerShell\\7"
-        - "C:\\Users\\YUANJINYU\\AppData\\Local\\Programs\\Microsoft VS Code"
-        - "C:\\WINDOWS\\system32"
-        - "C:\\WINDOWS"
-        - "C:\\WINDOWS\\System32\\Wbem"
-        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
-        - "C:\\WINDOWS\\System32\\OpenSSH\\"
-        - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
-        - "C:\\Program Files\\dotnet\\"
-        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA app\\NvDLISR"
-        - "D:\\Bandizip\\"
-        - "C:\\Program Files\\Git\\cmd"
-        - "C:\\Program Files\\nodejs\\"
-        - "C:\\Program Files\\PowerShell\\7\\"
-        - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Users\\YUANJINYU\\AppData\\Local\\Microsoft\\WindowsApps"
-        - "C:\\Users\\YUANJINYU\\AppData\\Local\\gitkraken\\bin"
-        - "C:\\Users\\YUANJINYU\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
-        - "C:\\Users\\YUANJINYU\\AppData\\Roaming\\npm"
-        - "C:\\msys64\\ucrt64\\bin"
-  -
-    kind: "find-v1"
-    backtrace:
-      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
-      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
-      - "CMakeLists.txt:3 (project)"
-    mode: "program"
-    variable: "CMAKE_READELF"
-    description: "Path to a program."
-    settings:
-      SearchFramework: "NEVER"
-      SearchAppBundle: "NEVER"
-      CMAKE_FIND_USE_CMAKE_PATH: false
-      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
-      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
-      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
-      CMAKE_FIND_USE_INSTALL_PREFIX: true
-    names:
-      - "readelf"
-    candidate_directories:
-      - "C:/msys64/ucrt64/bin/"
-      - "C:/Program Files/PowerShell/7/"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/"
-      - "C:/Windows/System32/"
-      - "C:/Windows/"
-      - "C:/Windows/System32/wbem/"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
-      - "C:/Windows/System32/OpenSSH/"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
-      - "C:/Program Files/dotnet/"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/"
-      - "D:/Bandizip/"
-      - "C:/Program Files/Git/cmd/"
-      - "C:/Program Files/nodejs/"
-      - "C:/Program Files/CMake/bin/"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/"
-    searched_directories:
-      - "C:/msys64/ucrt64/bin/readelf.com"
-    found: "C:/msys64/ucrt64/bin/readelf.exe"
-    search_context:
-      ENV{PATH}:
-        - "C:\\Program Files\\PowerShell\\7"
-        - "C:\\Users\\YUANJINYU\\AppData\\Local\\Programs\\Microsoft VS Code"
-        - "C:\\WINDOWS\\system32"
-        - "C:\\WINDOWS"
-        - "C:\\WINDOWS\\System32\\Wbem"
-        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
-        - "C:\\WINDOWS\\System32\\OpenSSH\\"
-        - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
-        - "C:\\Program Files\\dotnet\\"
-        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA app\\NvDLISR"
-        - "D:\\Bandizip\\"
-        - "C:\\Program Files\\Git\\cmd"
-        - "C:\\Program Files\\nodejs\\"
-        - "C:\\Program Files\\PowerShell\\7\\"
-        - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Users\\YUANJINYU\\AppData\\Local\\Microsoft\\WindowsApps"
-        - "C:\\Users\\YUANJINYU\\AppData\\Local\\gitkraken\\bin"
-        - "C:\\Users\\YUANJINYU\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
-        - "C:\\Users\\YUANJINYU\\AppData\\Roaming\\npm"
-        - "C:\\msys64\\ucrt64\\bin"
-  -
-    kind: "find-v1"
-    backtrace:
-      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
-      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
-      - "CMakeLists.txt:3 (project)"
-    mode: "program"
-    variable: "CMAKE_DLLTOOL"
-    description: "Path to a program."
-    settings:
-      SearchFramework: "NEVER"
-      SearchAppBundle: "NEVER"
-      CMAKE_FIND_USE_CMAKE_PATH: false
-      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
-      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
-      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
-      CMAKE_FIND_USE_INSTALL_PREFIX: true
-    names:
-      - "dlltool"
-    candidate_directories:
-      - "C:/msys64/ucrt64/bin/"
-      - "C:/Program Files/PowerShell/7/"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/"
-      - "C:/Windows/System32/"
-      - "C:/Windows/"
-      - "C:/Windows/System32/wbem/"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
-      - "C:/Windows/System32/OpenSSH/"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
-      - "C:/Program Files/dotnet/"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/"
-      - "D:/Bandizip/"
-      - "C:/Program Files/Git/cmd/"
-      - "C:/Program Files/nodejs/"
-      - "C:/Program Files/CMake/bin/"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/"
-    searched_directories:
-      - "C:/msys64/ucrt64/bin/dlltool.com"
-    found: "C:/msys64/ucrt64/bin/dlltool.exe"
-    search_context:
-      ENV{PATH}:
-        - "C:\\Program Files\\PowerShell\\7"
-        - "C:\\Users\\YUANJINYU\\AppData\\Local\\Programs\\Microsoft VS Code"
-        - "C:\\WINDOWS\\system32"
-        - "C:\\WINDOWS"
-        - "C:\\WINDOWS\\System32\\Wbem"
-        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
-        - "C:\\WINDOWS\\System32\\OpenSSH\\"
-        - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
-        - "C:\\Program Files\\dotnet\\"
-        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA app\\NvDLISR"
-        - "D:\\Bandizip\\"
-        - "C:\\Program Files\\Git\\cmd"
-        - "C:\\Program Files\\nodejs\\"
-        - "C:\\Program Files\\PowerShell\\7\\"
-        - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Users\\YUANJINYU\\AppData\\Local\\Microsoft\\WindowsApps"
-        - "C:\\Users\\YUANJINYU\\AppData\\Local\\gitkraken\\bin"
-        - "C:\\Users\\YUANJINYU\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
-        - "C:\\Users\\YUANJINYU\\AppData\\Roaming\\npm"
-        - "C:\\msys64\\ucrt64\\bin"
-  -
-    kind: "find-v1"
-    backtrace:
-      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
-      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
-      - "CMakeLists.txt:3 (project)"
-    mode: "program"
-    variable: "CMAKE_ADDR2LINE"
-    description: "Path to a program."
-    settings:
-      SearchFramework: "NEVER"
-      SearchAppBundle: "NEVER"
-      CMAKE_FIND_USE_CMAKE_PATH: false
-      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
-      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
-      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
-      CMAKE_FIND_USE_INSTALL_PREFIX: true
-    names:
-      - "addr2line"
-    candidate_directories:
-      - "C:/msys64/ucrt64/bin/"
-      - "C:/Program Files/PowerShell/7/"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/"
-      - "C:/Windows/System32/"
-      - "C:/Windows/"
-      - "C:/Windows/System32/wbem/"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
-      - "C:/Windows/System32/OpenSSH/"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
-      - "C:/Program Files/dotnet/"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/"
-      - "D:/Bandizip/"
-      - "C:/Program Files/Git/cmd/"
-      - "C:/Program Files/nodejs/"
-      - "C:/Program Files/CMake/bin/"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/"
-    searched_directories:
-      - "C:/msys64/ucrt64/bin/addr2line.com"
-    found: "C:/msys64/ucrt64/bin/addr2line.exe"
-    search_context:
-      ENV{PATH}:
-        - "C:\\Program Files\\PowerShell\\7"
-        - "C:\\Users\\YUANJINYU\\AppData\\Local\\Programs\\Microsoft VS Code"
-        - "C:\\WINDOWS\\system32"
-        - "C:\\WINDOWS"
-        - "C:\\WINDOWS\\System32\\Wbem"
-        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
-        - "C:\\WINDOWS\\System32\\OpenSSH\\"
-        - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
-        - "C:\\Program Files\\dotnet\\"
-        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA app\\NvDLISR"
-        - "D:\\Bandizip\\"
-        - "C:\\Program Files\\Git\\cmd"
-        - "C:\\Program Files\\nodejs\\"
-        - "C:\\Program Files\\PowerShell\\7\\"
-        - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Users\\YUANJINYU\\AppData\\Local\\Microsoft\\WindowsApps"
-        - "C:\\Users\\YUANJINYU\\AppData\\Local\\gitkraken\\bin"
-        - "C:\\Users\\YUANJINYU\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
-        - "C:\\Users\\YUANJINYU\\AppData\\Roaming\\npm"
-        - "C:\\msys64\\ucrt64\\bin"
-  -
-    kind: "find-v1"
-    backtrace:
-      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
-      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
-      - "CMakeLists.txt:3 (project)"
-    mode: "program"
-    variable: "CMAKE_TAPI"
-    description: "Path to a program."
-    settings:
-      SearchFramework: "NEVER"
-      SearchAppBundle: "NEVER"
-      CMAKE_FIND_USE_CMAKE_PATH: false
-      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
-      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
-      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
-      CMAKE_FIND_USE_INSTALL_PREFIX: true
-    names:
-      - "tapi"
-    candidate_directories:
-      - "C:/msys64/ucrt64/bin/"
-      - "C:/Program Files/PowerShell/7/"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/"
-      - "C:/Windows/System32/"
-      - "C:/Windows/"
-      - "C:/Windows/System32/wbem/"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
-      - "C:/Windows/System32/OpenSSH/"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
-      - "C:/Program Files/dotnet/"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/"
-      - "D:/Bandizip/"
-      - "C:/Program Files/Git/cmd/"
-      - "C:/Program Files/nodejs/"
-      - "C:/Program Files/CMake/bin/"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/"
-    searched_directories:
-      - "C:/msys64/ucrt64/bin/tapi.com"
-      - "C:/msys64/ucrt64/bin/tapi.exe"
-      - "C:/msys64/ucrt64/bin/tapi"
-      - "C:/Program Files/PowerShell/7/tapi.com"
-      - "C:/Program Files/PowerShell/7/tapi.exe"
-      - "C:/Program Files/PowerShell/7/tapi"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/tapi.com"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/tapi.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/tapi"
-      - "C:/Windows/System32/tapi.com"
-      - "C:/Windows/System32/tapi.exe"
-      - "C:/Windows/System32/tapi"
-      - "C:/Windows/tapi.com"
-      - "C:/Windows/tapi.exe"
-      - "C:/Windows/tapi"
-      - "C:/Windows/System32/wbem/tapi.com"
-      - "C:/Windows/System32/wbem/tapi.exe"
-      - "C:/Windows/System32/wbem/tapi"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/tapi.com"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/tapi.exe"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/tapi"
-      - "C:/Windows/System32/OpenSSH/tapi.com"
-      - "C:/Windows/System32/OpenSSH/tapi.exe"
-      - "C:/Windows/System32/OpenSSH/tapi"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/tapi.com"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/tapi.exe"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/tapi"
-      - "C:/Program Files/dotnet/tapi.com"
-      - "C:/Program Files/dotnet/tapi.exe"
-      - "C:/Program Files/dotnet/tapi"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/tapi.com"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/tapi.exe"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/tapi"
-      - "D:/Bandizip/tapi.com"
-      - "D:/Bandizip/tapi.exe"
-      - "D:/Bandizip/tapi"
-      - "C:/Program Files/Git/cmd/tapi.com"
-      - "C:/Program Files/Git/cmd/tapi.exe"
-      - "C:/Program Files/Git/cmd/tapi"
-      - "C:/Program Files/nodejs/tapi.com"
-      - "C:/Program Files/nodejs/tapi.exe"
-      - "C:/Program Files/nodejs/tapi"
-      - "C:/Program Files/CMake/bin/tapi.com"
-      - "C:/Program Files/CMake/bin/tapi.exe"
-      - "C:/Program Files/CMake/bin/tapi"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/tapi.com"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/tapi.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/tapi"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/tapi.com"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/tapi.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/tapi"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/tapi.com"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/tapi.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/tapi"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/tapi.com"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/tapi.exe"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/tapi"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/mt.com"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/mt.exe"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/mt"
+      - "C:/Program Files/PowerShell/7/mt.com"
+      - "C:/Program Files/PowerShell/7/mt.exe"
+      - "C:/Program Files/PowerShell/7/mt"
+      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/mt.com"
+      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/mt.exe"
+      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/mt"
+      - "C:/Windows/System32/mt.com"
+      - "C:/Windows/System32/mt.exe"
+      - "C:/Windows/System32/mt"
+      - "C:/Windows/mt.com"
+      - "C:/Windows/mt.exe"
+      - "C:/Windows/mt"
+      - "C:/Windows/System32/wbem/mt.com"
+      - "C:/Windows/System32/wbem/mt.exe"
+      - "C:/Windows/System32/wbem/mt"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/mt.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/mt.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/mt"
+      - "C:/Windows/System32/OpenSSH/mt.com"
+      - "C:/Windows/System32/OpenSSH/mt.exe"
+      - "C:/Windows/System32/OpenSSH/mt"
+      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/mt.com"
+      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/mt.exe"
+      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/mt"
+      - "C:/Program Files/dotnet/mt.com"
+      - "C:/Program Files/dotnet/mt.exe"
+      - "C:/Program Files/dotnet/mt"
+      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/mt.com"
+      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/mt.exe"
+      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/mt"
+      - "D:/Bandizip/mt.com"
+      - "D:/Bandizip/mt.exe"
+      - "D:/Bandizip/mt"
+      - "C:/Program Files/Git/cmd/mt.com"
+      - "C:/Program Files/Git/cmd/mt.exe"
+      - "C:/Program Files/Git/cmd/mt"
+      - "C:/Program Files/nodejs/mt.com"
+      - "C:/Program Files/nodejs/mt.exe"
+      - "C:/Program Files/nodejs/mt"
+      - "C:/Program Files/CMake/bin/mt.com"
+      - "C:/Program Files/CMake/bin/mt.exe"
+      - "C:/Program Files/CMake/bin/mt"
+      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/mt.com"
+      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/mt.exe"
+      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/mt"
+      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/mt.com"
+      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/mt.exe"
+      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/mt"
+      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/mt.com"
+      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/mt.exe"
+      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/mt"
+      - "C:/Users/YUANJINYU/AppData/Roaming/npm/mt.com"
+      - "C:/Users/YUANJINYU/AppData/Roaming/npm/mt.exe"
+      - "C:/Users/YUANJINYU/AppData/Roaming/npm/mt"
+      - "C:/msys64/ucrt64/bin/mt.com"
+      - "C:/msys64/ucrt64/bin/mt.exe"
+      - "C:/msys64/ucrt64/bin/mt"
     found: false
     search_context:
       ENV{PATH}:
@@ -1336,12 +495,12 @@ events:
   -
     kind: "find-v1"
     backtrace:
-      - "C:/Program Files/CMake/share/cmake-4.3/Modules/Compiler/GNU-FindBinUtils.cmake:18 (find_program)"
-      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCXXCompiler.cmake:207 (include)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
       - "CMakeLists.txt:3 (project)"
     mode: "program"
-    variable: "CMAKE_CXX_COMPILER_AR"
-    description: "A wrapper around 'ar' adding the appropriate '--plugin' option for the GCC compiler"
+    variable: "CMAKE_AR"
+    description: "Path to a program."
     settings:
       SearchFramework: "NEVER"
       SearchAppBundle: "NEVER"
@@ -1351,12 +510,9 @@ events:
       CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
       CMAKE_FIND_USE_INSTALL_PREFIX: true
     names:
-      - "gcc-ar-15.2"
-      - "gcc-ar-15"
-      - "gcc-ar15"
-      - "gcc-ar"
+      - "lib"
     candidate_directories:
-      - "C:/msys64/ucrt64/bin/"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/"
       - "C:/Program Files/PowerShell/7/"
       - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/"
       - "C:/Windows/System32/"
@@ -1375,418 +531,10 @@ events:
       - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/"
       - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/"
       - "C:/Users/YUANJINYU/AppData/Roaming/npm/"
-    searched_directories:
-      - "C:/msys64/ucrt64/bin/gcc-ar-15.2.com"
-      - "C:/msys64/ucrt64/bin/gcc-ar-15.2.exe"
-      - "C:/msys64/ucrt64/bin/gcc-ar-15.2"
-      - "C:/Program Files/PowerShell/7/gcc-ar-15.2.com"
-      - "C:/Program Files/PowerShell/7/gcc-ar-15.2.exe"
-      - "C:/Program Files/PowerShell/7/gcc-ar-15.2"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/gcc-ar-15.2.com"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/gcc-ar-15.2.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/gcc-ar-15.2"
-      - "C:/Windows/System32/gcc-ar-15.2.com"
-      - "C:/Windows/System32/gcc-ar-15.2.exe"
-      - "C:/Windows/System32/gcc-ar-15.2"
-      - "C:/Windows/gcc-ar-15.2.com"
-      - "C:/Windows/gcc-ar-15.2.exe"
-      - "C:/Windows/gcc-ar-15.2"
-      - "C:/Windows/System32/wbem/gcc-ar-15.2.com"
-      - "C:/Windows/System32/wbem/gcc-ar-15.2.exe"
-      - "C:/Windows/System32/wbem/gcc-ar-15.2"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ar-15.2.com"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ar-15.2.exe"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ar-15.2"
-      - "C:/Windows/System32/OpenSSH/gcc-ar-15.2.com"
-      - "C:/Windows/System32/OpenSSH/gcc-ar-15.2.exe"
-      - "C:/Windows/System32/OpenSSH/gcc-ar-15.2"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/gcc-ar-15.2.com"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/gcc-ar-15.2.exe"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/gcc-ar-15.2"
-      - "C:/Program Files/dotnet/gcc-ar-15.2.com"
-      - "C:/Program Files/dotnet/gcc-ar-15.2.exe"
-      - "C:/Program Files/dotnet/gcc-ar-15.2"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/gcc-ar-15.2.com"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/gcc-ar-15.2.exe"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/gcc-ar-15.2"
-      - "D:/Bandizip/gcc-ar-15.2.com"
-      - "D:/Bandizip/gcc-ar-15.2.exe"
-      - "D:/Bandizip/gcc-ar-15.2"
-      - "C:/Program Files/Git/cmd/gcc-ar-15.2.com"
-      - "C:/Program Files/Git/cmd/gcc-ar-15.2.exe"
-      - "C:/Program Files/Git/cmd/gcc-ar-15.2"
-      - "C:/Program Files/nodejs/gcc-ar-15.2.com"
-      - "C:/Program Files/nodejs/gcc-ar-15.2.exe"
-      - "C:/Program Files/nodejs/gcc-ar-15.2"
-      - "C:/Program Files/CMake/bin/gcc-ar-15.2.com"
-      - "C:/Program Files/CMake/bin/gcc-ar-15.2.exe"
-      - "C:/Program Files/CMake/bin/gcc-ar-15.2"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/gcc-ar-15.2.com"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/gcc-ar-15.2.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/gcc-ar-15.2"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/gcc-ar-15.2.com"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/gcc-ar-15.2.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/gcc-ar-15.2"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ar-15.2.com"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ar-15.2.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ar-15.2"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/gcc-ar-15.2.com"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/gcc-ar-15.2.exe"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/gcc-ar-15.2"
-      - "C:/msys64/ucrt64/bin/gcc-ar-15.com"
-      - "C:/msys64/ucrt64/bin/gcc-ar-15.exe"
-      - "C:/msys64/ucrt64/bin/gcc-ar-15"
-      - "C:/Program Files/PowerShell/7/gcc-ar-15.com"
-      - "C:/Program Files/PowerShell/7/gcc-ar-15.exe"
-      - "C:/Program Files/PowerShell/7/gcc-ar-15"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/gcc-ar-15.com"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/gcc-ar-15.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/gcc-ar-15"
-      - "C:/Windows/System32/gcc-ar-15.com"
-      - "C:/Windows/System32/gcc-ar-15.exe"
-      - "C:/Windows/System32/gcc-ar-15"
-      - "C:/Windows/gcc-ar-15.com"
-      - "C:/Windows/gcc-ar-15.exe"
-      - "C:/Windows/gcc-ar-15"
-      - "C:/Windows/System32/wbem/gcc-ar-15.com"
-      - "C:/Windows/System32/wbem/gcc-ar-15.exe"
-      - "C:/Windows/System32/wbem/gcc-ar-15"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ar-15.com"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ar-15.exe"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ar-15"
-      - "C:/Windows/System32/OpenSSH/gcc-ar-15.com"
-      - "C:/Windows/System32/OpenSSH/gcc-ar-15.exe"
-      - "C:/Windows/System32/OpenSSH/gcc-ar-15"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/gcc-ar-15.com"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/gcc-ar-15.exe"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/gcc-ar-15"
-      - "C:/Program Files/dotnet/gcc-ar-15.com"
-      - "C:/Program Files/dotnet/gcc-ar-15.exe"
-      - "C:/Program Files/dotnet/gcc-ar-15"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/gcc-ar-15.com"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/gcc-ar-15.exe"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/gcc-ar-15"
-      - "D:/Bandizip/gcc-ar-15.com"
-      - "D:/Bandizip/gcc-ar-15.exe"
-      - "D:/Bandizip/gcc-ar-15"
-      - "C:/Program Files/Git/cmd/gcc-ar-15.com"
-      - "C:/Program Files/Git/cmd/gcc-ar-15.exe"
-      - "C:/Program Files/Git/cmd/gcc-ar-15"
-      - "C:/Program Files/nodejs/gcc-ar-15.com"
-      - "C:/Program Files/nodejs/gcc-ar-15.exe"
-      - "C:/Program Files/nodejs/gcc-ar-15"
-      - "C:/Program Files/CMake/bin/gcc-ar-15.com"
-      - "C:/Program Files/CMake/bin/gcc-ar-15.exe"
-      - "C:/Program Files/CMake/bin/gcc-ar-15"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/gcc-ar-15.com"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/gcc-ar-15.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/gcc-ar-15"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/gcc-ar-15.com"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/gcc-ar-15.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/gcc-ar-15"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ar-15.com"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ar-15.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ar-15"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/gcc-ar-15.com"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/gcc-ar-15.exe"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/gcc-ar-15"
-      - "C:/msys64/ucrt64/bin/gcc-ar15.com"
-      - "C:/msys64/ucrt64/bin/gcc-ar15.exe"
-      - "C:/msys64/ucrt64/bin/gcc-ar15"
-      - "C:/Program Files/PowerShell/7/gcc-ar15.com"
-      - "C:/Program Files/PowerShell/7/gcc-ar15.exe"
-      - "C:/Program Files/PowerShell/7/gcc-ar15"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/gcc-ar15.com"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/gcc-ar15.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/gcc-ar15"
-      - "C:/Windows/System32/gcc-ar15.com"
-      - "C:/Windows/System32/gcc-ar15.exe"
-      - "C:/Windows/System32/gcc-ar15"
-      - "C:/Windows/gcc-ar15.com"
-      - "C:/Windows/gcc-ar15.exe"
-      - "C:/Windows/gcc-ar15"
-      - "C:/Windows/System32/wbem/gcc-ar15.com"
-      - "C:/Windows/System32/wbem/gcc-ar15.exe"
-      - "C:/Windows/System32/wbem/gcc-ar15"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ar15.com"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ar15.exe"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ar15"
-      - "C:/Windows/System32/OpenSSH/gcc-ar15.com"
-      - "C:/Windows/System32/OpenSSH/gcc-ar15.exe"
-      - "C:/Windows/System32/OpenSSH/gcc-ar15"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/gcc-ar15.com"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/gcc-ar15.exe"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/gcc-ar15"
-      - "C:/Program Files/dotnet/gcc-ar15.com"
-      - "C:/Program Files/dotnet/gcc-ar15.exe"
-      - "C:/Program Files/dotnet/gcc-ar15"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/gcc-ar15.com"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/gcc-ar15.exe"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/gcc-ar15"
-      - "D:/Bandizip/gcc-ar15.com"
-      - "D:/Bandizip/gcc-ar15.exe"
-      - "D:/Bandizip/gcc-ar15"
-      - "C:/Program Files/Git/cmd/gcc-ar15.com"
-      - "C:/Program Files/Git/cmd/gcc-ar15.exe"
-      - "C:/Program Files/Git/cmd/gcc-ar15"
-      - "C:/Program Files/nodejs/gcc-ar15.com"
-      - "C:/Program Files/nodejs/gcc-ar15.exe"
-      - "C:/Program Files/nodejs/gcc-ar15"
-      - "C:/Program Files/CMake/bin/gcc-ar15.com"
-      - "C:/Program Files/CMake/bin/gcc-ar15.exe"
-      - "C:/Program Files/CMake/bin/gcc-ar15"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/gcc-ar15.com"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/gcc-ar15.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/gcc-ar15"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/gcc-ar15.com"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/gcc-ar15.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/gcc-ar15"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ar15.com"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ar15.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ar15"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/gcc-ar15.com"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/gcc-ar15.exe"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/gcc-ar15"
-      - "C:/msys64/ucrt64/bin/gcc-ar.com"
-    found: "C:/msys64/ucrt64/bin/gcc-ar.exe"
-    search_context:
-      ENV{PATH}:
-        - "C:\\Program Files\\PowerShell\\7"
-        - "C:\\Users\\YUANJINYU\\AppData\\Local\\Programs\\Microsoft VS Code"
-        - "C:\\WINDOWS\\system32"
-        - "C:\\WINDOWS"
-        - "C:\\WINDOWS\\System32\\Wbem"
-        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
-        - "C:\\WINDOWS\\System32\\OpenSSH\\"
-        - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
-        - "C:\\Program Files\\dotnet\\"
-        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA app\\NvDLISR"
-        - "D:\\Bandizip\\"
-        - "C:\\Program Files\\Git\\cmd"
-        - "C:\\Program Files\\nodejs\\"
-        - "C:\\Program Files\\PowerShell\\7\\"
-        - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Users\\YUANJINYU\\AppData\\Local\\Microsoft\\WindowsApps"
-        - "C:\\Users\\YUANJINYU\\AppData\\Local\\gitkraken\\bin"
-        - "C:\\Users\\YUANJINYU\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
-        - "C:\\Users\\YUANJINYU\\AppData\\Roaming\\npm"
-        - "C:\\msys64\\ucrt64\\bin"
-  -
-    kind: "find-v1"
-    backtrace:
-      - "C:/Program Files/CMake/share/cmake-4.3/Modules/Compiler/GNU-FindBinUtils.cmake:30 (find_program)"
-      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCXXCompiler.cmake:207 (include)"
-      - "CMakeLists.txt:3 (project)"
-    mode: "program"
-    variable: "CMAKE_CXX_COMPILER_RANLIB"
-    description: "A wrapper around 'ranlib' adding the appropriate '--plugin' option for the GCC compiler"
-    settings:
-      SearchFramework: "NEVER"
-      SearchAppBundle: "NEVER"
-      CMAKE_FIND_USE_CMAKE_PATH: false
-      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
-      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
-      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
-      CMAKE_FIND_USE_INSTALL_PREFIX: true
-    names:
-      - "gcc-ranlib-15.2"
-      - "gcc-ranlib-15"
-      - "gcc-ranlib15"
-      - "gcc-ranlib"
-    candidate_directories:
       - "C:/msys64/ucrt64/bin/"
-      - "C:/Program Files/PowerShell/7/"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/"
-      - "C:/Windows/System32/"
-      - "C:/Windows/"
-      - "C:/Windows/System32/wbem/"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
-      - "C:/Windows/System32/OpenSSH/"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
-      - "C:/Program Files/dotnet/"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/"
-      - "D:/Bandizip/"
-      - "C:/Program Files/Git/cmd/"
-      - "C:/Program Files/nodejs/"
-      - "C:/Program Files/CMake/bin/"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/"
     searched_directories:
-      - "C:/msys64/ucrt64/bin/gcc-ranlib-15.2.com"
-      - "C:/msys64/ucrt64/bin/gcc-ranlib-15.2.exe"
-      - "C:/msys64/ucrt64/bin/gcc-ranlib-15.2"
-      - "C:/Program Files/PowerShell/7/gcc-ranlib-15.2.com"
-      - "C:/Program Files/PowerShell/7/gcc-ranlib-15.2.exe"
-      - "C:/Program Files/PowerShell/7/gcc-ranlib-15.2"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/gcc-ranlib-15.2.com"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/gcc-ranlib-15.2.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/gcc-ranlib-15.2"
-      - "C:/Windows/System32/gcc-ranlib-15.2.com"
-      - "C:/Windows/System32/gcc-ranlib-15.2.exe"
-      - "C:/Windows/System32/gcc-ranlib-15.2"
-      - "C:/Windows/gcc-ranlib-15.2.com"
-      - "C:/Windows/gcc-ranlib-15.2.exe"
-      - "C:/Windows/gcc-ranlib-15.2"
-      - "C:/Windows/System32/wbem/gcc-ranlib-15.2.com"
-      - "C:/Windows/System32/wbem/gcc-ranlib-15.2.exe"
-      - "C:/Windows/System32/wbem/gcc-ranlib-15.2"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ranlib-15.2.com"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ranlib-15.2.exe"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ranlib-15.2"
-      - "C:/Windows/System32/OpenSSH/gcc-ranlib-15.2.com"
-      - "C:/Windows/System32/OpenSSH/gcc-ranlib-15.2.exe"
-      - "C:/Windows/System32/OpenSSH/gcc-ranlib-15.2"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/gcc-ranlib-15.2.com"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/gcc-ranlib-15.2.exe"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/gcc-ranlib-15.2"
-      - "C:/Program Files/dotnet/gcc-ranlib-15.2.com"
-      - "C:/Program Files/dotnet/gcc-ranlib-15.2.exe"
-      - "C:/Program Files/dotnet/gcc-ranlib-15.2"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/gcc-ranlib-15.2.com"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/gcc-ranlib-15.2.exe"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/gcc-ranlib-15.2"
-      - "D:/Bandizip/gcc-ranlib-15.2.com"
-      - "D:/Bandizip/gcc-ranlib-15.2.exe"
-      - "D:/Bandizip/gcc-ranlib-15.2"
-      - "C:/Program Files/Git/cmd/gcc-ranlib-15.2.com"
-      - "C:/Program Files/Git/cmd/gcc-ranlib-15.2.exe"
-      - "C:/Program Files/Git/cmd/gcc-ranlib-15.2"
-      - "C:/Program Files/nodejs/gcc-ranlib-15.2.com"
-      - "C:/Program Files/nodejs/gcc-ranlib-15.2.exe"
-      - "C:/Program Files/nodejs/gcc-ranlib-15.2"
-      - "C:/Program Files/CMake/bin/gcc-ranlib-15.2.com"
-      - "C:/Program Files/CMake/bin/gcc-ranlib-15.2.exe"
-      - "C:/Program Files/CMake/bin/gcc-ranlib-15.2"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/gcc-ranlib-15.2.com"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/gcc-ranlib-15.2.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/gcc-ranlib-15.2"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/gcc-ranlib-15.2.com"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/gcc-ranlib-15.2.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/gcc-ranlib-15.2"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ranlib-15.2.com"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ranlib-15.2.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ranlib-15.2"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/gcc-ranlib-15.2.com"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/gcc-ranlib-15.2.exe"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/gcc-ranlib-15.2"
-      - "C:/msys64/ucrt64/bin/gcc-ranlib-15.com"
-      - "C:/msys64/ucrt64/bin/gcc-ranlib-15.exe"
-      - "C:/msys64/ucrt64/bin/gcc-ranlib-15"
-      - "C:/Program Files/PowerShell/7/gcc-ranlib-15.com"
-      - "C:/Program Files/PowerShell/7/gcc-ranlib-15.exe"
-      - "C:/Program Files/PowerShell/7/gcc-ranlib-15"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/gcc-ranlib-15.com"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/gcc-ranlib-15.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/gcc-ranlib-15"
-      - "C:/Windows/System32/gcc-ranlib-15.com"
-      - "C:/Windows/System32/gcc-ranlib-15.exe"
-      - "C:/Windows/System32/gcc-ranlib-15"
-      - "C:/Windows/gcc-ranlib-15.com"
-      - "C:/Windows/gcc-ranlib-15.exe"
-      - "C:/Windows/gcc-ranlib-15"
-      - "C:/Windows/System32/wbem/gcc-ranlib-15.com"
-      - "C:/Windows/System32/wbem/gcc-ranlib-15.exe"
-      - "C:/Windows/System32/wbem/gcc-ranlib-15"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ranlib-15.com"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ranlib-15.exe"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ranlib-15"
-      - "C:/Windows/System32/OpenSSH/gcc-ranlib-15.com"
-      - "C:/Windows/System32/OpenSSH/gcc-ranlib-15.exe"
-      - "C:/Windows/System32/OpenSSH/gcc-ranlib-15"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/gcc-ranlib-15.com"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/gcc-ranlib-15.exe"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/gcc-ranlib-15"
-      - "C:/Program Files/dotnet/gcc-ranlib-15.com"
-      - "C:/Program Files/dotnet/gcc-ranlib-15.exe"
-      - "C:/Program Files/dotnet/gcc-ranlib-15"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/gcc-ranlib-15.com"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/gcc-ranlib-15.exe"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/gcc-ranlib-15"
-      - "D:/Bandizip/gcc-ranlib-15.com"
-      - "D:/Bandizip/gcc-ranlib-15.exe"
-      - "D:/Bandizip/gcc-ranlib-15"
-      - "C:/Program Files/Git/cmd/gcc-ranlib-15.com"
-      - "C:/Program Files/Git/cmd/gcc-ranlib-15.exe"
-      - "C:/Program Files/Git/cmd/gcc-ranlib-15"
-      - "C:/Program Files/nodejs/gcc-ranlib-15.com"
-      - "C:/Program Files/nodejs/gcc-ranlib-15.exe"
-      - "C:/Program Files/nodejs/gcc-ranlib-15"
-      - "C:/Program Files/CMake/bin/gcc-ranlib-15.com"
-      - "C:/Program Files/CMake/bin/gcc-ranlib-15.exe"
-      - "C:/Program Files/CMake/bin/gcc-ranlib-15"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/gcc-ranlib-15.com"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/gcc-ranlib-15.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/gcc-ranlib-15"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/gcc-ranlib-15.com"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/gcc-ranlib-15.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/gcc-ranlib-15"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ranlib-15.com"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ranlib-15.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ranlib-15"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/gcc-ranlib-15.com"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/gcc-ranlib-15.exe"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/gcc-ranlib-15"
-      - "C:/msys64/ucrt64/bin/gcc-ranlib15.com"
-      - "C:/msys64/ucrt64/bin/gcc-ranlib15.exe"
-      - "C:/msys64/ucrt64/bin/gcc-ranlib15"
-      - "C:/Program Files/PowerShell/7/gcc-ranlib15.com"
-      - "C:/Program Files/PowerShell/7/gcc-ranlib15.exe"
-      - "C:/Program Files/PowerShell/7/gcc-ranlib15"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/gcc-ranlib15.com"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/gcc-ranlib15.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/gcc-ranlib15"
-      - "C:/Windows/System32/gcc-ranlib15.com"
-      - "C:/Windows/System32/gcc-ranlib15.exe"
-      - "C:/Windows/System32/gcc-ranlib15"
-      - "C:/Windows/gcc-ranlib15.com"
-      - "C:/Windows/gcc-ranlib15.exe"
-      - "C:/Windows/gcc-ranlib15"
-      - "C:/Windows/System32/wbem/gcc-ranlib15.com"
-      - "C:/Windows/System32/wbem/gcc-ranlib15.exe"
-      - "C:/Windows/System32/wbem/gcc-ranlib15"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ranlib15.com"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ranlib15.exe"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ranlib15"
-      - "C:/Windows/System32/OpenSSH/gcc-ranlib15.com"
-      - "C:/Windows/System32/OpenSSH/gcc-ranlib15.exe"
-      - "C:/Windows/System32/OpenSSH/gcc-ranlib15"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/gcc-ranlib15.com"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/gcc-ranlib15.exe"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/gcc-ranlib15"
-      - "C:/Program Files/dotnet/gcc-ranlib15.com"
-      - "C:/Program Files/dotnet/gcc-ranlib15.exe"
-      - "C:/Program Files/dotnet/gcc-ranlib15"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/gcc-ranlib15.com"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/gcc-ranlib15.exe"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/gcc-ranlib15"
-      - "D:/Bandizip/gcc-ranlib15.com"
-      - "D:/Bandizip/gcc-ranlib15.exe"
-      - "D:/Bandizip/gcc-ranlib15"
-      - "C:/Program Files/Git/cmd/gcc-ranlib15.com"
-      - "C:/Program Files/Git/cmd/gcc-ranlib15.exe"
-      - "C:/Program Files/Git/cmd/gcc-ranlib15"
-      - "C:/Program Files/nodejs/gcc-ranlib15.com"
-      - "C:/Program Files/nodejs/gcc-ranlib15.exe"
-      - "C:/Program Files/nodejs/gcc-ranlib15"
-      - "C:/Program Files/CMake/bin/gcc-ranlib15.com"
-      - "C:/Program Files/CMake/bin/gcc-ranlib15.exe"
-      - "C:/Program Files/CMake/bin/gcc-ranlib15"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/gcc-ranlib15.com"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/gcc-ranlib15.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/gcc-ranlib15"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/gcc-ranlib15.com"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/gcc-ranlib15.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/gcc-ranlib15"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ranlib15.com"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ranlib15.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ranlib15"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/gcc-ranlib15.com"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/gcc-ranlib15.exe"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/gcc-ranlib15"
-      - "C:/msys64/ucrt64/bin/gcc-ranlib.com"
-    found: "C:/msys64/ucrt64/bin/gcc-ranlib.exe"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/lib.com"
+    found: "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/lib.exe"
     search_context:
       ENV{PATH}:
         - "C:\\Program Files\\PowerShell\\7"
@@ -1813,8 +561,9 @@ events:
     kind: "find-v1"
     backtrace:
       - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineRCCompiler.cmake:40 (find_program)"
-      - "C:/Program Files/CMake/share/cmake-4.3/Modules/Platform/Windows-GNU.cmake:167 (enable_language)"
-      - "C:/Program Files/CMake/share/cmake-4.3/Modules/Platform/Windows-GNU-CXX.cmake:2 (__windows_compiler_gnu)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/Platform/Windows-MSVC.cmake:592 (enable_language)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/Platform/Windows-MSVC.cmake:565 (__windows_compiler_msvc_enable_rc)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/Platform/Windows-MSVC-CXX.cmake:6 (__windows_compiler_msvc)"
       - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCXXInformation.cmake:48 (include)"
       - "CMakeLists.txt:3 (project)"
     mode: "program"
@@ -1829,8 +578,7 @@ events:
       CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
       CMAKE_FIND_USE_INSTALL_PREFIX: true
     names:
-      - "windres"
-      - "windres"
+      - "rc"
     candidate_directories:
       - "C:/Program Files/PowerShell/7/"
       - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/"
@@ -1864,62 +612,100 @@ events:
       - "C:/Program Files (x86)/DoorAlarmThreadDesign/sbin/"
       - "C:/Program Files (x86)/DoorAlarmThreadDesign/"
     searched_directories:
-      - "C:/Program Files/PowerShell/7/windres.com"
-      - "C:/Program Files/PowerShell/7/windres.exe"
-      - "C:/Program Files/PowerShell/7/windres"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/windres.com"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/windres.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/windres"
-      - "C:/Windows/System32/windres.com"
-      - "C:/Windows/System32/windres.exe"
-      - "C:/Windows/System32/windres"
-      - "C:/Windows/windres.com"
-      - "C:/Windows/windres.exe"
-      - "C:/Windows/windres"
-      - "C:/Windows/System32/wbem/windres.com"
-      - "C:/Windows/System32/wbem/windres.exe"
-      - "C:/Windows/System32/wbem/windres"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/windres.com"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/windres.exe"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/windres"
-      - "C:/Windows/System32/OpenSSH/windres.com"
-      - "C:/Windows/System32/OpenSSH/windres.exe"
-      - "C:/Windows/System32/OpenSSH/windres"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/windres.com"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/windres.exe"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/windres"
-      - "C:/Program Files/dotnet/windres.com"
-      - "C:/Program Files/dotnet/windres.exe"
-      - "C:/Program Files/dotnet/windres"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/windres.com"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/windres.exe"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/windres"
-      - "D:/Bandizip/windres.com"
-      - "D:/Bandizip/windres.exe"
-      - "D:/Bandizip/windres"
-      - "C:/Program Files/Git/cmd/windres.com"
-      - "C:/Program Files/Git/cmd/windres.exe"
-      - "C:/Program Files/Git/cmd/windres"
-      - "C:/Program Files/nodejs/windres.com"
-      - "C:/Program Files/nodejs/windres.exe"
-      - "C:/Program Files/nodejs/windres"
-      - "C:/Program Files/CMake/bin/windres.com"
-      - "C:/Program Files/CMake/bin/windres.exe"
-      - "C:/Program Files/CMake/bin/windres"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/windres.com"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/windres.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/windres"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/windres.com"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/windres.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/windres"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/windres.com"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/windres.exe"
-      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/windres"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/windres.com"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/windres.exe"
-      - "C:/Users/YUANJINYU/AppData/Roaming/npm/windres"
-      - "C:/msys64/ucrt64/bin/windres.com"
-    found: "C:/msys64/ucrt64/bin/windres.exe"
+      - "C:/Program Files/PowerShell/7/rc.com"
+      - "C:/Program Files/PowerShell/7/rc.exe"
+      - "C:/Program Files/PowerShell/7/rc"
+      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/rc.com"
+      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/rc.exe"
+      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/rc"
+      - "C:/Windows/System32/rc.com"
+      - "C:/Windows/System32/rc.exe"
+      - "C:/Windows/System32/rc"
+      - "C:/Windows/rc.com"
+      - "C:/Windows/rc.exe"
+      - "C:/Windows/rc"
+      - "C:/Windows/System32/wbem/rc.com"
+      - "C:/Windows/System32/wbem/rc.exe"
+      - "C:/Windows/System32/wbem/rc"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/rc.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/rc.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/rc"
+      - "C:/Windows/System32/OpenSSH/rc.com"
+      - "C:/Windows/System32/OpenSSH/rc.exe"
+      - "C:/Windows/System32/OpenSSH/rc"
+      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/rc.com"
+      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/rc.exe"
+      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/rc"
+      - "C:/Program Files/dotnet/rc.com"
+      - "C:/Program Files/dotnet/rc.exe"
+      - "C:/Program Files/dotnet/rc"
+      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/rc.com"
+      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/rc.exe"
+      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/rc"
+      - "D:/Bandizip/rc.com"
+      - "D:/Bandizip/rc.exe"
+      - "D:/Bandizip/rc"
+      - "C:/Program Files/Git/cmd/rc.com"
+      - "C:/Program Files/Git/cmd/rc.exe"
+      - "C:/Program Files/Git/cmd/rc"
+      - "C:/Program Files/nodejs/rc.com"
+      - "C:/Program Files/nodejs/rc.exe"
+      - "C:/Program Files/nodejs/rc"
+      - "C:/Program Files/CMake/bin/rc.com"
+      - "C:/Program Files/CMake/bin/rc.exe"
+      - "C:/Program Files/CMake/bin/rc"
+      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/rc.com"
+      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/rc.exe"
+      - "C:/Users/YUANJINYU/AppData/Local/Microsoft/WindowsApps/rc"
+      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/rc.com"
+      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/rc.exe"
+      - "C:/Users/YUANJINYU/AppData/Local/gitkraken/bin/rc"
+      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/rc.com"
+      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/rc.exe"
+      - "C:/Users/YUANJINYU/AppData/Local/Programs/Microsoft VS Code/bin/rc"
+      - "C:/Users/YUANJINYU/AppData/Roaming/npm/rc.com"
+      - "C:/Users/YUANJINYU/AppData/Roaming/npm/rc.exe"
+      - "C:/Users/YUANJINYU/AppData/Roaming/npm/rc"
+      - "C:/msys64/ucrt64/bin/rc.com"
+      - "C:/msys64/ucrt64/bin/rc.exe"
+      - "C:/msys64/ucrt64/bin/rc"
+      - "C:/Program Files/bin/rc.com"
+      - "C:/Program Files/bin/rc.exe"
+      - "C:/Program Files/bin/rc"
+      - "C:/Program Files/sbin/rc.com"
+      - "C:/Program Files/sbin/rc.exe"
+      - "C:/Program Files/sbin/rc"
+      - "C:/Program Files/rc.com"
+      - "C:/Program Files/rc.exe"
+      - "C:/Program Files/rc"
+      - "C:/Program Files (x86)/bin/rc.com"
+      - "C:/Program Files (x86)/bin/rc.exe"
+      - "C:/Program Files (x86)/bin/rc"
+      - "C:/Program Files (x86)/sbin/rc.com"
+      - "C:/Program Files (x86)/sbin/rc.exe"
+      - "C:/Program Files (x86)/sbin/rc"
+      - "C:/Program Files (x86)/rc.com"
+      - "C:/Program Files (x86)/rc.exe"
+      - "C:/Program Files (x86)/rc"
+      - "C:/Program Files/CMake/bin/rc.com"
+      - "C:/Program Files/CMake/bin/rc.exe"
+      - "C:/Program Files/CMake/bin/rc"
+      - "C:/Program Files/CMake/sbin/rc.com"
+      - "C:/Program Files/CMake/sbin/rc.exe"
+      - "C:/Program Files/CMake/sbin/rc"
+      - "C:/Program Files/CMake/rc.com"
+      - "C:/Program Files/CMake/rc.exe"
+      - "C:/Program Files/CMake/rc"
+      - "C:/Program Files (x86)/DoorAlarmThreadDesign/bin/rc.com"
+      - "C:/Program Files (x86)/DoorAlarmThreadDesign/bin/rc.exe"
+      - "C:/Program Files (x86)/DoorAlarmThreadDesign/bin/rc"
+      - "C:/Program Files (x86)/DoorAlarmThreadDesign/sbin/rc.com"
+      - "C:/Program Files (x86)/DoorAlarmThreadDesign/sbin/rc.exe"
+      - "C:/Program Files (x86)/DoorAlarmThreadDesign/sbin/rc"
+      - "C:/Program Files (x86)/DoorAlarmThreadDesign/rc.com"
+      - "C:/Program Files (x86)/DoorAlarmThreadDesign/rc.exe"
+      - "C:/Program Files (x86)/DoorAlarmThreadDesign/rc"
+    found: false
     search_context:
       ENV{PATH}:
         - "C:\\Program Files\\PowerShell\\7"
@@ -1957,114 +743,53 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "D:/C++/door-alarm-thread-desgin/build/CMakeFiles/CMakeScratch/TryCompile-b3n8s0"
-      binary: "D:/C++/door-alarm-thread-desgin/build/CMakeFiles/CMakeScratch/TryCompile-b3n8s0"
+      source: "D:/C++/door-alarm-thread-desgin/build/CMakeFiles/CMakeScratch/TryCompile-3y3pt1"
+      binary: "D:/C++/door-alarm-thread-desgin/build/CMakeFiles/CMakeScratch/TryCompile-3y3pt1"
     cmakeVariables:
-      CMAKE_CXX_FLAGS: ""
-      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /GR /EHsc"
+      CMAKE_CXX_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
       CMAKE_CXX_SCAN_FOR_MODULES: "OFF"
       CMAKE_CXX_STDLIB_MODULES_JSON: ""
-      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
     buildResult:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'D:/C++/door-alarm-thread-desgin/build/CMakeFiles/CMakeScratch/TryCompile-b3n8s0'
+        Change Dir: 'D:/C++/door-alarm-thread-desgin/build/CMakeFiles/CMakeScratch/TryCompile-3y3pt1'
         
-        Run Build Command(s): "C:/Program Files/CMake/bin/cmake.exe" -E env VERBOSE=1 C:/msys64/ucrt64/bin/mingw32-make.exe -f Makefile cmTC_05deb/fast
-        C:/msys64/ucrt64/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_05deb.dir\\build.make CMakeFiles/cmTC_05deb.dir/build
-        mingw32-make[1]: Entering directory 'D:/C++/door-alarm-thread-desgin/build/CMakeFiles/CMakeScratch/TryCompile-b3n8s0'
-        Building CXX object CMakeFiles/cmTC_05deb.dir/CMakeCXXCompilerABI.cpp.obj
-        C:\\msys64\\ucrt64\\bin\\c++.exe   -v -o CMakeFiles\\cmTC_05deb.dir\\CMakeCXXCompilerABI.cpp.obj -c "C:\\Program Files\\CMake\\share\\cmake-4.3\\Modules\\CMakeCXXCompilerABI.cpp"
-        Using built-in specs.
-        COLLECT_GCC=C:\\msys64\\ucrt64\\bin\\c++.exe
-        Target: x86_64-w64-mingw32
-        Configured with: ../gcc-15.2.0/configure --prefix=/ucrt64 --with-local-prefix=/ucrt64/local --libexecdir=/ucrt64/lib --enable-bootstrap --enable-checking=release --with-arch=nocona --with-tune=generic --enable-mingw-wildcard --enable-languages=c,lto,c++,fortran,ada,objc,obj-c++,jit --enable-shared --enable-static --enable-libatomic --enable-threads=posix --enable-graphite --enable-fully-dynamic-string --enable-libstdcxx-backtrace=yes --enable-libstdcxx-filesystem-ts --enable-libstdcxx-time --disable-libstdcxx-pch --enable-lto --enable-libgomp --disable-libssp --disable-multilib --disable-rpath --disable-win32-registry --disable-nls --disable-werror --disable-symvers --with-libiconv --with-system-zlib --with-gmp=/ucrt64 --with-mpfr=/ucrt64 --with-mpc=/ucrt64 --with-isl=/ucrt64 --with-pkgversion='Rev13, Built by MSYS2 project' --with-bugurl=https://github.com/msys2/MINGW-packages/issues --with-gnu-as --with-gnu-ld --with-libstdcxx-zoneinfo=yes --disable-libstdcxx-debug --enable-plugin --with-boot-ldflags=-static-libstdc++ --with-stage1-ldflags=-static-libstdc++
-        Thread model: posix
-        Supported LTO compression algorithms: zlib zstd
-        gcc version 15.2.0 (Rev13, Built by MSYS2 project) 
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_05deb.dir\\CMakeCXXCompilerABI.cpp.obj' '-c' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_05deb.dir\\'
-         C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/cc1plus.exe -quiet -v -iprefix C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/ -D_REENTRANT C:\\Program Files\\CMake\\share\\cmake-4.3\\Modules\\CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles\\cmTC_05deb.dir\\ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=nocona -version -o C:\\Users\\YUANJI~1\\AppData\\Local\\Temp\\ccSsZ0e8.s
-        GNU C++17 (Rev13, Built by MSYS2 project) version 15.2.0 (x86_64-w64-mingw32)
-        	compiled by GNU C version 15.2.0, GMP version 6.3.0, MPFR version 4.2.2, MPC version 1.3.1, isl version isl-0.27-GMP
+        Run Build Command(s): "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_08149.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=18.0 /v:n
+        閫傜敤浜?.NET Framework MSBuild 鐗堟湰 18.4.0+6e61e96ac
+        鐢熸垚鍚姩鏃堕棿涓?09/04/2026 11:08:21銆?
         
-        warning: MPC header version 1.3.1 differs from library version 1.4.0.
-        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
-        ignoring nonexistent directory "C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/include"
-        ignoring duplicate directory "C:/msys64/ucrt64/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../include/c++/15.2.0"
-        ignoring duplicate directory "C:/msys64/ucrt64/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../include/c++/15.2.0/x86_64-w64-mingw32"
-        ignoring duplicate directory "C:/msys64/ucrt64/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../include/c++/15.2.0/backward"
-        ignoring duplicate directory "C:/msys64/ucrt64/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/15.2.0/include"
-        ignoring nonexistent directory "D:/M/msys64/ucrt64/include"
-        ignoring nonexistent directory "/ucrt64/include"
-        ignoring duplicate directory "C:/msys64/ucrt64/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/15.2.0/include-fixed"
-        ignoring nonexistent directory "C:/msys64/ucrt64/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/include"
-        #include "..." search starts here:
-        #include <...> search starts here:
-         C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../include/c++/15.2.0
-         C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../include/c++/15.2.0/x86_64-w64-mingw32
-         C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../include/c++/15.2.0/backward
-         C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/include
-         C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../include
-         C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/include-fixed
-        End of search list.
-        Compiler executable checksum: 12cd7a79b0110cd574152ed764c1a3d2
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_05deb.dir\\CMakeCXXCompilerABI.cpp.obj' '-c' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_05deb.dir\\'
-         C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/bin/as.exe -v -o CMakeFiles\\cmTC_05deb.dir\\CMakeCXXCompilerABI.cpp.obj C:\\Users\\YUANJI~1\\AppData\\Local\\Temp\\ccSsZ0e8.s
-        GNU assembler version 2.46 (x86_64-w64-mingw32) using BFD version (GNU Binutils) 2.46
-        COMPILER_PATH=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/;C:/msys64/ucrt64/bin/../lib/gcc/;C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/bin/
-        LIBRARY_PATH=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/;C:/msys64/ucrt64/bin/../lib/gcc/;C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib/../lib/;C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/;C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib/;C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_05deb.dir\\CMakeCXXCompilerABI.cpp.obj' '-c' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_05deb.dir\\CMakeCXXCompilerABI.cpp.'
-        Linking CXX executable cmTC_05deb.exe
-        "C:\\Program Files\\CMake\\bin\\cmake.exe" -E cmake_link_script CMakeFiles\\cmTC_05deb.dir\\link.txt --verbose=1
-        Using built-in specs.
-        COLLECT_GCC=C:\\msys64\\ucrt64\\bin\\c++.exe
-        COLLECT_LTO_WRAPPER=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/lto-wrapper.exe
-        Target: x86_64-w64-mingw32
-        Configured with: ../gcc-15.2.0/configure --prefix=/ucrt64 --with-local-prefix=/ucrt64/local --libexecdir=/ucrt64/lib --enable-bootstrap --enable-checking=release --with-arch=nocona --with-tune=generic --enable-mingw-wildcard --enable-languages=c,lto,c++,fortran,ada,objc,obj-c++,jit --enable-shared --enable-static --enable-libatomic --enable-threads=posix --enable-graphite --enable-fully-dynamic-string --enable-libstdcxx-backtrace=yes --enable-libstdcxx-filesystem-ts --enable-libstdcxx-time --disable-libstdcxx-pch --enable-lto --enable-libgomp --disable-libssp --disable-multilib --disable-rpath --disable-win32-registry --disable-nls --disable-werror --disable-symvers --with-libiconv --with-system-zlib --with-gmp=/ucrt64 --with-mpfr=/ucrt64 --with-mpc=/ucrt64 --with-isl=/ucrt64 --with-pkgversion='Rev13, Built by MSYS2 project' --with-bugurl=https://github.com/msys2/MINGW-packages/issues --with-gnu-as --with-gnu-ld --with-libstdcxx-zoneinfo=yes --disable-libstdcxx-debug --enable-plugin --with-boot-ldflags=-static-libstdc++ --with-stage1-ldflags=-static-libstdc++
-        Thread model: posix
-        Supported LTO compression algorithms: zlib zstd
-        gcc version 15.2.0 (Rev13, Built by MSYS2 project) 
-        COMPILER_PATH=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/;C:/msys64/ucrt64/bin/../lib/gcc/;C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/bin/
-        LIBRARY_PATH=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/;C:/msys64/ucrt64/bin/../lib/gcc/;C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib/../lib/;C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/;C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib/;C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../
-        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_05deb.exe' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-dumpdir' 'cmTC_05deb.'
-         C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/collect2.exe -plugin C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/liblto_plugin.dll -plugin-opt=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\YUANJI~1\\AppData\\Local\\Temp\\ccrs7l1f.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_05deb.exe C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/crt2.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtbegin.o -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0 -LC:/msys64/ucrt64/bin/../lib/gcc -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib/../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../.. -v --whole-archive CMakeFiles\\cmTC_05deb.dir/objects.a --no-whole-archive --out-implib libcmTC_05deb.dll.a --major-image-version 0 --minor-image-version 0 -lstdc++ -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/default-manifest.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtend.o
-        collect2 version 15.2.0
-        C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe -plugin C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/liblto_plugin.dll -plugin-opt=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\YUANJI~1\\AppData\\Local\\Temp\\ccrs7l1f.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_05deb.exe C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/crt2.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtbegin.o -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0 -LC:/msys64/ucrt64/bin/../lib/gcc -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib/../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../.. -v --whole-archive CMakeFiles\\cmTC_05deb.dir/objects.a --no-whole-archive --out-implib libcmTC_05deb.dll.a --major-image-version 0 --minor-image-version 0 -lstdc++ -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/default-manifest.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtend.o
-        GNU ld (GNU Binutils) 2.46
-        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_05deb.exe' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-dumpdir' 'cmTC_05deb.'
-        "C:\\Program Files\\CMake\\bin\\cmake.exe" -E rm -f CMakeFiles\\cmTC_05deb.dir/objects.a
-        C:\\msys64\\ucrt64\\bin\\ar.exe qc CMakeFiles\\cmTC_05deb.dir/objects.a @CMakeFiles\\cmTC_05deb.dir\\objects1.rsp
-        C:\\msys64\\ucrt64\\bin\\c++.exe  -v -Wl,-v -Wl,--whole-archive CMakeFiles\\cmTC_05deb.dir/objects.a -Wl,--no-whole-archive -o cmTC_05deb.exe -Wl,--out-implib,libcmTC_05deb.dll.a -Wl,--major-image-version,0,--minor-image-version,0
-        mingw32-make[1]: Leaving directory 'D:/C++/door-alarm-thread-desgin/build/CMakeFiles/CMakeScratch/TryCompile-b3n8s0'
+        鑺傜偣 1 涓婄殑椤圭洰鈥淒:\\C++\\door-alarm-thread-desgin\\build\\CMakeFiles\\CMakeScratch\\TryCompile-3y3pt1\\cmTC_08149.vcxproj鈥?榛樿鐩爣)銆?
+        PrepareForBuild:
+          宸插惎鐢ㄧ粨鏋勫寲杈撳嚭銆傜紪璇戝櫒璇婃柇鐨勬牸寮忚缃皢鍙嶆槧閿欒灞傛缁撴瀯銆傛湁鍏宠缁嗕俊鎭紝璇峰弬闃?https://aka.ms/cpp/structured-output銆?
+          姝ｅ湪鍒涘缓鐩綍鈥淒:\\C++\\door-alarm-thread-desgin\\build\\CMakeFiles\\CMakeScratch\\TryCompile-3y3pt1\\Debug\\鈥濄€?
+          姝ｅ湪鍒涘缓鐩綍鈥渃mTC_08149.dir\\Debug\\cmTC_08149.tlog\\鈥濄€?
+        InitializeBuildStatus:
+          姝ｅ湪鍒涘缓鈥渃mTC_08149.dir\\Debug\\cmTC_08149.tlog\\unsuccessfulbuild鈥濓紝鍥犱负宸叉寚瀹氣€淎lwaysCreate鈥濄€?
+          姝ｅ湪瀵光€渃mTC_08149.dir\\Debug\\cmTC_08149.tlog\\unsuccessfulbuild鈥濇墽琛?Touch 浠诲姟銆?
+        ClCompile:
+          C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GR /Fo"cmTC_08149.dir\\Debug\\\\" /Fd"cmTC_08149.dir\\Debug\\vc145.pdb" /external:W1 /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.3\\Modules\\CMakeCXXCompilerABI.cpp"
+          鐢ㄤ簬 x64 鐨?Microsoft (R) C/C++ 浼樺寲缂栬瘧鍣?19.50.35728 鐗?
+          鐗堟潈鎵€鏈?C) Microsoft Corporation銆備繚鐣欐墍鏈夋潈鍒┿€?
+          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GR /Fo"cmTC_08149.dir\\Debug\\\\" /Fd"cmTC_08149.dir\\Debug\\vc145.pdb" /external:W1 /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.3\\Modules\\CMakeCXXCompilerABI.cpp"
+          CMakeCXXCompilerABI.cpp
+        Link:
+          C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX64\\x64\\link.exe /OUT:"D:\\C++\\door-alarm-thread-desgin\\build\\CMakeFiles\\CMakeScratch\\TryCompile-3y3pt1\\Debug\\cmTC_08149.exe" /INCREMENTAL /ILK:"cmTC_08149.dir\\Debug\\cmTC_08149.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:/C++/door-alarm-thread-desgin/build/CMakeFiles/CMakeScratch/TryCompile-3y3pt1/Debug/cmTC_08149.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"D:/C++/door-alarm-thread-desgin/build/CMakeFiles/CMakeScratch/TryCompile-3y3pt1/Debug/cmTC_08149.lib" /MACHINE:X64  /machine:x64 cmTC_08149.dir\\Debug\\CMakeCXXCompilerABI.obj
+          cmTC_08149.vcxproj -> D:\\C++\\door-alarm-thread-desgin\\build\\CMakeFiles\\CMakeScratch\\TryCompile-3y3pt1\\Debug\\cmTC_08149.exe
+        FinalizeBuildStatus:
+          姝ｅ湪鍒犻櫎鏂囦欢鈥渃mTC_08149.dir\\Debug\\cmTC_08149.tlog\\unsuccessfulbuild鈥濄€?
+          姝ｅ湪瀵光€渃mTC_08149.dir\\Debug\\cmTC_08149.tlog\\cmTC_08149.lastbuildstate鈥濇墽琛?Touch 浠诲姟銆?
+        宸插畬鎴愮敓鎴愰」鐩€淒:\\C++\\door-alarm-thread-desgin\\build\\CMakeFiles\\CMakeScratch\\TryCompile-3y3pt1\\cmTC_08149.vcxproj鈥?榛樿鐩爣)鐨勬搷浣溿€?
+        
+        宸叉垚鍔熺敓鎴愩€?
+            0 涓鍛?
+            0 涓敊璇?
+        
+        宸茬敤鏃堕棿 00:00:00.39
         
       exitCode: 0
-  -
-    kind: "message-v1"
-    backtrace:
-      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerABI.cmake:217 (message)"
-      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
-      - "CMakeLists.txt:3 (project)"
-    message: |
-      Parsed CXX implicit include dir info: rv=done
-        found start of include info
-        found start of implicit include info
-          add: [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../include/c++/15.2.0]
-          add: [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../include/c++/15.2.0/x86_64-w64-mingw32]
-          add: [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../include/c++/15.2.0/backward]
-          add: [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/include]
-          add: [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../include]
-          add: [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/include-fixed]
-        end of search list found
-        collapse include dir [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../include/c++/15.2.0] ==> [C:/msys64/ucrt64/include/c++/15.2.0]
-        collapse include dir [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../include/c++/15.2.0/x86_64-w64-mingw32] ==> [C:/msys64/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32]
-        collapse include dir [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../include/c++/15.2.0/backward] ==> [C:/msys64/ucrt64/include/c++/15.2.0/backward]
-        collapse include dir [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/include] ==> [C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/15.2.0/include]
-        collapse include dir [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../include] ==> [C:/msys64/ucrt64/include]
-        collapse include dir [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/include-fixed] ==> [C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/15.2.0/include-fixed]
-        implicit include dirs: [C:/msys64/ucrt64/include/c++/15.2.0;C:/msys64/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32;C:/msys64/ucrt64/include/c++/15.2.0/backward;C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/15.2.0/include;C:/msys64/ucrt64/include;C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/15.2.0/include-fixed]
-      
-      
   -
     kind: "message-v1"
     backtrace:
@@ -2073,165 +798,12 @@ events:
       - "CMakeLists.txt:3 (project)"
     message: |
       Parsed CXX implicit link information:
-        link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
-        linker tool regex: [^[ 	]*(->|"|[0-9]+>[ 	-]*Build:[ 	0-9]+ ms[ 	]*)?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)))("|,| |$)]
-        ignore line: [Change Dir: 'D:/C++/door-alarm-thread-desgin/build/CMakeFiles/CMakeScratch/TryCompile-b3n8s0']
-        ignore line: []
-        ignore line: [Run Build Command(s): "C:/Program Files/CMake/bin/cmake.exe" -E env VERBOSE=1 C:/msys64/ucrt64/bin/mingw32-make.exe -f Makefile cmTC_05deb/fast]
-        ignore line: [C:/msys64/ucrt64/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_05deb.dir\\build.make CMakeFiles/cmTC_05deb.dir/build]
-        ignore line: [mingw32-make[1]: Entering directory 'D:/C++/door-alarm-thread-desgin/build/CMakeFiles/CMakeScratch/TryCompile-b3n8s0']
-        ignore line: [Building CXX object CMakeFiles/cmTC_05deb.dir/CMakeCXXCompilerABI.cpp.obj]
-        ignore line: [C:\\msys64\\ucrt64\\bin\\c++.exe   -v -o CMakeFiles\\cmTC_05deb.dir\\CMakeCXXCompilerABI.cpp.obj -c "C:\\Program Files\\CMake\\share\\cmake-4.3\\Modules\\CMakeCXXCompilerABI.cpp"]
-        ignore line: [Using built-in specs.]
-        ignore line: [COLLECT_GCC=C:\\msys64\\ucrt64\\bin\\c++.exe]
-        ignore line: [Target: x86_64-w64-mingw32]
-        ignore line: [Configured with: ../gcc-15.2.0/configure --prefix=/ucrt64 --with-local-prefix=/ucrt64/local --libexecdir=/ucrt64/lib --enable-bootstrap --enable-checking=release --with-arch=nocona --with-tune=generic --enable-mingw-wildcard --enable-languages=c,lto,c++,fortran,ada,objc,obj-c++,jit --enable-shared --enable-static --enable-libatomic --enable-threads=posix --enable-graphite --enable-fully-dynamic-string --enable-libstdcxx-backtrace=yes --enable-libstdcxx-filesystem-ts --enable-libstdcxx-time --disable-libstdcxx-pch --enable-lto --enable-libgomp --disable-libssp --disable-multilib --disable-rpath --disable-win32-registry --disable-nls --disable-werror --disable-symvers --with-libiconv --with-system-zlib --with-gmp=/ucrt64 --with-mpfr=/ucrt64 --with-mpc=/ucrt64 --with-isl=/ucrt64 --with-pkgversion='Rev13, Built by MSYS2 project' --with-bugurl=https://github.com/msys2/MINGW-packages/issues --with-gnu-as --with-gnu-ld --with-libstdcxx-zoneinfo=yes --disable-libstdcxx-debug --enable-plugin --with-boot-ldflags=-static-libstdc++ --with-stage1-ldflags=-static-libstdc++]
-        ignore line: [Thread model: posix]
-        ignore line: [Supported LTO compression algorithms: zlib zstd]
-        ignore line: [gcc version 15.2.0 (Rev13  Built by MSYS2 project) ]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_05deb.dir\\CMakeCXXCompilerABI.cpp.obj' '-c' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_05deb.dir\\']
-        ignore line: [ C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/cc1plus.exe -quiet -v -iprefix C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/ -D_REENTRANT C:\\Program Files\\CMake\\share\\cmake-4.3\\Modules\\CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles\\cmTC_05deb.dir\\ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=nocona -version -o C:\\Users\\YUANJI~1\\AppData\\Local\\Temp\\ccSsZ0e8.s]
-        ignore line: [GNU C++17 (Rev13  Built by MSYS2 project) version 15.2.0 (x86_64-w64-mingw32)]
-        ignore line: [	compiled by GNU C version 15.2.0  GMP version 6.3.0  MPFR version 4.2.2  MPC version 1.3.1  isl version isl-0.27-GMP]
-        ignore line: []
-        ignore line: [warning: MPC header version 1.3.1 differs from library version 1.4.0.]
-        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
-        ignore line: [ignoring nonexistent directory "C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/include"]
-        ignore line: [ignoring duplicate directory "C:/msys64/ucrt64/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../include/c++/15.2.0"]
-        ignore line: [ignoring duplicate directory "C:/msys64/ucrt64/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../include/c++/15.2.0/x86_64-w64-mingw32"]
-        ignore line: [ignoring duplicate directory "C:/msys64/ucrt64/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../include/c++/15.2.0/backward"]
-        ignore line: [ignoring duplicate directory "C:/msys64/ucrt64/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/15.2.0/include"]
-        ignore line: [ignoring nonexistent directory "D:/M/msys64/ucrt64/include"]
-        ignore line: [ignoring nonexistent directory "/ucrt64/include"]
-        ignore line: [ignoring duplicate directory "C:/msys64/ucrt64/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/15.2.0/include-fixed"]
-        ignore line: [ignoring nonexistent directory "C:/msys64/ucrt64/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/include"]
-        ignore line: [#include "..." search starts here:]
-        ignore line: [#include <...> search starts here:]
-        ignore line: [ C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../include/c++/15.2.0]
-        ignore line: [ C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../include/c++/15.2.0/x86_64-w64-mingw32]
-        ignore line: [ C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../include/c++/15.2.0/backward]
-        ignore line: [ C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/include]
-        ignore line: [ C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../include]
-        ignore line: [ C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/include-fixed]
-        ignore line: [End of search list.]
-        ignore line: [Compiler executable checksum: 12cd7a79b0110cd574152ed764c1a3d2]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_05deb.dir\\CMakeCXXCompilerABI.cpp.obj' '-c' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_05deb.dir\\']
-        ignore line: [ C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/bin/as.exe -v -o CMakeFiles\\cmTC_05deb.dir\\CMakeCXXCompilerABI.cpp.obj C:\\Users\\YUANJI~1\\AppData\\Local\\Temp\\ccSsZ0e8.s]
-        ignore line: [GNU assembler version 2.46 (x86_64-w64-mingw32) using BFD version (GNU Binutils) 2.46]
-        ignore line: [COMPILER_PATH=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/]
-        ignore line: [C:/msys64/ucrt64/bin/../lib/gcc/]
-        ignore line: [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/bin/]
-        ignore line: [LIBRARY_PATH=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/]
-        ignore line: [C:/msys64/ucrt64/bin/../lib/gcc/]
-        ignore line: [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib/../lib/]
-        ignore line: [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/]
-        ignore line: [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib/]
-        ignore line: [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_05deb.dir\\CMakeCXXCompilerABI.cpp.obj' '-c' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_05deb.dir\\CMakeCXXCompilerABI.cpp.']
-        ignore line: [Linking CXX executable cmTC_05deb.exe]
-        ignore line: ["C:\\Program Files\\CMake\\bin\\cmake.exe" -E cmake_link_script CMakeFiles\\cmTC_05deb.dir\\link.txt --verbose=1]
-        ignore line: [Using built-in specs.]
-        ignore line: [COLLECT_GCC=C:\\msys64\\ucrt64\\bin\\c++.exe]
-        ignore line: [COLLECT_LTO_WRAPPER=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/lto-wrapper.exe]
-        ignore line: [Target: x86_64-w64-mingw32]
-        ignore line: [Configured with: ../gcc-15.2.0/configure --prefix=/ucrt64 --with-local-prefix=/ucrt64/local --libexecdir=/ucrt64/lib --enable-bootstrap --enable-checking=release --with-arch=nocona --with-tune=generic --enable-mingw-wildcard --enable-languages=c,lto,c++,fortran,ada,objc,obj-c++,jit --enable-shared --enable-static --enable-libatomic --enable-threads=posix --enable-graphite --enable-fully-dynamic-string --enable-libstdcxx-backtrace=yes --enable-libstdcxx-filesystem-ts --enable-libstdcxx-time --disable-libstdcxx-pch --enable-lto --enable-libgomp --disable-libssp --disable-multilib --disable-rpath --disable-win32-registry --disable-nls --disable-werror --disable-symvers --with-libiconv --with-system-zlib --with-gmp=/ucrt64 --with-mpfr=/ucrt64 --with-mpc=/ucrt64 --with-isl=/ucrt64 --with-pkgversion='Rev13, Built by MSYS2 project' --with-bugurl=https://github.com/msys2/MINGW-packages/issues --with-gnu-as --with-gnu-ld --with-libstdcxx-zoneinfo=yes --disable-libstdcxx-debug --enable-plugin --with-boot-ldflags=-static-libstdc++ --with-stage1-ldflags=-static-libstdc++]
-        ignore line: [Thread model: posix]
-        ignore line: [Supported LTO compression algorithms: zlib zstd]
-        ignore line: [gcc version 15.2.0 (Rev13  Built by MSYS2 project) ]
-        ignore line: [COMPILER_PATH=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/]
-        ignore line: [C:/msys64/ucrt64/bin/../lib/gcc/]
-        ignore line: [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/bin/]
-        ignore line: [LIBRARY_PATH=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/]
-        ignore line: [C:/msys64/ucrt64/bin/../lib/gcc/]
-        ignore line: [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib/../lib/]
-        ignore line: [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/]
-        ignore line: [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib/]
-        ignore line: [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_05deb.exe' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-dumpdir' 'cmTC_05deb.']
-        link line: [ C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/collect2.exe -plugin C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/liblto_plugin.dll -plugin-opt=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\YUANJI~1\\AppData\\Local\\Temp\\ccrs7l1f.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_05deb.exe C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/crt2.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtbegin.o -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0 -LC:/msys64/ucrt64/bin/../lib/gcc -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib/../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../.. -v --whole-archive CMakeFiles\\cmTC_05deb.dir/objects.a --no-whole-archive --out-implib libcmTC_05deb.dll.a --major-image-version 0 --minor-image-version 0 -lstdc++ -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/default-manifest.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtend.o]
-          arg [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/collect2.exe] ==> ignore
-          arg [-plugin] ==> ignore
-          arg [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/liblto_plugin.dll] ==> ignore
-          arg [-plugin-opt=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/lto-wrapper.exe] ==> ignore
-          arg [-plugin-opt=-fresolution=C:\\Users\\YUANJI~1\\AppData\\Local\\Temp\\ccrs7l1f.res] ==> ignore
-          arg [-plugin-opt=-pass-through=-lmingw32] ==> ignore
-          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
-          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
-          arg [-plugin-opt=-pass-through=-lmingwex] ==> ignore
-          arg [-plugin-opt=-pass-through=-lmsvcrt] ==> ignore
-          arg [-plugin-opt=-pass-through=-lkernel32] ==> ignore
-          arg [-plugin-opt=-pass-through=-lpthread] ==> ignore
-          arg [-plugin-opt=-pass-through=-ladvapi32] ==> ignore
-          arg [-plugin-opt=-pass-through=-lshell32] ==> ignore
-          arg [-plugin-opt=-pass-through=-luser32] ==> ignore
-          arg [-plugin-opt=-pass-through=-lkernel32] ==> ignore
-          arg [-plugin-opt=-pass-through=-lmingw32] ==> ignore
-          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
-          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
-          arg [-plugin-opt=-pass-through=-lmingwex] ==> ignore
-          arg [-plugin-opt=-pass-through=-lmsvcrt] ==> ignore
-          arg [-plugin-opt=-pass-through=-lkernel32] ==> ignore
-          arg [-m] ==> ignore
-          arg [i386pep] ==> ignore
-          arg [-Bdynamic] ==> search dynamic
-          arg [-o] ==> ignore
-          arg [cmTC_05deb.exe] ==> ignore
-          arg [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/crt2.o] ==> obj [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/crt2.o]
-          arg [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtbegin.o] ==> obj [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtbegin.o]
-          arg [-LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0] ==> dir [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0]
-          arg [-LC:/msys64/ucrt64/bin/../lib/gcc] ==> dir [C:/msys64/ucrt64/bin/../lib/gcc]
-          arg [-LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib/../lib] ==> dir [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib/../lib]
-          arg [-LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib] ==> dir [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib]
-          arg [-LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib] ==> dir [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib]
-          arg [-LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../..] ==> dir [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../..]
-          arg [-v] ==> ignore
-          arg [--whole-archive] ==> ignore
-          arg [CMakeFiles\\cmTC_05deb.dir/objects.a] ==> ignore
-          arg [--no-whole-archive] ==> ignore
-          arg [--out-implib] ==> ignore
-          arg [libcmTC_05deb.dll.a] ==> ignore
-          arg [--major-image-version] ==> ignore
-          arg [0] ==> ignore
-          arg [--minor-image-version] ==> ignore
-          arg [0] ==> ignore
-          arg [-lstdc++] ==> lib [stdc++]
-          arg [-lmingw32] ==> lib [mingw32]
-          arg [-lgcc_s] ==> lib [gcc_s]
-          arg [-lgcc] ==> lib [gcc]
-          arg [-lmingwex] ==> lib [mingwex]
-          arg [-lmsvcrt] ==> lib [msvcrt]
-          arg [-lkernel32] ==> lib [kernel32]
-          arg [-lpthread] ==> lib [pthread]
-          arg [-ladvapi32] ==> lib [advapi32]
-          arg [-lshell32] ==> lib [shell32]
-          arg [-luser32] ==> lib [user32]
-          arg [-lkernel32] ==> lib [kernel32]
-          arg [-lmingw32] ==> lib [mingw32]
-          arg [-lgcc_s] ==> lib [gcc_s]
-          arg [-lgcc] ==> lib [gcc]
-          arg [-lmingwex] ==> lib [mingwex]
-          arg [-lmsvcrt] ==> lib [msvcrt]
-          arg [-lkernel32] ==> lib [kernel32]
-          arg [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/default-manifest.o] ==> obj [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/default-manifest.o]
-          arg [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtend.o] ==> obj [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtend.o]
-        ignore line: [collect2 version 15.2.0]
-        ignore line: [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe -plugin C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/liblto_plugin.dll -plugin-opt=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\YUANJI~1\\AppData\\Local\\Temp\\ccrs7l1f.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_05deb.exe C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/crt2.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtbegin.o -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0 -LC:/msys64/ucrt64/bin/../lib/gcc -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib/../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../.. -v --whole-archive CMakeFiles\\cmTC_05deb.dir/objects.a --no-whole-archive --out-implib libcmTC_05deb.dll.a --major-image-version 0 --minor-image-version 0 -lstdc++ -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/default-manifest.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtend.o]
-        linker tool for 'CXX': C:/msys64/ucrt64/x86_64-w64-mingw32/bin/ld.exe
-        remove lib [msvcrt]
-        remove lib [msvcrt]
-        collapse obj [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/crt2.o] ==> [C:/msys64/ucrt64/lib/crt2.o]
-        collapse obj [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtbegin.o] ==> [C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/15.2.0/crtbegin.o]
-        collapse obj [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/default-manifest.o] ==> [C:/msys64/ucrt64/lib/default-manifest.o]
-        collapse obj [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtend.o] ==> [C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/15.2.0/crtend.o]
-        collapse library dir [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0] ==> [C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/15.2.0]
-        collapse library dir [C:/msys64/ucrt64/bin/../lib/gcc] ==> [C:/msys64/ucrt64/lib/gcc]
-        collapse library dir [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib/../lib] ==> [C:/msys64/ucrt64/x86_64-w64-mingw32/lib]
-        collapse library dir [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib] ==> [C:/msys64/ucrt64/lib]
-        collapse library dir [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib] ==> [C:/msys64/ucrt64/x86_64-w64-mingw32/lib]
-        collapse library dir [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../..] ==> [C:/msys64/ucrt64/lib]
-        implicit libs: [stdc++;mingw32;gcc_s;gcc;mingwex;kernel32;pthread;advapi32;shell32;user32;kernel32;mingw32;gcc_s;gcc;mingwex;kernel32]
-        implicit objs: [C:/msys64/ucrt64/lib/crt2.o;C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/15.2.0/crtbegin.o;C:/msys64/ucrt64/lib/default-manifest.o;C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/15.2.0/crtend.o]
-        implicit dirs: [C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/15.2.0;C:/msys64/ucrt64/lib/gcc;C:/msys64/ucrt64/x86_64-w64-mingw32/lib;C:/msys64/ucrt64/lib]
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|link\\.exe|lld-link(\\.exe)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|"|[0-9]+>[ 	-]*Build:[ 	0-9]+ ms[ 	]*)?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|link\\.exe|lld-link(\\.exe)?))("|,| |$)]
+        linker tool for 'CXX': C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.50.35717/bin/HostX64/x64/link.exe
+        implicit libs: []
+        implicit objs: []
+        implicit dirs: []
         implicit fwks: []
       
       
@@ -2243,6 +815,7 @@ events:
       - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
       - "CMakeLists.txt:3 (project)"
     message: |
-      Running the CXX compiler's linker: "C:/msys64/ucrt64/x86_64-w64-mingw32/bin/ld.exe" "-v"
-      GNU ld (GNU Binutils) 2.46
+      Running the CXX compiler's linker: "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.50.35717/bin/HostX64/x64/link.exe" "-v"
+      Microsoft (R) Incremental Linker Version 14.50.35728.0
+      Copyright (C) Microsoft Corporation.  All rights reserved.
 ...
