@@ -2,49 +2,26 @@
 #include <thread>
 #include <chrono>
 
-std::shared_ptr<gpiod::line_request>
-OutputController::createOutput(int pin) {
-    gpiod::line_config cfg;
-
-    cfg.add_line_settings(
-        pin,
-        gpiod::line_settings()
-            .set_direction(gpiod::line::direction::OUTPUT)
-            .set_output_value(gpiod::line::value::INACTIVE)
-    );
-
-    auto builder = chip->prepare_request();
-    builder.set_consumer("output");
-    builder.set_line_config(cfg);
-
-    return std::make_shared<gpiod::line_request>(builder.do_request());
-}
+OutputController::OutputController() : ledGreen(17, true), ledRed(27, true), buzzer(22, true) {}
 
 void OutputController::init() {
-    chip = std::make_shared<gpiod::chip>("/dev/gpiochip0");
-
-    green  = createOutput(22);
-    red    = createOutput(23);
-    buzzer = createOutput(24);
+    ledGreen.start(0);
+    ledRed.start(0);
+    buzzer.start(0);
 }
 
-void OutputController::set(std::shared_ptr<gpiod::line_request> line, bool val) {
-    line->set_value(0, val ? gpiod::line::value::ACTIVE
-                           : gpiod::line::value::INACTIVE);
+void OutputController::setAccessGranted() {
+    ledGreen.setValue(1);
+    ledRed.setValue(0);
+    buzzer.setValue(1);
+    std::this_thread::sleep_for(std::chrono::milliseconds(200));
+    buzzer.setValue(0);
 }
 
-void OutputController::accessGranted() {
-    set(green, true);
-    set(red, false);
-    set(buzzer, false);
-}
-
-void OutputController::accessDenied() {
-    set(green, false);
-    set(red, true);
-    set(buzzer, true);
-
+void OutputController::setAccessDenied() {
+    ledGreen.setValue(0);
+    ledRed.setValue(1);
+    buzzer.setValue(1);
     std::this_thread::sleep_for(std::chrono::milliseconds(500));
-
-    set(buzzer, false);
+    buzzer.setValue(0);
 }

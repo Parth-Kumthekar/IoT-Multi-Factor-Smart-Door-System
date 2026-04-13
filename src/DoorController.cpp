@@ -1,22 +1,26 @@
 #include "DoorController.hpp"
-#include <gpiod.hpp>
 #include <iostream>
 
-bool DoorController::initialize() {
-    try {
-        gpiod::chip chip("/dev/gpiochip4");
+DoorController::DoorController(int reedPin, AccessController& ac, OutputController& oc, NFCReader& nfc)
+    : reedSwitch(reedPin, false), accessController(ac), outputController(oc), nfcReader(nfc) {}
 
-        // Configure input line settings
-        gpiod::line_settings in_settings;
-        in_settings.set_direction(gpiod::line::direction::INPUT);
+void DoorController::initialize() {
+    reedSwitch.registerCallback([this]() { onDoorOpen(); }, 50);
+    reedSwitch.start();
+}
 
-        // Request each input line individually
-        reed_request = gpiod::line_request(chip.get_line(reedPinNum), in_settings);
+void DoorController::stop() {
+    reedSwitch.stop();
+}
 
-        std::cout << "DoorController GPIO initialized successfully." << std::endl;
-        return true;
-    } catch (const std::exception &e) {
-        std::cerr << "DoorController init error: " << e.what() << std::endl;
-        return false;
+void DoorController::onDoorOpen() {
+    std::cout << "Door opened! Waiting for NFC..." << std::endl;
+    std::string uid = nfcReader.readUID();
+    if (accessController.isAuthorized(uid)) {
+        std::cout << "Access Granted" << std::endl;
+        outputController.setAccessGranted();
+    } else {
+        std::cout << "Access Denied" << std::endl;
+        outputController.setAccessDenied();
     }
 }

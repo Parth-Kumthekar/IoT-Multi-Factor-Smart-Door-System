@@ -1,28 +1,21 @@
-#ifndef DOOR_CONTROLLER_HPP
-#define DOOR_CONTROLLER_HPP
-
-#include <nfc/nfc.h>
-#include <string>
-#include <optional>
-#include <vector>
-#include <gpiod.hpp>
+#pragma once
+#include "GPIOPin.hpp"
+#include "AccessController.hpp"
+#include "OutputController.hpp"
+#include "NFCReader.hpp"
+#include <functional>
 
 class DoorController {
 public:
-    DoorController(unsigned int reedPin);
-    ~DoorController();
-
-    bool initialize();
-    void checkDoorStatus();
-    std::string scanNFC();
+    DoorController(int reedPin, AccessController& ac, OutputController& oc, NFCReader& nfc);
+    void initialize();
+    void stop();
 
 private:
-    unsigned int reedPinNum;
-    int lastDoorState = -1;
-    std::optional<gpiod::line_request> reed_request;
+    GPIOPin reedSwitch;
+    AccessController& accessController;
+    OutputController& outputController;
+    NFCReader& nfcReader;
 
-    nfc_context *context = nullptr;
-    nfc_device *pnd = nullptr;
+    void onDoorOpen();
 };
-
-#endif

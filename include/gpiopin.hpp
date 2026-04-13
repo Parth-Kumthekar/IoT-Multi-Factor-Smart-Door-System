@@ -1,31 +1,30 @@
 #pragma once
-
-#include <gpiod.hpp>
-#include <memory>
-#include <thread>
 #include <functional>
+#include <thread>
 #include <atomic>
-
-#define ISR_TIMEOUT_MS 1000
+#include <chrono>
+#include <gpiod.hpp>
 
 class GPIOPin {
-private:
-    std::shared_ptr<gpiod::chip> chip;
-    std::shared_ptr<gpiod::line_request> request;
-
-    std::thread thr;
-    std::atomic<bool> running{false};
-
-    std::function<void(const gpiod::edge_event&)> eventCallback;
-
-    void worker();
-    void gpioEvent(const gpiod::edge_event& event);
-
 public:
-    void start(int pinNo, int chipNo = 0);
-    void stop();
+    using Callback = std::function<void()>;
 
-    void registerCallback(std::function<void(const gpiod::edge_event&)> cb) {
-        eventCallback = cb;
-    }
+    GPIOPin(int pinNum, bool output = false);
+    ~GPIOPin();
+
+    void start(int value = 0);
+    void stop();
+    void setValue(int value);
+    int getValue() const;
+    void registerCallback(Callback cb, int debounce_ms = 50);
+
+private:
+    int pinNum;
+    bool isOutput;
+    std::atomic<bool> running;
+    std::thread eventThread;
+    Callback callback;
+    int debounceMs;
+
+    void eventLoop();
 };

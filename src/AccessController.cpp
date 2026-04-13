@@ -1,25 +1,8 @@
 #include "AccessController.hpp"
-#include <iostream>
+#include <algorithm>
 
-void AccessController::init() {
-    nfc.init();
-    output.init();
-}
+AccessController::AccessController(const std::vector<std::string>& uids) : authorizedUIDs(uids) {}
 
-void AccessController::run() {
-    while (true) {
-        std::string uid = nfc.readUID();
-
-        if (uid.empty()) continue;
-
-        std::cout << "UID: " << uid << std::endl;
-
-        if (uid == validUID) {
-            std::cout << "Access Granted\n";
-            output.accessGranted();
-        } else {
-            std::cout << "Access Denied\n";
-            output.accessDenied();
-        }
-    }
+bool AccessController::isAuthorized(const std::string& uid) const {
+    return std::find(authorizedUIDs.begin(), authorizedUIDs.end(), uid) != authorizedUIDs.end();
 }

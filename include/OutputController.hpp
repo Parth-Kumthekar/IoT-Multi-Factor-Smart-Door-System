@@ -1,21 +1,15 @@
 #pragma once
-#include <gpiod.hpp>
-#include <memory>
+#include "GPIOPin.hpp"
 
 class OutputController {
-private:
-    std::shared_ptr<gpiod::chip> chip;
-
-    std::shared_ptr<gpiod::line_request> green;
-    std::shared_ptr<gpiod::line_request> red;
-    std::shared_ptr<gpiod::line_request> buzzer;
-
-    std::shared_ptr<gpiod::line_request> createOutput(int pin);
-    void set(std::shared_ptr<gpiod::line_request> line, bool val);
-
 public:
+    OutputController();
     void init();
+    void setAccessGranted();
+    void setAccessDenied();
 
-    void accessGranted();
-    void accessDenied();
+private:
+    GPIOPin ledGreen;
+    GPIOPin ledRed;
+    GPIOPin buzzer;
 };

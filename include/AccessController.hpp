@@ -1,15 +1,12 @@
 #pragma once
-#include "NFCReader.hpp"
-#include "OutputController.hpp"
+#include <string>
+#include <vector>
 
 class AccessController {
-private:
-    NFCReader nfc;
-    OutputController output;
-
-    const std::string validUID = "1234abcd";
-
 public:
-    void init();
-    void run();
+    AccessController(const std::vector<std::string>& authorizedUIDs);
+    bool isAuthorized(const std::string& uid) const;
+
+private:
+    std::vector<std::string> authorizedUIDs;
 };
