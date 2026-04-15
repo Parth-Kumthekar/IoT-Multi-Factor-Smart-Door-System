@@ -1,5 +1,5 @@
-#include "GPIOPin.hpp"
-#include <iostream>
+#include "gpiopin.hpp"
+#include <iostream> 
 
 GPIOPin::GPIOPin(int pinNum, bool output) : pinNum(pinNum), isOutput(output), running(false) {}
 
