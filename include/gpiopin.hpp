@@ -19,7 +19,7 @@ public:
     void registerCallback(Callback cb, int debounce_ms = 50);
 
 private:
-    int pinNum;
+    int pinNum; 
     bool isOutput;
     std::atomic<bool> running;
     std::thread eventThread;

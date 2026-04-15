@@ -1,5 +1,5 @@
 #pragma once
-#include "GPIOPin.hpp"
+#include "gpiopin.hpp"
 #include "AccessController.hpp"
 #include "OutputController.hpp"
 #include "NFCReader.hpp"
