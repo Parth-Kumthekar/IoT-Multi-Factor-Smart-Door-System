@@ -8,7 +8,7 @@
 #ifdef __linux__
   #include <gpiod.h>
 #else
-  #include "include/gpiod_mock.h"   // PC dev stub
+  #include "include/gpiod_mock.h" 
 #endif
 
 class DoorLock {

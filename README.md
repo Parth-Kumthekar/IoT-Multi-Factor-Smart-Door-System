@@ -159,8 +159,3 @@ A **5-second cooldown** prevents repeated triggers.
   sudo usermod -aG gpio $USER
 ```
 
----
-
-## License
-
-MIT
