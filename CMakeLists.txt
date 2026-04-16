@@ -1,43 +1,45 @@
-﻿cmake_minimum_required(VERSION 3.15)
-project(FaceRecognitionSystem)
+﻿cmake_minimum_required(VERSION 3.16)
+project(FaceIDDoorLock CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Find OpenCV
-set(CMAKE_PREFIX_PATH "C:\\opencv\\build\\x64\\vc16\\lib" ${CMAKE_PREFIX_PATH})
 find_package(OpenCV REQUIRED)
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(LIBGPIOD REQUIRED libgpiod)
 
-# Include headers
 include_directories(
     ${OpenCV_INCLUDE_DIRS}
-    include 
+    ${LIBGPIOD_INCLUDE_DIRS}
+    ${CMAKE_SOURCE_DIR}
 )
 
-
-# Main Face Recognition App
-
-add_executable(FaceID
+# Main door-lock binary 
+add_executable(faceid_door
     main.cpp
-    src/FaceRecognizer.cpp
+    FaceRecognizer.cpp
+    DoorLock.cpp
+)
+target_link_libraries(faceid_door
+    ${OpenCV_LIBS}
+    ${LIBGPIOD_LIBRARIES}
+    pthread
 )
 
-target_link_libraries(FaceID ${OpenCV_LIBS})
-
-
-# Dataset Capture Tool
-
-add_executable(CaptureDataset
-    tools/capture_dataset.cpp
+# Dataset capture utility 
+add_executable(capture_dataset
+    scripts/capture_dataset.cpp
+)
+target_link_libraries(capture_dataset
+    ${OpenCV_LIBS}
+    pthread
 )
 
-target_link_libraries(CaptureDataset ${OpenCV_LIBS})
-
-
-# Database Builder Tool
-
-add_executable(BuildDatabase
-    tools/build_database.cpp
+#Embedding database builder 
+add_executable(build_database
+    scripts/build_database.cpp
 )
-
-target_link_libraries(BuildDatabase ${OpenCV_LIBS})
+target_link_libraries(build_database
+    ${OpenCV_LIBS}
+    pthread
+)

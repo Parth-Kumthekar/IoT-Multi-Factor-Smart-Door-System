@@ -1,62 +1,67 @@
+
+
 #include <opencv2/opencv.hpp>
-#include <iostream>
 #include <filesystem>
+#include <iostream>
+#include <string>
 
 namespace fs = std::filesystem;
 
 int main() {
-    // ---------------- Determine project root ----------------
-    fs::path exe_path = fs::current_path();
-    fs::path project_root = exe_path.parent_path().parent_path(); // adjust for build/Release
-    std::cout << "Current working directory: " << exe_path << std::endl;
-    std::cout << "Project root: " << project_root << std::endl;
-
-    // ---------------- Ensure dataset folder exists ----------------
-    fs::path dataset_folder = project_root / "dataset";
-    if (!fs::exists(dataset_folder)) {
-        fs::create_directory(dataset_folder);
-        std::cout << "Created dataset folder at: " << dataset_folder << std::endl;
-    } else {
-        std::cout << "Dataset folder exists at: " << dataset_folder << std::endl;
-    }
-
-    // ---------------- Open webcam ----------------
-    cv::VideoCapture cap(0);
+    cv::VideoCapture cap(0, cv::CAP_V4L2);
     if (!cap.isOpened()) {
-        std::cerr << "Camera not working!" << std::endl;
-        return -1;
+        std::cerr << "Cannot open camera\n";
+        return 1;
     }
+    cap.set(cv::CAP_PROP_FRAME_WIDTH,  640);
+    cap.set(cv::CAP_PROP_FRAME_HEIGHT, 480);
 
-    int count = 0;
-    std::string name;
-    std::cout << "Enter your name for dataset images: ";
-    std::cin >> name;
-
-    std::cout << "Press 'c' to capture an image, 'q' to quit\n";
+    cv::CascadeClassifier cascade;
+    if (!cascade.load("models/haarcascade_frontalface_default.xml")) {
+        std::cerr << "Cannot load cascade\n";
+        return 1;
+    }
 
     while (true) {
-        cv::Mat frame;
-        cap >> frame;
-        if (frame.empty()) continue;
+        std::string name;
+        std::cout << "Enter person name (or 'exit'): ";
+        std::cin >> name;
+        if (name == "exit") break;
 
-        cv::imshow("Capture Dataset", frame);
+        fs::create_directories("dataset/" + name);
+        int count = 0;
+        std::cout << "Press 'c' to capture, 'q' when done with this person.\n"; //   Enter name, press 'c' to capture ~20 frames, 'q' to finish person, 'x' to exit.
 
-        char key = static_cast<char>(cv::waitKey(1));
-        if (key == 'c') {
-            fs::path filename = dataset_folder / (name + "_" + std::to_string(count) + ".jpg");
-            if (cv::imwrite(filename.string(), frame)) {
-                std::cout << "Saved image: " << filename << std::endl;
-                count++;
-            } else {
-                std::cerr << "Failed to save image to: " << filename << std::endl;
+        while (true) {
+            cv::Mat frame;
+            cap >> frame;
+            if (frame.empty()) continue;
+
+            cv::Mat gray;
+            cv::cvtColor(frame, gray, cv::COLOR_BGR2GRAY);
+            std::vector<cv::Rect> faces;
+            cascade.detectMultiScale(gray, faces, 1.1, 5, 0, cv::Size(80,80));
+
+            for (const auto& r : faces)
+                cv::rectangle(frame, r, cv::Scalar(0,255,0), 2);
+
+            cv::putText(frame, "Captured: " + std::to_string(count),
+                        {10, 30}, cv::FONT_HERSHEY_SIMPLEX, 0.8,
+                        cv::Scalar(255,255,0), 2);
+            cv::imshow("Capture — " + name, frame);
+
+            int key = cv::waitKey(30);
+            if (key == 'c' && !faces.empty()) {
+                std::string path = "dataset/" + name + "/" +
+                                   std::to_string(count++) + ".jpg";
+                cv::imwrite(path, frame(faces[0]));
+                std::cout << "  Saved " << path << "\n";
+            } else if (key == 'q') {
+                break;
             }
         }
-        if (key == 'q') break;
+        cv::destroyAllWindows();
+        std::cout << "Saved " << count << " images for " << name << "\n";
     }
-
-    cap.release();
-    cv::destroyAllWindows();
-    std::cout << "Finished capturing " << count << " images." << std::endl;
-
     return 0;
 }

@@ -1,138 +1,68 @@
+
+
 #include <opencv2/opencv.hpp>
 #include <opencv2/dnn.hpp>
 #include <filesystem>
 #include <iostream>
+#include <vector>
+#include <string>
 
 namespace fs = std::filesystem;
 
+static std::vector<float> getEmbedding(cv::dnn::Net& net,
+                                       const cv::Mat& face) {
+    cv::Mat resized;
+    cv::resize(face, resized, cv::Size(112, 112));
+    cv::Mat blob = cv::dnn::blobFromImage(resized, 1.0/128.0,
+                                          cv::Size(112,112),
+                                          cv::Scalar(127.5,127.5,127.5),
+                                          true, false);
+    net.setInput(blob);
+    cv::Mat out = net.forward();
+    return std::vector<float>(out.begin<float>(), out.end<float>());
+}
+
 int main() {
-    
-    fs::path exe_path = fs::canonical("/proc/self/exe");
-    fs::path project_root = exe_path.parent_path().parent_path();
-
-    fs::path dataset_folder  = project_root / "dataset";
-    fs::path model_folder    = project_root / "models";
-    fs::path database_folder = project_root / "database";
-
-    fs::path haar_path = "/usr/share/opencv4/haarcascades/haarcascade_frontalface_default.xml";
-    fs::path onnx_path = model_folder / "face_recognition.onnx";
-    fs::path output_yml = database_folder / "embeddings.yml";
-
-    std::cout << "Project root: " << project_root << "\n";
-    std::cout << "ONNX model path: " << onnx_path << "\n";
-
-   
-    if (!fs::exists(database_folder)) {
-        fs::create_directory(database_folder);
-        std::cout << "Created database folder.\n";
-    }
-
-    // -----------------------------
-    // LOAD HAAR CASCADE
-    // -----------------------------
-    cv::CascadeClassifier faceCascade;
-    if (!faceCascade.load(haar_path.string())) {
-        std::cerr << "Failed to load Haar cascade!\n";
-        return -1;
-    }
-
-    // LOAD ONNX MODEL
-    
-    cv::dnn::Net net = cv::dnn::readNetFromONNX(onnx_path.string());
+    cv::dnn::Net net = cv::dnn::readNetFromONNX("models/face_recognition.onnx");
     if (net.empty()) {
-        std::cerr << "Failed to load ONNX model!\n";
-        return -1;
+        std::cerr << "Cannot load ONNX model\n";
+        return 1;
     }
-
-    net.setPreferableBackend(cv::dnn::DNN_BACKEND_OPENCV);
+    net.setPreferableBackend(cv::dnn::DNN_BACKEND_DEFAULT);
     net.setPreferableTarget(cv::dnn::DNN_TARGET_CPU);
 
-    
-    // OPEN YAML FILE
-    
-    cv::FileStorage fs_out(output_yml.string(), cv::FileStorage::WRITE);
-    if (!fs_out.isOpened()) {
-        std::cerr << "Failed to open YAML file for writing!\n";
-        return -1;
+    fs::create_directories("database");
+    cv::FileStorage fs_out("database/embeddings.yml",
+                           cv::FileStorage::WRITE);
+    fs_out << "people" << "[";
+
+    for (const auto& personDir : fs::directory_iterator("dataset")) {
+        if (!personDir.is_directory()) continue;
+        std::string name = personDir.path().filename().string();
+        std::cout << "Processing: " << name << "\n";
+
+        std::vector<std::vector<float>> embeddings;
+        for (const auto& img : fs::directory_iterator(personDir.path())) {
+            cv::Mat face = cv::imread(img.path().string());
+            if (face.empty()) continue;
+            embeddings.push_back(getEmbedding(net, face));
+        }
+        if (embeddings.empty()) continue;
+
+        // Average the embeddings for a person
+        size_t dim = embeddings[0].size();
+        std::vector<float> avg(dim, 0.f);
+        for (const auto& e : embeddings)
+            for (size_t i = 0; i < dim; ++i) avg[i] += e[i];
+        for (auto& v : avg) v /= (float)embeddings.size();
+
+        cv::Mat embMat(1, (int)dim, CV_32F, avg.data());
+        fs_out << "{" << "name" << name << "embedding" << embMat << "}";
+        std::cout << "  -> " << embeddings.size() << " images averaged\n";
     }
 
-    
-    // PROCESS DATASET
-    if (!fs::exists(dataset_folder)) {
-        std::cerr << "Dataset folder not found!\n";
-        return -1;
-    }
-
-    int count = 0;
-    for (const auto& entry : fs::directory_iterator(dataset_folder)) {
-        if (!entry.is_regular_file()) continue;
-
-        std::string filepath = entry.path().string();
-        std::string filename = entry.path().stem().string();
-        std::cout << "\nProcessing: " << filepath << std::endl;
-
-        cv::Mat img = cv::imread(filepath);
-        if (img.empty()) {
-            std::cerr << "Failed to load image!\n";
-            continue;
-        }
-
-        
-        // FACE DETECTION
-        
-        std::vector<cv::Rect> faces;
-        faceCascade.detectMultiScale(img, faces);
-
-        cv::Mat face;
-        if (!faces.empty()) {
-            face = img(faces[0]).clone();
-            std::cout << "Face detected\n";
-        } else {
-            face = img.clone();
-            std::cout << "No face detected, using full image\n";
-        }
-
-        
-        // PREPROCESSING
-        
-        cv::resize(face, face, cv::Size(112, 112));
-        if (face.channels() == 1)
-            cv::cvtColor(face, face, cv::COLOR_GRAY2BGR);
-
-        cv::cvtColor(face, face, cv::COLOR_BGR2RGB);
-        face.convertTo(face, CV_32F, 1.0 / 255.0);
-
-        // CREATE BLOB
-        cv::Mat blob = cv::dnn::blobFromImage(face, 1.0, cv::Size(112, 112), cv::Scalar(0, 0, 0), false, false);
-
-        // Ensure NCHW format
-        blob = blob.reshape(1, {1, 3, 112, 112});
-
-        
-        // FORWARD PASS
-        
-        net.setInput(blob);
-        cv::Mat embedding;
-        try {
-            embedding = net.forward();
-        } catch (const cv::Exception& e) {
-            std::cerr << "ONNX Forward Error:\n" << e.what() << std::endl;
-            continue;
-        }
-
-        cv::normalize(embedding, embedding);
-
-       
-        // WRITE TO YAML IMMEDIATELY
-        
-        fs_out << filename << embedding;
-        count++;
-        std::cout << "Embedding stored for: " << filename << "\n";
-    }
-
+    fs_out << "]";
     fs_out.release();
-    std::cout << "\nDatabase saved at: " << output_yml << std::endl;
-    std::cout << "Total entries: " << count << std::endl;
-
+    std::cout << "Database written to database/embeddings.yml\n";
     return 0;
 }
