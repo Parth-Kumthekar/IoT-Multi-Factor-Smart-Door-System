@@ -5,6 +5,10 @@
 #include "FaceRecognizer.h"
 
 int main() {
+
+    GUIServer guiServer(8080); //GUI Server for the facial recognition
+    guiServer.start();
+
     ThreadSafeQueue<cv::Mat> frameQueue;
     FaceSystem system(frameQueue);
 

@@ -3,6 +3,8 @@
 #include <numeric>
 #include <cmath>
 #include <iostream>
+#include "Logger.h"
+#include "OverrideManager.h"
 
 //FaceRecognizer 
 FaceRecognizer::FaceRecognizer() = default;
@@ -146,15 +148,24 @@ void FaceSystem::run() {
                         cv::FONT_HERSHEY_SIMPLEX, 0.6, colour, 2);
 
             // Attempt door unlock for matched persons
-            if (res.name != "Unknown") {
-                res.unlocked = doorLock_.unlock(res.name);
-                if (res.unlocked) {
-                    cv::putText(frame, "UNLOCKED",
-                                cv::Point(20, 50),
-                                cv::FONT_HERSHEY_SIMPLEX, 1.2,
-                                cv::Scalar(0, 255, 0), 3);
-                }
-            }
+            
+if (res.name != "Unknown" || OverrideManager::instance().isActive()) {
+    std::string person = OverrideManager::instance().isActive()
+                         ? "Override" : res.name;
+    res.unlocked = doorLock_.unlock(person);
+    if (res.unlocked) {
+        AccessResult ar = OverrideManager::instance().isActive()
+                          ? AccessResult::OVERRIDE : AccessResult::GRANTED;
+        Logger::instance().log(person, AccessMethod::FACE_ID, ar);
+        cv::putText(frame, "UNLOCKED",
+                    cv::Point(20, 50),
+                    cv::FONT_HERSHEY_SIMPLEX, 1.2,
+                    cv::Scalar(0, 255, 0), 3);
+    }
+} else if (res.name == "Unknown" && !res.faceRect.empty()) {
+    Logger::instance().log("Unknown", AccessMethod::FACE_ID,
+                           AccessResult::DENIED);
+}
         }
 
         cv::imshow("FaceID Door Lock", frame);
