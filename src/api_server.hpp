@@ -1,4 +1,3 @@
-//This module has class API server
 #pragma once
 #include "system_state.hpp" 
 

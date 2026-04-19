@@ -1,42 +1,48 @@
-
 #pragma once
-#include <string>
-#include <thread>
 #include <atomic>
+#include <mutex>
+#include <condition_variable>
+#include <thread>
 #include <chrono>
-#include <iostream> //#inlcude <gpiod.h>
-#ifdef __linux__
-  #include <gpiod.h>
-#else
-  #include "include/gpiod_mock.h" 
-#endif
+#include <string>
+#include "GpioPin.h"
+#include "AccessEvent.h"
 
-class DoorLock {
+class DoorController {
 public:
-    // GPIO BCM pin 17 (physical pin 11) — active-HIGH relay
-    static constexpr int  kGpioPin          = 17;
-    static constexpr int  kUnlockDurationMs = 3000;  // door open time
-    static constexpr int  kCooldownMs       = 5000;  // min between unlocks
+    
+    static constexpr unsigned int kRelayPin        = 17;
+    static constexpr int          kUnlockDurationMs = 3000;
+    static constexpr int          kCooldownMs       = 5000;
 
-    explicit DoorLock(int gpioPin = kGpioPin);
-    ~DoorLock();
+    DoorController();
+    ~DoorController();                   
 
-    // Non-copyable
-    DoorLock(const DoorLock&)            = delete;
-    DoorLock& operator=(const DoorLock&) = delete;
+    DoorController(const DoorController&)            = delete;
+    DoorController& operator=(const DoorController&) = delete;
 
-    // Trigger unlock if cooldown has elapsed; returns true if actually unlocked
-    bool unlock(const std::string& personName);
+    // Called by EventBus 
+    void onAccessEvent(const AccessEvent& ev);
 
-    bool isLocked() const { return locked_.load(); }
+    bool isLocked()   const { return state_ == State::LOCKED; }
+    bool isUnlocked() const { return state_ == State::UNLOCKED; }
 
 private:
-    void lockAfterDelay(int ms);
+    enum class State { LOCKED, UNLOCKED };
 
-    int               gpioPin_;
-    gpiod_chip*       chip_  = nullptr;
-    gpiod_line*       line_  = nullptr;
-    std::atomic<bool> locked_{true};
+    // Attempt unlock 
+    bool tryUnlock(const std::string& identity);
+
+    // TIMER THREAD
+    void timerLoop();
+
+    GpioPin                               relay_;
+    std::atomic<State>                    state_{State::LOCKED};
     std::chrono::steady_clock::time_point lastUnlock_;
-    bool firstUnlock_ = true;
+    bool                                  firstUnlock_{true};
+    std::mutex                            timerMutex_;
+    std::condition_variable               timerCv_;
+    bool                                  timerArmed_{false};
+    std::thread                           timerThread_;
+    std::atomic<bool>                     running_{true};
 };

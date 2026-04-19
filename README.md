@@ -37,10 +37,50 @@ Solenoid  ──────────────── 12 V GND
 ```bash
 sudo apt update
 sudo apt install -y \
-    cmake build-essential \
-    libopencv-dev \
-    libgpiod-dev \
-    libcamera-v4l2
+    cmake build-essential git \
+    libgstreamer1.0-dev \
+    libgstreamer-plugins-base1.0-dev \
+    libgstreamer-plugins-bad1.0-dev \
+    gstreamer1.0-plugins-base \
+    gstreamer1.0-plugins-good \
+    gstreamer1.0-plugins-bad \
+    gstreamer1.0-plugins-ugly \
+    gstreamer1.0-libcamera \
+    gstreamer1.0-tools \
+    gstreamer1.0-libav \
+    libcamera-dev \
+    libavcodec-dev libavformat-dev libswscale-dev \
+    libgtk-3-dev libjpeg-dev libpng-dev libtiff-dev \
+    libgpiod-dev
+
+## Clone OpenCV
+cd ~
+git clone --depth 1 --branch 4.10.0 https://github.com/opencv/opencv.git
+git clone --depth 1 --branch 4.10.0 https://github.com/opencv/opencv_contrib.git
+
+# Build with GStreamer ON
+mkdir opencv/build && cd opencv/build
+cmake .. \
+    -DCMAKE_BUILD_TYPE=RELEASE \
+    -DCMAKE_INSTALL_PREFIX=/usr/local \
+    -DOPENCV_EXTRA_MODULES_PATH=~/opencv_contrib/modules \
+    -DWITH_GSTREAMER=ON \
+    -DWITH_V4L=ON \
+    -DWITH_LIBV4L=ON \
+    -DENABLE_NEON=ON \
+    -DWITH_OPENMP=ON \
+    -DBUILD_TESTS=OFF \
+    -DBUILD_EXAMPLES=OFF \
+    -DINSTALL_C_EXAMPLES=OFF \
+    -DOPENCV_GENERATE_PKGCONFIG=ON
+
+make -j4
+sudo make install
+sudo ldconfig
+
+# Verify GStreamer is now YES
+python3 -c "import cv2; info=cv2.getBuildInformation(); \
+    print([l for l in info.splitlines() if 'GStreamer' in l])"
 ```
 
 Add to `/boot/firmware/config.txt`:
@@ -58,23 +98,48 @@ dtoverlay=imx708
 ## Project layout
 
 ```
-project_root/
-├── CMakeLists.txt
-├── main.cpp
-├── FaceRecognizer.h / .cpp
-├── DoorLock.h / .cpp
-├── ThreadSafeQueue.h
-├── FrameData.h
-├── Callback.h
+Project Root/
+│
+├── main.cpp                          ← owns all objects, signal handler
+├── CMakeLists.txt                    ← platform-aware build
+│
+├── include/
+│   ├── AccessEvent.h              ← shared event type
+│   ├── AsyncLogger.h              ← non-blocking background logger
+│   ├── CameraThread.h             ← camera capture thread
+│   ├── DoorController.h           ← RAII GPIO + CV timer
+│   ├── EventBus.h                 ← publish/subscribe hub
+│   ├── FaceRecognizer.h           ← DNN face recognition
+│   ├── GpioPin.h                  ← RAII gpiod wrapper (label discovery)
+│   ├── HallSensor.h               ← kernel edge interrupt sensor
+│   ├── OverrideManager.h          ← bypass toggle
+│   ├── RecognitionThread.h        ← pulls frames, publishes events
+│   ├── ThreadSafeQueue.h          ← CV-based queue, optional pop
+│   ├── FrameData.h                ← timestamped frame struct
+│   └── gpiod_mock.h               ← Windows/Mac stub for PC references 
+│
+├── src/
+│   ├── AsyncLogger.cpp
+│   ├── CameraThread.cpp              
+│   ├── DoorController.cpp
+│   ├── FaceRecognizer.cpp
+│   ├── GUIServer.h + GUIServer.cpp
+│   ├── HallSensor.cpp
+│   ├── NfcReader.cpp
+│   ├── RecognitionThread.cpp
+│   └── SignalHandler.h
+│
 ├── scripts/
 │   ├── capture_dataset.cpp
 │   └── build_database.cpp
+│
 ├── models/
-│   ├── haarcascade_frontalface_default.xml
-│   └── face_recognition.onnx
-├── dataset/            ← created by capture_dataset
-└── database/
-    └── embeddings.yml  ← created by build_database
+│   ├── face_recognition.onnx        
+│   └── haarcascade_frontalface_default.xml
+│
+├── database/         ← created at runtime
+├── dataset/          ← created by capture_dataset
+
 ```
 
 ---

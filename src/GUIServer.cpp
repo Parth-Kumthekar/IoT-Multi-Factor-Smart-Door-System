@@ -1,6 +1,6 @@
 #include "GUIServer.h"
-#include "../include/Logger.h"
-#include "../include/OverrideManager.h"
+#include "Logger.h"
+#include "OverrideManager.h"
 
 #include <sys/socket.h>
 #include <netinet/in.h>

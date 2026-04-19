@@ -1,36 +1,58 @@
-
 #include <opencv2/opencv.hpp>
+#include <iostream>
 #include <thread>
+#include <chrono>
+
 #include "ThreadSafeQueue.h"
-#include "FaceRecognizer.h"
+#include "AccessEvent.h"
+#include "EventBus.h"
+#include "AsyncLogger.h"
+#include "DoorController.h"
+#include "OverrideManager.h"
+#include "CameraThread.h"
+#include "RecognitionThread.h"
+#include "SignalHandler.h"
+#include "GUIServer.h"
+
+// Global logger 
+AsyncLogger gLogger("database/access_log.csv");
 
 int main() {
+    installSignalHandlers();
 
-    GUIServer guiServer(8080); //GUI Server for the facial recognition
-    guiServer.start();
+    std::cout << "[Main] FaceID + NFC Door Lock starting\n";
 
+    
+    DoorController door;       
+    GUIServer      gui(8080);   
+
+   
+
+    // Camera pipeline
     ThreadSafeQueue<cv::Mat> frameQueue;
-    FaceSystem system(frameQueue);
+    CameraThread       camera(frameQueue);
+    RecognitionThread  recognition(frameQueue);
 
-    std::thread cam([&]() {
-        cv::VideoCapture cap(0, cv::CAP_V4L2);
-        if (!cap.isOpened()) {
-            throw std::runtime_error("Camera not opened");
-        }
-        cap.set(cv::CAP_PROP_FRAME_WIDTH,  640);
-        cap.set(cv::CAP_PROP_FRAME_HEIGHT, 480);
+    gui.start();
+    camera.start();
+    recognition.start();
 
-        while (true) {
-            cv::Mat frame;
-            cap >> frame;
-            if (!frame.empty())
-                frameQueue.push(frame);
-        }
-    });
+    std::cout << "[Main] All subsystems running. "
+                 "GUI at http://<pi-ip>:8080 | ESC in preview to quit\n";
 
-    std::thread worker(&FaceSystem::run, &system);
+    // Main thread(SIGINT/SIGTERM or ESC)
+    while (!gShutdown.load()) {
+        std::this_thread::sleep_for(std::chrono::milliseconds(200));
+    }
 
-    cam.join();
-    worker.join();
+    // Clean shutdown 
+    std::cout << "[Main] Shutting down...\n";
+    recognition.stop();   //
+    camera.stop();        //
+    nfc.stop();           // 
+    gui.stop();           //
+    
+
+    std::cout << "[Main] Clean exit\n";
     return 0;
 }

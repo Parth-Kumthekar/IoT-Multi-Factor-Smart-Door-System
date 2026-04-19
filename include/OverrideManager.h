@@ -1,7 +1,7 @@
 #pragma once
 #include <atomic>
-#include <iostream>
-#include "Logger.h"
+#include <string>
+#include "EventBus.h"
 
 class OverrideManager {
 public:
@@ -10,29 +10,28 @@ public:
         return o;
     }
 
-    // Returns true if bypass-verification mode is ON
     bool isActive() const { return active_.load(); }
 
-    void enable(const std::string& by = "Admin") {
+    void enable(const std::string& by = "GUI") {
         active_.store(true);
-        Logger::instance().log(by, AccessMethod::OVERRIDE,
-                               AccessResult::OVERRIDE,
-                               "Override mode enabled");
-        std::cout << "[Override] BYPASS ACTIVE — verification disabled\n";
+        EventBus::instance().publish(
+            AccessEvent::override_(by, "Override mode enabled"));
     }
 
-    void disable(const std::string& by = "Admin") {
+    void disable(const std::string& by = "GUI") {
         active_.store(false);
-        Logger::instance().log(by, AccessMethod::OVERRIDE,
-                               AccessResult::GRANTED,
-                               "Override mode disabled");
-        std::cout << "[Override] BYPASS OFF — normal verification restored\n";
+       
+        
+        AccessEvent ev = AccessEvent::granted(
+            AuthMethod::SYSTEM, by, 1.f, "Override mode disabled");
+        EventBus::instance().publish(ev);
     }
 
-    void toggle(const std::string& by = "Admin") {
+    void toggle(const std::string& by = "GUI") {
         active_.load() ? disable(by) : enable(by);
     }
 
 private:
+    OverrideManager() = default;
     std::atomic<bool> active_{false};
 };
