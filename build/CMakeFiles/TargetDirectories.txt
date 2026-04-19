@@ -1,0 +1,3 @@
+D:/C++/door_alarm_api_cpp/build/CMakeFiles/door_alarm_api.dir
+D:/C++/door_alarm_api_cpp/build/CMakeFiles/ALL_BUILD.dir
+D:/C++/door_alarm_api_cpp/build/CMakeFiles/ZERO_CHECK.dir
