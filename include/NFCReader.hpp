@@ -4,7 +4,7 @@
 
 class NFCReader {
 public:
-    NFCReader(const std::string& dev = "/dev/serial0");
+    NFCReader(const std::string& dev = "/dev/ttyAMA0");
 
     bool init();
     std::string readUID();

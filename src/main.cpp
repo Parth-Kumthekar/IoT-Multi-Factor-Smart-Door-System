@@ -6,7 +6,8 @@
 #include <thread>
 
 int main() {
-    NFCReader nfc;
+
+    NFCReader nfc("/dev/serial0");
     OutputController output;
     AccessController access;
 
@@ -18,10 +19,12 @@ int main() {
     output.init();
 
     while (true) {
+
         std::string uid = nfc.readUID();
 
         if (!uid.empty()) {
-            std::cout << "UID: " << uid << std::endl;
+
+            std::cout << "RAW CLEANED UID: " << uid << std::endl;
 
             if (access.isAuthorized(uid)) {
                 std::cout << "ACCESS GRANTED\n";
@@ -32,7 +35,7 @@ int main() {
             }
         }
 
-        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+        std::this_thread::sleep_for(std::chrono::milliseconds(300));
     }
 
     return 0;
