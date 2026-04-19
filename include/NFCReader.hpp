@@ -4,16 +4,12 @@
 
 class NFCReader {
 public:
-    NFCReader(const std::string& device = "/dev/serial0", int baudrate = 9600);
-    ~NFCReader();
+    NFCReader(const std::string& dev = "/dev/serial0");
 
     bool init();
-    std::string readUID();   // blocking read
+    std::string readUID();
 
 private:
-    int uart_fd;
+    int fd;
     std::string device;
-    int baudrate;
-
-    bool configureUART();
 };

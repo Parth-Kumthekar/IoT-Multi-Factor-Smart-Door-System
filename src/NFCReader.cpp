@@ -1,65 +1,36 @@
 #include "NFCReader.hpp"
-
 #include <fcntl.h>
 #include <unistd.h>
 #include <termios.h>
 #include <cstring>
-#include <iostream>
 
-NFCReader::NFCReader(const std::string& dev, int baud)
-    : uart_fd(-1), device(dev), baudrate(baud) {}
-
-NFCReader::~NFCReader() {
-    if (uart_fd >= 0)
-        close(uart_fd);
-}
+NFCReader::NFCReader(const std::string& dev)
+    : device(dev), fd(-1) {}
 
 bool NFCReader::init() {
-    uart_fd = open(device.c_str(), O_RDWR | O_NOCTTY | O_NDELAY);
-    if (uart_fd < 0) {
-        std::cerr << "Failed to open UART\n";
-        return false;
-    }
+    fd = open(device.c_str(), O_RDWR | O_NOCTTY);
+    if (fd < 0) return false;
 
-    return configureUART();
-}
+    struct termios tty{};
+    tcgetattr(fd, &tty);
 
-bool NFCReader::configureUART() {
-    struct termios options;
-    tcgetattr(uart_fd, &options);
+    cfsetispeed(&tty, B9600);
+    cfsetospeed(&tty, B9600);
 
-    cfsetispeed(&options, B9600);
-    cfsetospeed(&options, B9600);
+    tty.c_cflag |= (CLOCAL | CREAD);
+    tty.c_cflag &= ~CSIZE;
+    tty.c_cflag |= CS8;
 
-    options.c_cflag |= (CLOCAL | CREAD);
-    options.c_cflag &= ~PARENB;
-    options.c_cflag &= ~CSTOPB;
-    options.c_cflag &= ~CSIZE;
-    options.c_cflag |= CS8;
-
-    options.c_lflag &= ~(ICANON | ECHO | ECHOE | ISIG);
-    options.c_iflag &= ~(IXON | IXOFF | IXANY);
-    options.c_oflag &= ~OPOST;
-
-    tcsetattr(uart_fd, TCSANOW, &options);
+    tcsetattr(fd, TCSANOW, &tty);
 
     return true;
 }
 
 std::string NFCReader::readUID() {
-    char buffer[256];
-    memset(buffer, 0, sizeof(buffer));
-
-    int len = read(uart_fd, buffer, sizeof(buffer) - 1);
-
-    if (len > 0) {
-        std::string uid(buffer);
-        
-        // remove newline if present
-        uid.erase(uid.find_last_not_of("\r\n") + 1);
-
-        return uid;
+    char buf[64] = {0};
+    int n = read(fd, buf, sizeof(buf));
+    if (n > 0) {
+        return std::string(buf, n);
     }
-
     return "";
 }

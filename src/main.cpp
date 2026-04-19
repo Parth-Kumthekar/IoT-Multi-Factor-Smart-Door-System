@@ -1,18 +1,21 @@
 #include "NFCReader.hpp"
 #include "OutputController.hpp"
+#include "AccessController.hpp"
+
+#include <iostream>
+#include <thread>
 
 int main() {
-    NFCReader nfc("/dev/serial0", 9600);
+    NFCReader nfc;
+    OutputController output;
+    AccessController access;
 
     if (!nfc.init()) {
-        std::cerr << "UART init failed\n";
+        std::cerr << "NFC init failed\n";
         return -1;
     }
 
-    OutputController output;
     output.init();
-
-    const std::string VALID_UID = "12345678";  // change this
 
     while (true) {
         std::string uid = nfc.readUID();
@@ -20,12 +23,16 @@ int main() {
         if (!uid.empty()) {
             std::cout << "UID: " << uid << std::endl;
 
-            if (uid == VALID_UID) {
-                output.setAccessGranted();
+            if (access.isAuthorized(uid)) {
+                std::cout << "ACCESS GRANTED\n";
+                output.accessGranted();
             } else {
-                output.setAccessDenied();
+                std::cout << "ACCESS DENIED\n";
+                output.accessDenied();
             }
         }
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
     }
 
     return 0;

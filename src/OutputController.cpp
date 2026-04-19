@@ -1,27 +1,33 @@
 #include "OutputController.hpp"
-#include <thread>
-#include <chrono>
 
-OutputController::OutputController() : ledGreen(17, true), ledRed(27, true), buzzer(22, true) {}
+bool OutputController::init() {
+    chip = std::make_shared<gpiod::chip>("/dev/gpiochip0");
 
-void OutputController::init() {
-    ledGreen.start(0);
-    ledRed.start(0);
-    buzzer.start(0);
+    gpiod::line_config config;
+    config.add_line_settings(
+        {green, red, buzzer},
+        gpiod::line_settings()
+            .set_direction(gpiod::line::direction::OUTPUT)
+            .set_output_value(gpiod::line::value::INACTIVE)
+    );
+
+    auto builder = chip->prepare_request();
+    builder.set_consumer("output_ctrl");
+    builder.set_line_config(config);
+
+    req = std::make_shared<gpiod::line_request>(builder.do_request());
+
+    return true;
 }
 
-void OutputController::setAccessGranted() {
-    ledGreen.setValue(1);
-    ledRed.setValue(0);
-    buzzer.setValue(1);
-    std::this_thread::sleep_for(std::chrono::milliseconds(200));
-    buzzer.setValue(0);
+void OutputController::accessGranted() {
+    req->set_value(green, gpiod::line::value::ACTIVE);
+    req->set_value(red, gpiod::line::value::INACTIVE);
+    req->set_value(buzzer, gpiod::line::value::INACTIVE);
 }
 
-void OutputController::setAccessDenied() {
-    ledGreen.setValue(0);
-    ledRed.setValue(1);
-    buzzer.setValue(1);
-    std::this_thread::sleep_for(std::chrono::milliseconds(500));
-    buzzer.setValue(0);
+void OutputController::accessDenied() {
+    req->set_value(green, gpiod::line::value::INACTIVE);
+    req->set_value(red, gpiod::line::value::ACTIVE);
+    req->set_value(buzzer, gpiod::line::value::ACTIVE);
 }
