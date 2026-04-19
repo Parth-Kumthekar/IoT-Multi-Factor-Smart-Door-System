@@ -6,7 +6,7 @@
 #include "ThreadSafeQueue.h"
 #include "AccessEvent.h"
 #include "EventBus.h"
-#include "AsyncLogger.h"
+#include "Logger.h"
 #include "DoorController.h"
 #include "OverrideManager.h"
 #include "CameraThread.h"
@@ -15,7 +15,7 @@
 #include "GUIServer.h"
 
 // Global logger 
-AsyncLogger gLogger("database/access_log.csv");
+Logger gLogger("database/access_log.csv");
 
 int main() {
     installSignalHandlers();

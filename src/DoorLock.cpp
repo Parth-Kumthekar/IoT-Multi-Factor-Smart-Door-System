@@ -1,9 +1,9 @@
 #include "DoorLock.h"
 #include "EventBus.h"
-#include "AsyncLogger.h"
+#include "Logger.h"
 #include <iostream>
 
-extern AsyncLogger gLogger;   
+extern Logger gLogger;   
 
 DoorController::DoorController() : relay_(kRelayPin, 0) {
     // TIMER THREAD

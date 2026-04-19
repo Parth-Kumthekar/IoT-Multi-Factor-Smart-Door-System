@@ -1,4 +1,4 @@
-#include "AsyncLogger.h"
+#include "Logger.h"
 #include <iomanip>
 #include <sstream>
 #include <iostream>
@@ -11,28 +11,28 @@ static std::string timeStr(std::chrono::system_clock::time_point tp) {
     return ss.str();
 }
 
-AsyncLogger::AsyncLogger(const std::string& csvPath) : csvPath_(csvPath) {
+Logger::Logger(const std::string& csvPath) : csvPath_(csvPath) {
     std::filesystem::create_directories("database");
     csv_.open(csvPath_, std::ios::app);
     if (csv_.tellp() == 0)
         csv_ << "Time,Person,Method,Result,Confidence,Note\n";
 
     // THREADS
-    worker_ = std::thread(&AsyncLogger::workerLoop, this);
+    worker_ = std::thread(&Logger::workerLoop, this);
 }
 
-AsyncLogger::~AsyncLogger() {
+Logger::~Logger() {
     queue_.shutdown();               
     if (worker_.joinable())
         worker_.join();              
     csv_.flush();
 }
 
-void AsyncLogger::log(AccessEvent ev) {
+void Logger::log(AccessEvent ev) {
     queue_.push(std::move(ev));      
 }
 
-void AsyncLogger::workerLoop() {
+void Logger::workerLoop() {
     while (true) {
         auto ev = queue_.pop();      
         if (!ev) break;             
@@ -62,6 +62,6 @@ void AsyncLogger::workerLoop() {
     }
 }
 
-const std::vector<AccessEvent>& AsyncLogger::entries() const {
+const std::vector<AccessEvent>& Logger::entries() const {
     return entries_;  
 }
