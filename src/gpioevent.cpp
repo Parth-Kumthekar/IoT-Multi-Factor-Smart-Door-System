@@ -12,7 +12,7 @@ void GPIOPin::start(int pinNo,
 
     const std::string chipPath = std::format("/dev/gpiochip{}", chipNo);
     const std::string consumername = std::format("gpioconsumer_{}_{}", chipNo, pinNo);
-
+A
     // Config the pin as input and detecting falling and rising edegs
     gpiod::line_config line_cfg;
     line_cfg.add_line_settings(
