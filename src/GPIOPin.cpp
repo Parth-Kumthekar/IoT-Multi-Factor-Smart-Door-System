@@ -37,8 +37,11 @@ void GPIOPin::worker()
 
             for (unsigned int i = 0; i < buf.num_events(); i++)
             {
-                int val = buf.get_event(i).event_type() ==
-                          gpiod::edge_event::event_type::RISING_EDGE;
+                auto event = buf.get_event(i);
+
+                int val =
+                    (event.type() ==
+                     gpiod::edge_event::event_type::RISING_EDGE) ? 1 : 0;
 
                 if (callback)
                     callback(val);
@@ -50,5 +53,7 @@ void GPIOPin::worker()
 void GPIOPin::stop()
 {
     running = false;
-    if (thr.joinable()) thr.join();
+
+    if (thr.joinable())
+        thr.join();
 }

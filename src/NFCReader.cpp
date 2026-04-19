@@ -2,6 +2,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <iostream>
+#include <algorithm>
 
 NFCReader::NFCReader(const std::string &p)
     : port(p), fd(-1) {}
@@ -19,11 +20,11 @@ std::string NFCReader::readUID()
     int n = read(fd, buf, sizeof(buf));
     if (n <= 0) return "";
 
-    std::string s(buf);
+    std::string s(buf, n);   // better than std::string(buf)
 
     // clean junk
-    s.erase(remove(s.begin(), s.end(), '\n'), s.end());
-    s.erase(remove(s.begin(), s.end(), '\r'), s.end());
+    s.erase(std::remove(s.begin(), s.end(), '\n'), s.end());
+    s.erase(std::remove(s.begin(), s.end(), '\r'), s.end());
 
     return s;
 }
