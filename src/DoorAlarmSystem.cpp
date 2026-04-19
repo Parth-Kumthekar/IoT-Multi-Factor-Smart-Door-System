@@ -17,12 +17,13 @@ void DoorAlarmSystem::start()
     if (running_) return;
 
     // 1. Initialize Hardware first
+    // Note: NFC Reader is now confirmed at 9600 baud in its own init()
     if (!nfcReader_.init()) {
         logger_.log("SYSTEM ERROR: NFC Reader failed to initialize on /dev/ttyAMA0");
     }
 
     if (!outputController_.init()) {
-        logger_.log("SYSTEM ERROR: Output Controller (GPIO) failed to initialize");
+        logger_.log("SYSTEM ERROR: Output Controller (GPIO) failed to initialize on gpiochip4");
     }
 
     running_ = true;
@@ -32,21 +33,25 @@ void DoorAlarmSystem::start()
     alarmManager_.start(logger_);
 
     // 3. Start Hardware Monitoring
-    // Configure the Reed Switch (Door Sensor) - Using Pin 5 on gpiochip4 for Pi 5
+    // MAPPING UPDATE: Using Physical Pin 11 (GPIO 17) on gpiochip4 for Pi 5
     reedSwitch_.setCallback([this](int value) {
         onReedSwitchChange(value);
     });
-    reedSwitch_.start(5, 4); 
+
+    // We use 17 here because libgpiod uses the GPIO number, not the Physical Pin number.
+    if (!reedSwitch_.start(26, 4)) {
+        logger_.log("SYSTEM ERROR: Failed to map Reed Switch on GPIO 26 (Pin 37)");
+    } 
 
     // 4. Launch Internal Processing Threads
     nfcThread_ = std::thread(&DoorAlarmSystem::nfcLoop, this);
     controlThread_ = std::thread(&DoorAlarmSystem::controlLoop, this);
     timerThread_ = std::thread(&DoorAlarmSystem::timerLoop, this);
 
+    logger_.log("SYSTEM: Hardware mapping confirmed: Reed Switch on Pin 37 (GPIO 26).");
     logger_.log("SYSTEM: Started with Hardware Integration.");
     logger_.log("SYSTEM: FSM initial state = " + DoorAlarmFSM::toString(fsm_.getState()));
 }
-
 void DoorAlarmSystem::stop()
 {
     if (!running_) return;
@@ -76,11 +81,15 @@ void DoorAlarmSystem::postEvent(EventType type, const std::string& source)
 }
 
 void DoorAlarmSystem::onReedSwitchChange(int value) {
-    if (value == 1) { // Sensor is OPEN
-        logger_.log("HARDWARE: Door opened (Reed Switch: 1)");
+    // 1. Hardware Mirror: Pin 37 (Input) -> Pin 11 (Output)
+    outputController_.setRedLed(value == 1);
+
+    // 2. FSM Logic
+    if (value == 1) {
+        logger_.log("DEBUG: Door Opened (1) -> Red LED ON");
         postEvent(EventType::DoorOpened, "ReedSwitch");
-    } else { // Sensor is CLOSED (0)
-        logger_.log("HARDWARE: Door closed (Reed Switch: 0)");
+    } else {
+        logger_.log("DEBUG: Door Closed (0) -> Red LED OFF");
         postEvent(EventType::DoorClosed, "ReedSwitch");
     }
 }
