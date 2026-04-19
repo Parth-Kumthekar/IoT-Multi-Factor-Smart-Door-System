@@ -17,7 +17,6 @@ void DoorAlarmSystem::start()
     if (running_) return;
 
     // 1. Initialize Hardware first
-    // Note: NFC Reader is now confirmed at 9600 baud in its own init()
     if (!nfcReader_.init()) {
         logger_.log("SYSTEM ERROR: NFC Reader failed to initialize on /dev/ttyAMA0");
     }
@@ -33,25 +32,23 @@ void DoorAlarmSystem::start()
     alarmManager_.start(logger_);
 
     // 3. Start Hardware Monitoring
-    // MAPPING UPDATE: Using Physical Pin 11 (GPIO 17) on gpiochip4 for Pi 5
     reedSwitch_.setCallback([this](int value) {
         onReedSwitchChange(value);
     });
 
-    // We use 17 here because libgpiod uses the GPIO number, not the Physical Pin number.
-    if (!reedSwitch_.start(26, 4)) {
-        logger_.log("SYSTEM ERROR: Failed to map Reed Switch on GPIO 26 (Pin 37)");
-    } 
+    // FIX: start() returns void, so we call it directly without the 'if' check
+    reedSwitch_.start(26, 4); 
+    
+    logger_.log("SYSTEM: Hardware mapping confirmed: Reed Switch on Pin 37 (GPIO 26).");
+    logger_.log("SYSTEM: Started with Hardware Integration.");
+    logger_.log("SYSTEM: FSM initial state = " + DoorAlarmFSM::toString(fsm_.getState()));
 
     // 4. Launch Internal Processing Threads
     nfcThread_ = std::thread(&DoorAlarmSystem::nfcLoop, this);
     controlThread_ = std::thread(&DoorAlarmSystem::controlLoop, this);
     timerThread_ = std::thread(&DoorAlarmSystem::timerLoop, this);
-
-    logger_.log("SYSTEM: Hardware mapping confirmed: Reed Switch on Pin 37 (GPIO 26).");
-    logger_.log("SYSTEM: Started with Hardware Integration.");
-    logger_.log("SYSTEM: FSM initial state = " + DoorAlarmFSM::toString(fsm_.getState()));
 }
+
 void DoorAlarmSystem::stop()
 {
     if (!running_) return;
@@ -81,7 +78,8 @@ void DoorAlarmSystem::postEvent(EventType type, const std::string& source)
 }
 
 void DoorAlarmSystem::onReedSwitchChange(int value) {
-    // 1. Hardware Mirror: Pin 37 (Input) -> Pin 11 (Output)
+    // 1. Hardware Mirror: Pin 37 (Input GPIO 26) -> Pin 11 (Output GPIO 17)
+    // This allows the Red LED to follow the door status immediately.
     outputController_.setRedLed(value == 1);
 
     // 2. FSM Logic
@@ -93,22 +91,6 @@ void DoorAlarmSystem::onReedSwitchChange(int value) {
         postEvent(EventType::DoorClosed, "ReedSwitch");
     }
 }
-// void DoorAlarmSystem::onReedSwitchChange(int value) {
-//     // We log it so we know the hardware works, but we don't tell the FSM.
-//     logger_.log("DEBUG: Reed Switch changed to " + std::to_string(value));
-    
-//     // postEvent(EventType::DoorOpened, "ReedSwitch"); // <--- Comment this out
-// }
-
-// void DoorAlarmSystem::onReedSwitchChange(int value)
-// {
-//     // On Pi 5, usually: 1 = Open, 0 = Closed (depending on wiring)
-//     if (value == 1) {
-//         postEvent(EventType::DoorOpened, "Hardware_Sensor");
-//     } else {
-//         postEvent(EventType::DoorClosed, "Hardware_Sensor");
-//     }
-// }
 
 void DoorAlarmSystem::nfcLoop()
 {
@@ -174,7 +156,6 @@ void DoorAlarmSystem::timerLoop()
             if (Clock::now() >= deadline.value())
             {
                 postEvent(EventType::VerificationTimeout, "timer");
-                // Brief sleep to avoid flooding the queue if processing is slow
                 std::this_thread::sleep_for(Ms(100));
             }
         }
