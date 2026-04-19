@@ -157,32 +157,30 @@ void DoorAlarmFSM::handleDoorClosed(const std::string& source) {
     }
 }
 
-void DoorAlarmFSM::handleAuthorization(const Event& event)
-{
-    const std::string method = (event.type == EventType::AuthorizedByNfc) ? "NFC" : "CAMERA";
+void DoorAlarmFSM::handleAuthorization(const Event& event) {
+    // 1. Define the method string (NFC, Camera, etc.)
+    std::string method = (event.type == EventType::AuthorizedByNfc) ? "NFC" : "CAMERA";
 
-    // 1. Check if the system is in a state where access can be granted
-    // We allow access from Disarmed, ArmedIdle (Direct Entry), or Pending (Door already open)
-    if (state_ == State::PendingVerification || state_ == State::ArmedIdle || state_ == State::Disarmed)
-    {
-        state_ = State::AuthorizedEntry; 
+    // 2. Direct Access Logic
+    // If we are in any 'normal' state, allow the authorized user to enter
+    if (state_ == State::ArmedIdle || state_ == State::Disarmed || state_ == State::PendingVerification) {
+        state_ = State::AuthorizedEntry;
+        
+        // Clear any pending timers
         clearAuthorizationWindow();
         alarmManager_.clearAlarm();
-
-        logger_.log("FSM: DIRECT ACCESS GRANTED by " + method + ". State -> AuthorizedEntry.");
         
-        // Return here because we have successfully handled the event
-        return; 
+        logger_.log("FSM: Direct Access Granted via " + method + " (" + event.source + ")");
+        return; // Exit here so we don't hit the "ignored" logs below
     }
 
-    // 2. Handle cases where the alarm is already going off
-    if (state_ == State::AlarmActive)
-    {
+    // 3. Handle cases where the alarm is already going off
+    if (state_ == State::AlarmActive) {
         logger_.log("FSM: Auth by " + method + " rejected. Alarm is ACTIVE! Reset system first.");
         return;
     }
 
-    // 3. Fallback for any other state (like Fault or already Authorized)
+    // 4. Fallback for any other state (like if they scan twice while already authorized)
     logger_.log("FSM: Auth by " + method + " ignored in current state: " + toString(state_));
 }
 

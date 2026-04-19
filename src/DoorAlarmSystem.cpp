@@ -75,15 +75,23 @@ void DoorAlarmSystem::postEvent(EventType type, const std::string& source)
     eventQueue_.push(Event(type, source));
 }
 
-void DoorAlarmSystem::onReedSwitchChange(int value)
-{
-    // On Pi 5, usually: 1 = Open, 0 = Closed (depending on wiring)
-    if (value == 1) {
-        postEvent(EventType::DoorOpened, "Hardware_Sensor");
-    } else {
-        postEvent(EventType::DoorClosed, "Hardware_Sensor");
-    }
+
+void DoorAlarmSystem::onReedSwitchChange(int value) {
+    // We log it so we know the hardware works, but we don't tell the FSM.
+    logger_.log("DEBUG: Reed Switch changed to " + std::to_string(value));
+    
+    // postEvent(EventType::DoorOpened, "ReedSwitch"); // <--- Comment this out
 }
+
+// void DoorAlarmSystem::onReedSwitchChange(int value)
+// {
+//     // On Pi 5, usually: 1 = Open, 0 = Closed (depending on wiring)
+//     if (value == 1) {
+//         postEvent(EventType::DoorOpened, "Hardware_Sensor");
+//     } else {
+//         postEvent(EventType::DoorClosed, "Hardware_Sensor");
+//     }
+// }
 
 void DoorAlarmSystem::nfcLoop()
 {

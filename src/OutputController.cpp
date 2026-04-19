@@ -1,14 +1,15 @@
 #include "OutputController.hpp"
-
 bool OutputController::init()
 {
-    chip = std::make_shared<gpiod::chip>("/dev/gpiochip0");
+    // CRITICAL: Change 0 to 4 for Raspberry Pi 5
+    chip = std::make_shared<gpiod::chip>("/dev/gpiochip4");
 
     gpiod::line_settings settings;
     settings.set_direction(gpiod::line::direction::OUTPUT);
     settings.set_output_value(gpiod::line::value::INACTIVE);
 
     gpiod::line_config cfg;
+    // Ensure these pin numbers (17, 27, 22) match your physical wiring
     cfg.add_line_settings({red, green, buzzer}, settings);
 
     auto builder = chip->prepare_request();
