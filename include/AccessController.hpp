@@ -1,14 +1,14 @@
 #pragma once
-
-#include <set>
 #include <string>
+#include <vector>
 
 class AccessController {
 public:
-    AccessController();
-
-    bool isAuthorized(const std::string& uid);
+    bool check(const std::string &uid);
 
 private:
-    std::set<std::string> validUIDs;
+    std::vector<std::string> allowed = {
+        "040ADB8A7111",
+        "04361B6ABB77"
+    };
 };

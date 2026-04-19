@@ -1,34 +1,24 @@
-#include "GPIOPin.hpp"
+#include "gpiopin.hpp"
+#include <chrono>
 #include <iostream>
 
-#define TIMEOUT 5000
+void GPIOPin::start(int pin, int chipNo)
+{
+    pinNum = pin;
 
-GPIOPin::GPIOPin() {}
-
-GPIOPin::~GPIOPin() {
-    stop();
-}
-
-void GPIOPin::registerCallback(Callback cb) {
-    callback = cb;
-}
-
-void GPIOPin::start(int pin, int chipNo) {
     std::string chipPath = "/dev/gpiochip" + std::to_string(chipNo);
-
     chip = std::make_shared<gpiod::chip>(chipPath);
 
-    gpiod::line_config config;
-    config.add_line_settings(
-        pin,
-        gpiod::line_settings()
-            .set_direction(gpiod::line::direction::INPUT)
-            .set_edge_detection(gpiod::line::edge::BOTH)
-    );
+    gpiod::line_settings settings;
+    settings.set_direction(gpiod::line::direction::INPUT);
+    settings.set_edge_detection(gpiod::line::edge::BOTH);
+
+    gpiod::line_config cfg;
+    cfg.add_line_settings(pin, settings);
 
     auto builder = chip->prepare_request();
-    builder.set_consumer("gpio_handler");
-    builder.set_line_config(config);
+    builder.set_line_config(cfg);
+    builder.set_consumer("smart_door");
 
     request = std::make_shared<gpiod::line_request>(builder.do_request());
 
@@ -36,23 +26,29 @@ void GPIOPin::start(int pin, int chipNo) {
     thr = std::thread(&GPIOPin::worker, this);
 }
 
-void GPIOPin::worker() {
-    while (running) {
-        if (request->wait_edge_events(std::chrono::milliseconds(TIMEOUT))) {
-            gpiod::edge_event_buffer buffer;
-            request->read_edge_events(buffer, 1);
-            gpioEvent(buffer.get_event(0));
+void GPIOPin::worker()
+{
+    while (running)
+    {
+        if (request->wait_edge_events(std::chrono::milliseconds(500)))
+        {
+            gpiod::edge_event_buffer buf;
+            request->read_edge_events(buf);
+
+            for (unsigned int i = 0; i < buf.num_events(); i++)
+            {
+                int val = buf.get_event(i).event_type() ==
+                          gpiod::edge_event::event_type::RISING_EDGE;
+
+                if (callback)
+                    callback(val);
+            }
         }
     }
 }
 
-void GPIOPin::gpioEvent(const gpiod::edge_event& ev) {
-    if (callback) callback(ev);
-}
-
-void GPIOPin::stop() {
+void GPIOPin::stop()
+{
     running = false;
     if (thr.joinable()) thr.join();
-
-    if (request) request->release();
 }

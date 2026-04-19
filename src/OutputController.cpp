@@ -1,33 +1,34 @@
 #include "OutputController.hpp"
 
-bool OutputController::init() {
+bool OutputController::init()
+{
     chip = std::make_shared<gpiod::chip>("/dev/gpiochip0");
 
-    gpiod::line_config config;
-    config.add_line_settings(
-        {green, red, buzzer},
-        gpiod::line_settings()
-            .set_direction(gpiod::line::direction::OUTPUT)
-            .set_output_value(gpiod::line::value::INACTIVE)
-    );
+    gpiod::line_settings settings;
+    settings.set_direction(gpiod::line::direction::OUTPUT);
+    settings.set_output_value(gpiod::line::value::INACTIVE);
+
+    gpiod::line_config cfg;
+    cfg.add_line_settings({red, green, buzzer}, settings);
 
     auto builder = chip->prepare_request();
-    builder.set_consumer("output_ctrl");
-    builder.set_line_config(config);
+    builder.set_line_config(cfg);
+    builder.set_consumer("smart_door_out");
 
     req = std::make_shared<gpiod::line_request>(builder.do_request());
-
     return true;
 }
 
-void OutputController::accessGranted() {
+void OutputController::granted()
+{
     req->set_value(green, gpiod::line::value::ACTIVE);
     req->set_value(red, gpiod::line::value::INACTIVE);
     req->set_value(buzzer, gpiod::line::value::INACTIVE);
 }
 
-void OutputController::accessDenied() {
-    req->set_value(green, gpiod::line::value::INACTIVE);
+void OutputController::denied()
+{
     req->set_value(red, gpiod::line::value::ACTIVE);
+    req->set_value(green, gpiod::line::value::INACTIVE);
     req->set_value(buzzer, gpiod::line::value::ACTIVE);
 }
