@@ -1,4 +1,4 @@
-const API_BASE = "http://127.0.0.1:3000";
+const API_BASE = "http://192.168.1.22:3000";
 
 async function rawGet(path) {
   const res = await fetch(`${API_BASE}${path}`);
