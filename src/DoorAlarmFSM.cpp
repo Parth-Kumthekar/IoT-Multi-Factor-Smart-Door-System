@@ -11,49 +11,6 @@ DoorAlarmFSM::DoorAlarmFSM(AlarmManager& alarmManager, AsyncLogger& logger)
 {
 }
 
-void DoorAlarmFSM::setAuthorizationWindow(Ms window)
-{
-    std::lock_guard<std::mutex> lock(mutex_);
-    authorizationWindow_ = window;
-}
-
-DoorAlarmFSM::State DoorAlarmFSM::getState() const
-{
-    std::lock_guard<std::mutex> lock(mutex_);
-    return state_;
-}
-
-bool DoorAlarmFSM::isDoorOpen() const
-{
-    std::lock_guard<std::mutex> lock(mutex_);
-    return doorOpen_;
-}
-
-bool DoorAlarmFSM::isAlarmActive() const
-{
-    return alarmManager_.isAlarmActive();
-}
-
-std::optional<DoorAlarmFSM::Clock::time_point> DoorAlarmFSM::getVerificationDeadline() const
-{
-    std::lock_guard<std::mutex> lock(mutex_);
-    return verificationDeadline_;
-}
-
-std::string DoorAlarmFSM::toString(State state)
-{
-    switch (state)
-    {
-    case State::Disarmed:           return "Disarmed";
-    case State::ArmedIdle:          return "ArmedIdle";
-    case State::PendingVerification: return "PendingVerification";
-    case State::AuthorizedEntry:    return "AuthorizedEntry";
-    case State::AlarmActive:        return "AlarmActive";
-    case State::Fault:              return "Fault";
-    default:                        return "Unknown";
-    }
-}
-
 void DoorAlarmFSM::handleEvent(const Event& event)
 {
     std::lock_guard<std::mutex> lock(mutex_);
@@ -80,10 +37,80 @@ void DoorAlarmFSM::handleEvent(const Event& event)
         handleVerificationTimeout(event.source);
         break;
     case EventType::PrintStatus:
-        printStatusInternal(); // Uses internal helper, mutex is already locked here
+        printStatusInternal(); 
         break;
     case EventType::Shutdown:
         break;
+    }
+}
+
+void DoorAlarmFSM::handleDoorOpened(const std::string& source)
+{
+    doorOpen_ = true;
+    logger_.log("FSM: Door OPENED (Source: " + source + ")");
+
+    // If door opens without prior NFC/App authorization
+    if (state_ == State::ArmedIdle)
+    {
+        state_ = State::PendingVerification;
+        // Start the 5-second countdown (Timer loop in System class checks this)
+        verificationDeadline_ = Clock::now() + authorizationWindow_;
+        logger_.log("FSM: WARNING! Unauthorized Open. 5s window started.");
+    }
+}
+
+void DoorAlarmFSM::handleDoorClosed(const std::string& source) 
+{
+    doorOpen_ = false;
+    logger_.log("FSM: Door CLOSED (Source: " + source + ")");
+    
+    // Auto-Rearm Logic: Reset system to ArmedIdle when door shuts
+    if (state_ == State::AuthorizedEntry || state_ == State::PendingVerification || state_ == State::AlarmActive) {
+        state_ = State::ArmedIdle;
+        clearAuthorizationWindow();
+        alarmManager_.clearAlarm(); // Turn off buzzer immediately when door is closed
+        logger_.log("FSM: Door secured. State -> ArmedIdle. System re-locked.");
+    }
+}
+
+void DoorAlarmFSM::handleAuthorization(const Event& event) 
+{
+    std::string method = (event.type == EventType::AuthorizedByNfc) ? "NFC" : "APP";
+
+    // RULE: Only check/allow UID if the door is physically CLOSED
+    if (doorOpen_) {
+        logger_.log("FSM: Auth via " + method + " REJECTED. Door must be CLOSED to scan.");
+        return; 
+    }
+
+    // If door is closed, proceed with authorization
+    if (state_ == State::ArmedIdle || state_ == State::PendingVerification) 
+    {
+        state_ = State::AuthorizedEntry;
+        clearAuthorizationWindow();
+        alarmManager_.clearAlarm(); // Stop buzzer if user scanned card within the 5s window
+        
+        logger_.log("FSM: ACCESS GRANTED via " + method + " (ID: " + event.source + "). Unlock active.");
+    }
+    else if (state_ == State::AlarmActive) {
+        // Allow authorized NFC to silence an existing alarm
+        state_ = State::AuthorizedEntry;
+        alarmManager_.clearAlarm();
+        logger_.log("FSM: Alarm silenced by authorized " + method);
+    }
+}
+
+void DoorAlarmFSM::handleVerificationTimeout(const std::string& source)
+{
+    // Triggered by the background timer thread after 5 seconds
+    if (state_ == State::PendingVerification)
+    {
+        state_ = State::AlarmActive;
+        clearAuthorizationWindow();
+        
+        // This activates the Buzzer (via AlarmManager)
+        alarmManager_.triggerAlarm("Unauthorized entry timeout: Source " + source);
+        logger_.log("FSM: TIMEOUT REACHED! Buzzer ON. State -> AlarmActive.");
     }
 }
 
@@ -106,63 +133,7 @@ void DoorAlarmFSM::handleDisarm(const std::string& source)
     logger_.log("FSM: System DISARMED by " + source);
 }
 
-void DoorAlarmFSM::handleDoorOpened(const std::string& source)
-{
-    doorOpen_ = true;
-    logger_.log("FSM: Door OPENED (Source: " + source + ")");
-
-    if (state_ == State::ArmedIdle)
-    {
-        state_ = State::PendingVerification;
-        verificationDeadline_ = Clock::now() + authorizationWindow_;
-        logger_.log("FSM: State -> PendingVerification. Waiting for authorization.");
-    }
-}
-
-void DoorAlarmFSM::handleDoorClosed(const std::string& source) 
-{
-    doorOpen_ = false;
-    logger_.log("FSM: Door CLOSED (Source: " + source + ")");
-    
-    // Auto-rearm logic for Reed Switch
-    if (state_ == State::AuthorizedEntry) {
-        state_ = State::ArmedIdle;
-        logger_.log("FSM: Door secured. State -> ArmedIdle. Lock Re-engaged.");
-    }
-}
-
-void DoorAlarmFSM::handleAuthorization(const Event& event) 
-{
-    std::string method = (event.type == EventType::AuthorizedByNfc) ? "NFC" : "APP";
-
-    if (state_ == State::ArmedIdle || state_ == State::Disarmed || state_ == State::PendingVerification) 
-    {
-        state_ = State::AuthorizedEntry;
-        clearAuthorizationWindow();
-        alarmManager_.clearAlarm();
-        
-        logger_.log("FSM: ACCESS GRANTED via " + method + " (ID: " + event.source + ")");
-        return; 
-    }
-
-    if (state_ == State::AlarmActive) {
-        logger_.log("FSM: Auth via " + method + " rejected. Alarm is ACTIVE!");
-        return;
-    }
-
-    logger_.log("FSM: Auth ignored in state " + toString(state_));
-}
-
-void DoorAlarmFSM::handleVerificationTimeout(const std::string& source)
-{
-    if (state_ == State::PendingVerification)
-    {
-        state_ = State::AlarmActive;
-        clearAuthorizationWindow();
-        alarmManager_.triggerAlarm("Unauthorized entry timeout: Source " + source);
-        logger_.log("FSM: TIMEOUT! State -> AlarmActive.");
-    }
-}
+// --- Status Helpers ---
 
 void DoorAlarmFSM::printStatus()
 {
@@ -180,7 +151,40 @@ void DoorAlarmFSM::printStatusInternal()
     logger_.log(oss.str());
 }
 
+// --- Getters and Boilerplate ---
+
+DoorAlarmFSM::State DoorAlarmFSM::getState() const
+{
+    std::lock_guard<std::mutex> lock(mutex_);
+    return state_;
+}
+
+bool DoorAlarmFSM::isDoorOpen() const
+{
+    std::lock_guard<std::mutex> lock(mutex_);
+    return doorOpen_;
+}
+
+std::optional<DoorAlarmFSM::Clock::time_point> DoorAlarmFSM::getVerificationDeadline() const
+{
+    std::lock_guard<std::mutex> lock(mutex_);
+    return verificationDeadline_;
+}
+
 void DoorAlarmFSM::clearAuthorizationWindow()
 {
     verificationDeadline_.reset();
+}
+
+std::string DoorAlarmFSM::toString(State state)
+{
+    switch (state)
+    {
+    case State::Disarmed:           return "Disarmed";
+    case State::ArmedIdle:          return "ArmedIdle";
+    case State::PendingVerification: return "PendingVerification";
+    case State::AuthorizedEntry:    return "AuthorizedEntry";
+    case State::AlarmActive:        return "AlarmActive";
+    default:                        return "Unknown";
+    }
 }
