@@ -91,7 +91,7 @@ void DoorAlarmFSM::handleArm(const std::string& source)
         state_ = State::ArmedIdle;
         clearAuthorizationWindow();
         alarmManager_.clearAlarm();
-        logger_.log("FSM: system ARMED by " + source);
+        logger_.log("FSM: System ARMED by " + source);
     }
 }
 
@@ -100,31 +100,33 @@ void DoorAlarmFSM::handleDisarm(const std::string& source)
     state_ = State::Disarmed;
     clearAuthorizationWindow();
     alarmManager_.clearAlarm();
-    logger_.log("FSM: system DISARMED by " + source);
+    logger_.log("FSM: System DISARMED by " + source);
 }
 
 void DoorAlarmFSM::handleDoorOpened(const std::string& source)
 {
     doorOpen_ = true;
-    logger_.log("FSM: door opened via " + source);
+    logger_.log("FSM: Door OPENED (Source: " + source + ")");
 
+    // If door opens while Armed and no Authorization has occurred yet
     if (state_ == State::ArmedIdle)
     {
         state_ = State::PendingVerification;
         verificationDeadline_ = Clock::now() + authorizationWindow_;
-        logger_.log("FSM: State -> PendingVerification. Waiting for auth.");
+        logger_.log("FSM: State -> PendingVerification. Waiting for authorization.");
     }
 }
 
 void DoorAlarmFSM::handleDoorClosed(const std::string& source) 
 {
     doorOpen_ = false;
-    logger_.log("FSM: door closed via " + source);
+    logger_.log("FSM: Door CLOSED (Source: " + source + ")");
     
-    // If we were in AuthorizedEntry, re-arm the system now that door is shut
+    // Logic: Once the door is physically shut, if we were in an Authorized state,
+    // we re-arm the system and lock the door.
     if (state_ == State::AuthorizedEntry) {
         state_ = State::ArmedIdle;
-        logger_.log("FSM: Door secured. State -> ArmedIdle.");
+        logger_.log("FSM: Door secured. State -> ArmedIdle. Lock Re-engaged.");
     }
 }
 
@@ -132,8 +134,7 @@ void DoorAlarmFSM::handleAuthorization(const Event& event)
 {
     std::string method = (event.type == EventType::AuthorizedByNfc) ? "NFC" : "CAMERA";
 
-    // DIRECT ACCESS LOGIC:
-    // Accept authorization if Armed, Disarmed, or already waiting for verification
+    // Accept authorization if Armed, Disarmed, or currently in the verification grace period
     if (state_ == State::ArmedIdle || state_ == State::Disarmed || state_ == State::PendingVerification) 
     {
         state_ = State::AuthorizedEntry;
@@ -145,7 +146,7 @@ void DoorAlarmFSM::handleAuthorization(const Event& event)
     }
 
     if (state_ == State::AlarmActive) {
-        logger_.log("FSM: Auth rejected. Alarm is currently ACTIVE.");
+        logger_.log("FSM: Auth via " + method + " rejected. Alarm is ACTIVE! Reset required.");
         return;
     }
 
@@ -158,7 +159,7 @@ void DoorAlarmFSM::handleVerificationTimeout(const std::string& source)
     {
         state_ = State::AlarmActive;
         clearAuthorizationWindow();
-        alarmManager_.triggerAlarm("Unauthorized entry timeout");
+        alarmManager_.triggerAlarm("Unauthorized entry timeout: No verification received");
         logger_.log("FSM: TIMEOUT! State -> AlarmActive.");
     }
 }
@@ -175,4 +176,18 @@ void DoorAlarmFSM::printStatus()
 void DoorAlarmFSM::clearAuthorizationWindow()
 {
     verificationDeadline_.reset();
+}
+
+void DoorAlarmFSM::printStatus()
+{
+    std::lock_guard<std::mutex> lock(mutex_);
+    std::ostringstream oss;
+    
+    // Debug info: State + Door + Alarm
+    oss << "[DEBUG] "
+        << "FSM: " << toString(state_) << " | "
+        << "DOOR: " << (doorOpen_ ? "OPEN (1)" : "CLOSED (0)") << " | "
+        << "ALARM: " << (alarmManager_.isAlarmActive() ? "ACTIVE" : "OFF");
+
+    logger_.log(oss.str());
 }

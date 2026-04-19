@@ -75,13 +75,21 @@ void DoorAlarmSystem::postEvent(EventType type, const std::string& source)
     eventQueue_.push(Event(type, source));
 }
 
-
 void DoorAlarmSystem::onReedSwitchChange(int value) {
-    // We log it so we know the hardware works, but we don't tell the FSM.
-    logger_.log("DEBUG: Reed Switch changed to " + std::to_string(value));
-    
-    // postEvent(EventType::DoorOpened, "ReedSwitch"); // <--- Comment this out
+    if (value == 1) { // Sensor is OPEN
+        logger_.log("HARDWARE: Door opened (Reed Switch: 1)");
+        postEvent(EventType::DoorOpened, "ReedSwitch");
+    } else { // Sensor is CLOSED (0)
+        logger_.log("HARDWARE: Door closed (Reed Switch: 0)");
+        postEvent(EventType::DoorClosed, "ReedSwitch");
+    }
 }
+// void DoorAlarmSystem::onReedSwitchChange(int value) {
+//     // We log it so we know the hardware works, but we don't tell the FSM.
+//     logger_.log("DEBUG: Reed Switch changed to " + std::to_string(value));
+    
+//     // postEvent(EventType::DoorOpened, "ReedSwitch"); // <--- Comment this out
+// }
 
 // void DoorAlarmSystem::onReedSwitchChange(int value)
 // {
