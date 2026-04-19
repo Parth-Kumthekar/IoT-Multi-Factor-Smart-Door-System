@@ -149,53 +149,41 @@ void DoorAlarmFSM::handleDoorOpened(const std::string& source)
     logger_.log("FSM: door open received in state " + toString(state_) + ".");
 }
 
-void DoorAlarmFSM::handleDoorClosed(const std::string& source)
-{
+void DoorAlarmFSM::handleDoorClosed(const std::string& source) {
     doorOpen_ = false;
-    logger_.log("FSM: door closed from " + source + ".");
-
-    if (state_ == State::AuthorizedEntry)
-    {
-        state_ = State::ArmedIdle;
-        clearAuthorizationWindow();
-        logger_.log("FSM: authorized entry completed. State -> ArmedIdle.");
+    if (state_ == State::AuthorizedEntry) {
+        state_ = State::ArmedIdle; // Automatically re-arms when door shuts
+        logger_.log("FSM: Door closed. System re-armed.");
     }
 }
 
 void DoorAlarmFSM::handleAuthorization(const Event& event)
 {
-    const std::string method =
-        (event.type == EventType::AuthorizedByNfc) ? "NFC" : "APP";
+    const std::string method = (event.type == EventType::AuthorizedByNfc) ? "NFC" : "CAMERA";
 
-    if (state_ == State::PendingVerification && verificationDeadline_.has_value())
+    // 1. Check if the system is in a state where access can be granted
+    // We allow access from Disarmed, ArmedIdle (Direct Entry), or Pending (Door already open)
+    if (state_ == State::PendingVerification || state_ == State::ArmedIdle || state_ == State::Disarmed)
     {
-        if (Clock::now() <= verificationDeadline_.value())
-        {
-            state_ = State::AuthorizedEntry;
-            clearAuthorizationWindow();
-            alarmManager_.clearAlarm();
-            logger_.log("FSM: valid authorization by " + method + ". State -> AuthorizedEntry.");
-        }
-        else
-        {
-            logger_.log("FSM: late authorization by " + method + " ignored.");
-        }
-        return;
+        state_ = State::AuthorizedEntry; 
+        clearAuthorizationWindow();
+        alarmManager_.clearAlarm();
+
+        logger_.log("FSM: DIRECT ACCESS GRANTED by " + method + ". State -> AuthorizedEntry.");
+        
+        // Return here because we have successfully handled the event
+        return; 
     }
 
-    if (state_ == State::ArmedIdle)
-    {
-        logger_.log("FSM: pre-authorization by " + method + " received, but ignored in this demo.");
-        return;
-    }
-
+    // 2. Handle cases where the alarm is already going off
     if (state_ == State::AlarmActive)
     {
-        logger_.log("FSM: authorization by " + method + " ignored because alarm is active.");
+        logger_.log("FSM: Auth by " + method + " rejected. Alarm is ACTIVE! Reset system first.");
         return;
     }
 
-    logger_.log("FSM: authorization by " + method + " ignored in state " + toString(state_) + ".");
+    // 3. Fallback for any other state (like Fault or already Authorized)
+    logger_.log("FSM: Auth by " + method + " ignored in current state: " + toString(state_));
 }
 
 void DoorAlarmFSM::handleVerificationTimeout(const std::string& source)
