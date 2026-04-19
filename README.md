@@ -1,4 +1,4 @@
-# FaceID Door Lock — Raspberry Pi 5
+# IoT-based Mutli-Factor Door Lock system — Raspberry Pi 5
 
 An IoT-based multi-factor smart door system combining real-time face
 recognition, NFC authentication, and magnetic door sensors for secure
@@ -27,8 +27,6 @@ Relay NO  ──────────────── Solenoid +
 Solenoid  ──────────────── 12 V GND
 ```
 
-> **Pi 5 note**: GPIO is exposed via `/dev/gpiochip4` (RP1 controller).
-> The code tries `gpiochip4` first and falls back to `gpiochip0` for Pi 4/3.
 
 ---
 
@@ -100,18 +98,17 @@ dtoverlay=imx708
 ```
 Project Root/
 │
-├── main.cpp                          ← owns all objects, signal handler
-├── CMakeLists.txt                    ← platform-aware build
+├── main.cpp                       ← owns all objects, signal handler
+├── CMakeLists.txt                 ← platform-aware build
 │
 ├── include/
 │   ├── AccessEvent.h              ← shared event type
 │   ├── AsyncLogger.h              ← non-blocking background logger
 │   ├── CameraThread.h             ← camera capture thread
-│   ├── DoorController.h           ← RAII GPIO + CV timer
+│   ├── DoorController.h           ← GPIO + CV timer
 │   ├── EventBus.h                 ← publish/subscribe hub
 │   ├── FaceRecognizer.h           ← DNN face recognition
-│   ├── GpioPin.h                  ← RAII gpiod wrapper (label discovery)
-│   ├── HallSensor.h               ← kernel edge interrupt sensor
+│   ├── GpioPin.h                  ← gpiod wrapper
 │   ├── OverrideManager.h          ← bypass toggle
 │   ├── RecognitionThread.h        ← pulls frames, publishes events
 │   ├── ThreadSafeQueue.h          ← CV-based queue, optional pop
@@ -124,8 +121,6 @@ Project Root/
 │   ├── DoorController.cpp
 │   ├── FaceRecognizer.cpp
 │   ├── GUIServer.h + GUIServer.cpp
-│   ├── HallSensor.cpp
-│   ├── NfcReader.cpp
 │   ├── RecognitionThread.cpp
 │   └── SignalHandler.h
 │
