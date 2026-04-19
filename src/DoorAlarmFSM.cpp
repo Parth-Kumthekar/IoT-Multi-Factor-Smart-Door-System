@@ -2,8 +2,12 @@
 #include <sstream>
 #include <algorithm>
 
+// Constructor: Initializer list order MUST match the header file exactly
 DoorAlarmFSM::DoorAlarmFSM(AlarmManager& alarmManager, AsyncLogger& logger)
-    : state_(State::ArmedIdle), doorOpen_(false), alarmManager_(alarmManager), logger_(logger)
+    : state_(State::ArmedIdle),
+      doorOpen_(false),
+      alarmManager_(alarmManager),
+      logger_(logger)
 {
 }
 
@@ -76,7 +80,7 @@ void DoorAlarmFSM::handleEvent(const Event& event)
         handleVerificationTimeout(event.source);
         break;
     case EventType::PrintStatus:
-        printStatusInternal(); // Helper to avoid double-locking
+        printStatusInternal(); // Uses internal helper, mutex is already locked here
         break;
     case EventType::Shutdown:
         break;
@@ -120,7 +124,7 @@ void DoorAlarmFSM::handleDoorClosed(const std::string& source)
     doorOpen_ = false;
     logger_.log("FSM: Door CLOSED (Source: " + source + ")");
     
-    // Reset to ArmedIdle once the door is shut after a valid entry
+    // Auto-rearm logic for Reed Switch
     if (state_ == State::AuthorizedEntry) {
         state_ = State::ArmedIdle;
         logger_.log("FSM: Door secured. State -> ArmedIdle. Lock Re-engaged.");
@@ -129,7 +133,7 @@ void DoorAlarmFSM::handleDoorClosed(const std::string& source)
 
 void DoorAlarmFSM::handleAuthorization(const Event& event) 
 {
-    std::string method = (event.type == EventType::AuthorizedByNfc) ? "NFC" : "CAMERA";
+    std::string method = (event.type == EventType::AuthorizedByNfc) ? "NFC" : "APP";
 
     if (state_ == State::ArmedIdle || state_ == State::Disarmed || state_ == State::PendingVerification) 
     {
@@ -155,7 +159,7 @@ void DoorAlarmFSM::handleVerificationTimeout(const std::string& source)
     {
         state_ = State::AlarmActive;
         clearAuthorizationWindow();
-        alarmManager_.triggerAlarm("Unauthorized entry timeout");
+        alarmManager_.triggerAlarm("Unauthorized entry timeout: Source " + source);
         logger_.log("FSM: TIMEOUT! State -> AlarmActive.");
     }
 }
@@ -166,7 +170,6 @@ void DoorAlarmFSM::printStatus()
     printStatusInternal();
 }
 
-// Internal helper to be called from printStatus OR handleEvent (which already has a lock)
 void DoorAlarmFSM::printStatusInternal()
 {
     std::ostringstream oss;
