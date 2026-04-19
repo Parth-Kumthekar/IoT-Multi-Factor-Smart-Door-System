@@ -1,23 +1,32 @@
-#include "DoorController.hpp"
-#include "AccessController.hpp"
-#include "OutputController.hpp"
 #include "NFCReader.hpp"
-#include <vector>
-#include <iostream>
+#include "OutputController.hpp"
 
 int main() {
-    std::vector<std::string> authorizedUIDs = {"04AABBCC", "11223344", "55667788"};
+    NFCReader nfc("/dev/serial0", 9600);
 
-    AccessController accessController(authorizedUIDs);
-    OutputController outputController;
-    NFCReader nfcReader;
-    DoorController doorController(4, accessController, outputController, nfcReader);
+    if (!nfc.init()) {
+        std::cerr << "UART init failed\n";
+        return -1;
+    }
 
-    outputController.init();
-    doorController.initialize();
+    OutputController output;
+    output.init();
 
-    std::cout << "System running. Press Ctrl+C to exit." << std::endl;
-    while (true) std::this_thread::sleep_for(std::chrono::seconds(1));
+    const std::string VALID_UID = "12345678";  // change this
+
+    while (true) {
+        std::string uid = nfc.readUID();
+
+        if (!uid.empty()) {
+            std::cout << "UID: " << uid << std::endl;
+
+            if (uid == VALID_UID) {
+                output.setAccessGranted();
+            } else {
+                output.setAccessDenied();
+            }
+        }
+    }
 
     return 0;
 }

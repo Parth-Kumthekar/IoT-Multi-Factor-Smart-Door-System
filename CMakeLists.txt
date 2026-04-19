@@ -10,13 +10,21 @@ pkg_check_modules(GPIOD REQUIRED libgpiod)
 include_directories(${GPIOD_INCLUDE_DIRS} include)
 link_directories(${GPIOD_LIBRARY_DIRS})
 
+# add_executable(smart_door
+#     src/main.cpp
+#     src/GPIOPin.cpp
+#     src/AccessController.cpp
+#     src/OutputController.cpp
+#     src/NFCReader.cpp
+#     src/DoorController.cpp
+# )
+
 add_executable(smart_door
     src/main.cpp
-    src/GPIOPin.cpp
-    src/AccessController.cpp
-    src/OutputController.cpp
     src/NFCReader.cpp
+    src/OutputController.cpp
     src/DoorController.cpp
+    src/GPIOPin.cpp
 )
 
 target_link_libraries(smart_door ${GPIOD_LIBRARIES})
