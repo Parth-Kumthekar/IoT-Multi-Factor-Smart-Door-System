@@ -26,14 +26,14 @@ int main() {
 
     
     DoorController door;       
-    GUIServer      gui(8080);   
+    //GUIServer      gui(8080);   
 
     // Camera pipeline
     ThreadSafeQueue<cv::Mat> frameQueue;
     CameraThread       camera(frameQueue);
     RecognitionThread  recognition(frameQueue);
 
-    gui.start();
+  //  gui.start();
     camera.start();
     recognition.start();
 
@@ -49,7 +49,7 @@ int main() {
     std::cout << "Shutting down...\n";
     recognition.stop();   
     camera.stop();                  
-    gui.stop();           
+   // gui.stop();           
     
 
     std::cout << " exit\n";
