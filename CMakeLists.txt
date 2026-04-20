@@ -6,10 +6,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(OpenCV REQUIRED)
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(LIBGPIOD REQUIRED libgpiod)
+pkg_check_modules(LIBCAMERA REQUIRED libcameras)
 
 include_directories(
     ${OpenCV_INCLUDE_DIRS}
     ${LIBGPIOD_INCLUDE_DIRS}
+    ${LIBCAMERA_INCLUDE_DIRS}
     ${CMAKE_SOURCE_DIR}
     ${CMAKE_SOURCE_DIR}/include
     ${CMAKE_SOURCE_DIR}/src
