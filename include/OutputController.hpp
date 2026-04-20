@@ -1,6 +1,7 @@
 #pragma once
 #include <gpiod.hpp>
 #include <memory>
+#include <vector>
 
 class OutputController {
 public:
@@ -21,18 +22,30 @@ public:
     void denied();
 
     /**
-     * @brief Direct control for the Red LED. 
-     * Used for the Reed Switch hardware mirror debug.
+     * @brief Direct control for the Red LED.
      * @param state true to turn LED on, false to turn off.
      */
-    void setRedLed(bool state); 
+    void setRedLed(bool state);
+
+    /**
+     * @brief Direct control for the Green LED.
+     * @param state true to turn LED on, false to turn off.
+     */
+    void setGreenLed(bool state);
+
+    /**
+     * @brief Direct control for the Buzzer.
+     * @param state true to turn buzzer on, false to turn off.
+     */
+    void setBuzzer(bool state);
 
 private:
     std::shared_ptr<gpiod::chip> chip;
     std::shared_ptr<gpiod::line_request> req;
 
-    // GPIO numbers for Raspberry Pi 5 Header (RP1)
-    int red = 17;    // Physical Pin 11
-    int green = 27;  // Physical Pin 13
-    int buzzer = 22; // Physical Pin 15
+    // GPIO numbers for Raspberry Pi 5 Header (RP1 chip)
+    // These are GPIO offsets, not physical pin numbers
+    unsigned int red_offset = 17;    // Physical Pin 11
+    unsigned int green_offset = 27;  // Physical Pin 13
+    unsigned int buzzer_offset = 22; // Physical Pin 15
 };

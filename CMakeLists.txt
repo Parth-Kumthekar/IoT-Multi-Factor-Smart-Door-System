@@ -21,7 +21,7 @@ add_executable(door_alarm
     src/GPIOPin.cpp
     src/EmailAlert.cpp
     # src/EventQueue.cpp      # Add these if they have .cpp implementations
-    # src/AccessController.cpp 
+  src/AccessController.cpp 
 )
 
 # 3. Include Directories

@@ -2,17 +2,19 @@
 #include <iostream>
 #include <csignal>
 
-DoorAlarmSystem::DoorAlarmSystem()
-    : fsm_(alarmManager_, logger_)
-{
-    // Constructor remains simple
-}
-
 DoorAlarmSystem::~DoorAlarmSystem()
 {
     stop();
 }
-
+DoorAlarmSystem::DoorAlarmSystem()
+    : alarmManager_(outputController_), 
+      fsm_(alarmManager_, logger_)
+{
+    // Configure hardware callbacks
+    reedSwitch_.setCallback([this](int value) { 
+        this->onReedSwitchChange(value); 
+    });
+}
 void DoorAlarmSystem::start()
 {
     if (running_) return;
@@ -96,7 +98,7 @@ void DoorAlarmSystem::apiLoop()
         json += "\"ok\":true,";
         json += "\"state\":\"" + DoorAlarmFSM::toString(state) + "\",";
         json += "\"alarmActive\":" + std::string(state == DoorAlarmFSM::State::AlarmActive ? "true" : "false") + ",";
-        json += "\"doorOpen\":" + std::string(outputController_.isRedLedOn() ? "true" : "false"); // Using LED as proxy for sensor state
+json += "\"doorOpen\":" + std::string(fsm_.isDoorOpen() ? "true" : "false");
         json += "}";
 
         res.set_header("Access-Control-Allow-Origin", "*"); // Allow Web Dashboard Access
@@ -122,19 +124,23 @@ void DoorAlarmSystem::postEvent(EventType type, const std::string& source)
     eventQueue_.push(Event(type, source));
 }
 
-void DoorAlarmSystem::onReedSwitchChange(int value) {
-    outputController_.setRedLed(value == 1);
-    std::this_thread::sleep_for(std::chrono::milliseconds(50));
 
-    if (value == 1) {
-        logger_.log("DEBUG: Confirmed Door Open (1)");
+void DoorAlarmSystem::onReedSwitchChange(int value) {
+    // Debounce: Wait for mechanical vibration to settle
+    std::this_thread::sleep_for(std::chrono::milliseconds(50));
+    
+    // Re-read or trust the value to set the indicator LED
+    bool isOpen = (value == 1); 
+    outputController_.setRedLed(isOpen);
+
+    if (isOpen) {
+        logger_.log("SENSOR: Door contact broken (Open)");
         postEvent(EventType::DoorOpened, "ReedSwitch");
     } else {
-        logger_.log("DEBUG: Confirmed Door Closed (0)");
+        logger_.log("SENSOR: Door contact established (Closed)");
         postEvent(EventType::DoorClosed, "ReedSwitch");
     }
 }
-
 void DoorAlarmSystem::nfcLoop()
 {
     while (running_)
