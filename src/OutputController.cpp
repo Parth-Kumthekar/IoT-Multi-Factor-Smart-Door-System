@@ -1,5 +1,11 @@
 #include "OutputController.hpp"
 
+/**
+ * @brief Initializes the GPIO chip and claims output lines.
+ * @details Targets /dev/gpiochip4 for the Raspberry Pi 5 (RP1). 
+ * Requests Red, Green, and Buzzer lines in a single bulk request for atomicity.
+ * @return true if hardware was successfully claimed, false on exception (e.g., chip busy).
+ */
 bool OutputController::init()
 {
     try {
@@ -11,7 +17,7 @@ bool OutputController::init()
         settings.set_output_value(gpiod::line::value::INACTIVE);
 
         gpiod::line_config cfg;
-        // Request all three lines at once
+        // Efficiently request all three lines in a single bulk operation
         cfg.add_line_settings({red_offset, green_offset, buzzer_offset}, settings);
 
         auto builder = chip->prepare_request();
@@ -21,10 +27,15 @@ bool OutputController::init()
         req = std::make_shared<gpiod::line_request>(builder.do_request());
         return true;
     } catch (...) {
+        // Safe fail-state: prevent system crash if hardware is inaccessible
         return false;
     }
 }
 
+/**
+ * @brief Controls the state of the Red LED.
+ * @param state true for ACTIVE (ON), false for INACTIVE (OFF).
+ */
 void OutputController::setRedLed(bool state)
 {
     if (req) {
@@ -32,6 +43,10 @@ void OutputController::setRedLed(bool state)
     }
 }
 
+/**
+ * @brief Controls the state of the Green LED.
+ * @param state true for ACTIVE (ON), false for INACTIVE (OFF).
+ */
 void OutputController::setGreenLed(bool state)
 {
     if (req) {
@@ -39,6 +54,10 @@ void OutputController::setGreenLed(bool state)
     }
 }
 
+/**
+ * @brief Controls the state of the Piezo Buzzer.
+ * @param state true for ACTIVE (ON), false for INACTIVE (OFF).
+ */
 void OutputController::setBuzzer(bool state)
 {
     if (req) {
@@ -46,6 +65,10 @@ void OutputController::setBuzzer(bool state)
     }
 }
 
+/**
+ * @brief Visual and audible "Access Granted" signal.
+ * * Turns Green LED ON, Red LED and Buzzer OFF.
+ */
 void OutputController::granted()
 {
     if (req) {
@@ -55,6 +78,10 @@ void OutputController::granted()
     }
 }
 
+/**
+ * @brief Visual and audible "Access Denied" signal.
+ * * Turns Red LED and Buzzer ON, Green LED OFF.
+ */
 void OutputController::denied()
 {
     if (req) {

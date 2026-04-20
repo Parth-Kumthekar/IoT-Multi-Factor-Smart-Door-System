@@ -1,16 +1,15 @@
 #include "AccessController.hpp"
+#include <algorithm>
 
 /**
- * @brief Performs a simple lookup in the allowed UIDs vector.
+ * @brief Performs a lookup in the authorized UIDs list.
+ * * This implementation uses std::any_of for a more expressive, declarative 
+ * approach. It maintains O(n) complexity, which is optimal for the 
+ * small-scale authorized list defined in the class header.
  */
 bool AccessController::check(const std::string &uid) {
-    // Iterate through the authorized list
-    for (const auto &authorized_id : allowed) {
-        if (authorized_id == uid) {
-            return true; // Access Granted
-        }
-    }
-    
-    // If we reach here, no match was found
-    return false; // Access Denied
+    // Check if the provided UID exists within the encapsulated 'allowed' vector
+    return std::any_of(allowed.begin(), allowed.end(), [&uid](const std::string& authorized_id) {
+        return authorized_id == uid;
+    });
 }
