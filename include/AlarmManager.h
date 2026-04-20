@@ -5,71 +5,76 @@
 #include <atomic>
 #include <mutex>
 #include "AsyncLogger.h"
-#include "OutputController.hpp"
+#include "OutputController.hpp" // Required for hardware control
 
 /**
  * @class AlarmManager
- * @brief Handles system-wide alarm states and hardware signaling.
- * * This class coordinates the activation of the alarm system, interacting with 
- * the OutputController for physical feedback and the AsyncLogger for event 
- * recording. It is designed to be thread-safe for use in real-time environments.
+ * @brief Coordinates system-wide alarm states and hardware notifications.
+ * * This class acts as a bridge between high-level logic triggers and the 
+ * physical output hardware (via OutputController). It ensures thread-safe 
+ * access to the alarm state and logs events asynchronously.
  */
 class AlarmManager
 {
 public:
     /**
-     * @brief Constructs an AlarmManager with a reference to the hardware controller.
-     * @param oc Reference to the OutputController responsible for physical signaling.
+     * @brief Construct a new Alarm Manager object.
+     * @param oc Reference to the OutputController used for physical signaling.
+     * @note The OutputController must remain in scope for the lifetime of this object.
      */
     AlarmManager(OutputController& oc);
 
     /**
-     * @brief Cleans up resources and ensures the alarm state is neutralized.
+     * @brief Destroy the Alarm Manager object.
+     * Ensures any active alarms are handled before cleanup.
      */
     ~AlarmManager();
 
     /**
      * @brief Initializes the manager and connects the logging service.
-     * @param logger Reference to the asynchronous logging system.
+     * @param logger Reference to an active AsyncLogger for event recording.
      */
     void start(AsyncLogger& logger);
 
     /**
-     * @brief Safely shuts down the alarm manager and stops active signaling.
+     * @brief Shuts down the alarm manager and stops active signaling.
      */
     void stop();
 
     /**
-     * @brief Triggers the alarm state and logs the specific event.
-     * @param reason A description of the event that caused the alarm trigger.
+     * @brief Activates the alarm state.
+     * @details Sets the internal state to active, triggers the hardware via 
+     * the OutputController, and logs the reason provided.
+     * @param reason A string description of why the alarm was triggered.
      */
     void triggerAlarm(const std::string& reason);
 
     /**
-     * @brief Resets the alarm state and updates the hardware output.
+     * @brief Resets the alarm state to normal.
+     * Clears hardware signals and updates the status.
      */
     void clearAlarm();
 
     /**
      * @brief Checks the current status of the alarm.
-     * @return true if an alarm is currently active, false otherwise.
+     * @return true if the alarm is currently triggered, false otherwise.
      */
     bool isAlarmActive() const;
 
 private:
-    /** @brief Reference to the hardware interface for driving outputs. */
+    /// Reference to the hardware controller dependency.
     OutputController& outputController_;
     
-    /** @brief Pointer to the asynchronous logger for non-blocking I/O. */
+    /// Pointer to the logger, assigned during start().
     AsyncLogger* logger_ = nullptr;
 
-    /** @brief Atomic flag for lock-free status checks in high-frequency loops. */
+    /// Thread-safe flag indicating if the alarm is currently active.
     std::atomic<bool> alarmActive_{false};
-
-    /** @brief Mutex to protect access to the alarm reason string. */
+    
+    /// Mutex protecting access to the lastReason_ string.
     mutable std::mutex mutex_;
-
-    /** @brief Stores the description of the most recent alarm event. */
+    
+    /// Stores the most recent reason for an alarm trigger.
     std::string lastReason_ = "unknown";
 };
 
