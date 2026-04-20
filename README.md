@@ -291,5 +291,79 @@ A **5-second cooldown** prevents repeated triggers.
 - Use non-root GPIO access
 
 ---
+# Project Development Report
 
+## Abstract
+This report summarises the development journey of Team 22’s Door Intrusion Alarm System from the initial pitch to the final integrated product. The system was developed as a Raspberry Pi-based security solution that detects unauthorized door openings and responds in real time. During development, the project gradually expanded from an initial concept into a complete system combining hardware sensing, NFC-based verification, face recognition, multithreaded control logic, API support, and final integration testing.
+
+## 1. Introduction
+The aim of this project was to design and implement a Door Intrusion Alarm System using Raspberry Pi. The system was intended to monitor door activity, verify whether access was authorized, and respond immediately to suspicious events. In the original pitch, the team proposed a real-time alarm system that could detect when a door was opened and determine whether the access was valid. If the system detected unauthorized entry, it would trigger a buzzer and send notifications.
+
+From the beginning, a key requirement was real-time performance. The system needed to respond quickly, process different events in parallel, and avoid false alarms. Because of this, the project gradually developed into a combination of hardware, software, access verification, communication functions, and team-based integration work.
+
+## 2. Development Process
+
+### 2.1 Initial Pitch Stage
+The project began with a pitch that explained the main purpose of the system, its use cases, and the overall architecture. At this stage, the team focused on the problem definition rather than implementation details. The main concept was simple: if the door opened, the system should check whether access had been authorized; if not, it should trigger an alarm and send an alert.
+
+### 2.2 Task Allocation and Team Planning
+After the pitch, the team divided the work according to different technical areas so that development could proceed in parallel.
+
+- **David (Tian):** API development
+- **Jinyuyuan:** Main program and FSM design
+- **Parth:** Camera integration and face recognition
+- **Pooja:** Hardware, NFC connection, and final integration
+
+This division made the project more manageable and allowed each team member to focus on a specialised part of the system while still contributing to the final integrated product.
+
+### 2.3 Main Program and FSM Design
+A major part of the project was the design of the main program and finite state machine. This provided the system with its overall decision-making structure. The system needed to coordinate multiple inputs, including door events, NFC access events, camera recognition results, and remote interactions. Since these events could happen at different times, the project adopted a multithreaded design rather than a simple sequential program.
+
+### 2.4 Hardware and NFC Development
+The hardware side included GPIO interrupts, switch reading, LED and buzzer control, debounce handling, NFC reader integration, and final integration support. This part was essential because reliable hardware behaviour formed the basis of the entire alarm system. NFC integration also allowed the system to distinguish authorized access from suspicious entry attempts.
+
+### 2.5 Camera and Face Recognition Development
+The camera and face recognition module added a second method of access verification and made the system more advanced than a basic alarm system. This allowed the project to include identity-based verification in addition to NFC-based access.
+
+### 2.6 API Development
+The API provided a communication layer between the core system and external interfaces. This helped the project move beyond a standalone local alarm and towards a more structured and extensible software system. It also supported later integration and final testing.
+
+## 3. GitHub Collaboration and Integration
+An important part of the project was the collaborative development workflow. Each team member completed their own assigned module and uploaded their code to GitHub. This allowed the project to be developed in parallel and kept the work organised and traceable.
+
+After the main modules had been developed, the team merged their code into a shared main branch. This final branch represented the integrated version of the project and reflected a realistic software engineering workflow.
+
+## 4. Final Assembly and Testing
+After the code had been developed and merged, all team members participated in the final assembly of the product. This stage involved connecting the hardware components, checking the Raspberry Pi setup, and ensuring that the software modules worked together correctly.
+
+The final product combined:
+- door sensor input
+- NFC reader verification
+- camera and face recognition
+- alarm logic
+- buzzer output
+- API-related communication
+
+Once assembly was completed, the team carried out final testing to verify that:
+- the door sensor could detect opening events correctly
+- authorized access could be identified
+- unauthorized access could trigger the alarm
+- the buzzer and related response worked properly
+- the complete system behaved reliably after integration
+
+## 5. Challenges and Reflection
+One of the main challenges of the project was integration. During the earlier stages, each team member focused on their own technical area, but in the final stage, all parts needed to operate together without conflicts.
+
+Another challenge was coordinating both hardware and software at the same time. Because this was an embedded system, success depended not only on code quality, but also on stable hardware interaction, correct timing, and reliable event handling.
+
+The project also highlighted the importance of teamwork. Clear task division improved development efficiency, but the final outcome depended on collaboration, GitHub merging, final assembly, and shared testing.
+
+## 6. Conclusion
+In conclusion, the Door Intrusion Alarm System project developed from an initial pitch idea into a fully integrated Raspberry Pi-based security product. The project started with a clear concept of real-time intrusion detection and gradually evolved into a complete system through task division, technical development, GitHub collaboration, product assembly, and testing.
+
+Each member contributed to a different core part of the system: David developed the API, Jinyuyuan designed the main program and FSM, Parth implemented camera integration and face recognition, and Pooja worked on hardware and NFC integration. In addition, all group members took part in the final product assembly, uploaded their code to GitHub, merged their work into the main branch, and completed system testing together.
 ```
+---
+<img width="1280" height="1706" alt="ff0795bbe05c10bd17ccedd955a49808" src="https://github.com/user-attachments/assets/1a8ae6a5-ea79-49a4-b960-ea046ae199e3" />
+<img width="1280" height="1706" alt="e24f691b257cf67265285f468d3b7750" src="https://github.com/user-attachments/assets/495b5320-6d12-4605-a419-bff2036d883c" />
+---
