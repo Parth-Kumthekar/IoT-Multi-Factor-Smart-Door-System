@@ -1,4 +1,12 @@
 This document outlines the wiring and pin configuration for the Pico W and Raspberry Pi 5 based access control system.
+installing the image to raspberry pi5 - boot image
+<img width="802" height="611" alt="image" src="https://github.com/user-attachments/assets/22a490d6-1376-447a-9073-a51a4f36e3f4" />
+Raspberry Pi Imaging Utility
+
+To install on Raspberry Pi OS, use sudo apt update && sudo apt install rpi-imager.
+Download the latest version for Windows, macOS and Ubuntu from the Raspberry Pi downloads page.
+
+
 <img width="2123" height="1307" alt="image" src="https://github.com/user-attachments/assets/1123f9a0-3b3b-4554-b481-ba6fd65ae820" />
 <img width="3275" height="1069" alt="image" src="https://github.com/user-attachments/assets/19d3fb02-0561-4b75-b1c3-ce83f117d835" />
 
@@ -11,6 +19,37 @@ This document outlines the wiring and pin configuration for the Pico W and Raspb
 (7) Buzzer
 (8) Pico W
 
+
+2. Install Dependencies
+Bash
+sudo apt install -y build-essential cmake libgpiod-dev libcurl4-openssl-dev libssl-dev
+
+4. Serial Port Configuration (Raspberry Pi 5)
+Since this project uses the hardware UART (ttyAMA0 / ttyAMA10), you must disable the Linux serial console to prevent data corruption:
+
+Run sudo raspi-config.
+
+Navigate to Interface Options -> Serial Port.
+
+Select No for "Would you like a login shell to be accessible over serial?".
+
+Select Yes for "Would you like the serial port hardware to be enabled?".
+
+Reboot your Raspberry Pi.
+
+4. Permissions
+Ensure your user has permission to access the serial and GPIO hardware:
+
+Bash
+sudo usermod -a -G dialout $USER
+sudo usermod -a -G gpio $USER
+(Note: You must log out and back in for group changes to take effect.)
+
+🚀 Building the Project
+Once the dependencies are installed, use the following commands to compile the system:
+
+Bash
+./build.sh
 
 
 ## 1. ReadPi and Raspberry Pi 5 Interfacing (NFC UID Transfer)
