@@ -15,9 +15,9 @@ include_directories(
     ${CMAKE_SOURCE_DIR}/src
 )
 
-set(COMMON_SOURCES
-    main.cpp
-    src/AsyncLogger.cpp
+set(SOURCES
+    main_cam.cpp
+    src/Logger.cpp
     src/DoorLock.cpp
     src/FaceRecognizer.cpp
     src/CameraThread.cpp
@@ -30,11 +30,12 @@ add_executable(faceid_door ${SOURCES})
 target_link_libraries(faceid_door
     ${OpenCV_LIBS}
     ${LIBGPIOD_LIBRARIES}
-    pthread
+    $<$<BOOL:${UNIX}>:pthread>
+    $<$<BOOL:${UNIX}>:lccv>  
 )
 
-add_executable(capture_dataset scripts/capture_dataset.cpp)
+add_executable(capture_dataset tools/capture_dataset.cpp)
 target_link_libraries(capture_dataset ${OpenCV_LIBS} pthread)
 
-add_executable(build_database scripts/build_database.cpp)
+add_executable(build_database tools/build_database.cpp)
 target_link_libraries(build_database ${OpenCV_LIBS} pthread)

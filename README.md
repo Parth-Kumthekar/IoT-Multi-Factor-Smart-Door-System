@@ -124,7 +124,7 @@ Project Root/
 │   ├── RecognitionThread.cpp
 │   └── SignalHandler.h
 │
-├── scripts/
+├── Tools/
 │   ├── capture_dataset.cpp
 │   └── build_database.cpp
 │
@@ -174,14 +174,14 @@ make -j4
 ### 1. Enrol faces
 
 ```bash
-./build/capture_dataset
+./build/CaptureDataset
 # Enter a name → press 'c' 10–20 times to capture → 'q' for next person → type 'exit'
 ```
 
 ### 2. Build embedding database
 
 ```bash
-./build/build_database
+./build/BuildDatabase
 # Writes database/embeddings.yml
 ```
 
@@ -211,7 +211,7 @@ A **5-second cooldown** prevents repeated triggers.
 
 ## Security notes
 
-- Cosine similarity on a single embedding is suitable for a home project
+- Cosine similarity on a single embedding is suitable for a Raspberry Pi project
   but is **not** hardened against spoofing (printed photo, video replay).
 - For higher security add liveness detection (blink challenge / depth camera).
 - Run as a dedicated non-root user; grant GPIO access via the `gpio` group:
