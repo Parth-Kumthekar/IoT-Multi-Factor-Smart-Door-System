@@ -27,16 +27,20 @@ public:
 
     DoorAlarmFSM(AlarmManager& alarmManager, AsyncLogger& logger);
 
+    // --- Core Logic ---
     void handleEvent(const Event& event);
     void setAuthorizationWindow(Ms window);
-    void printStatus(); // Moved to public so DoorAlarmSystem can call it
-
+    
+    // --- Getters (Thread-Safe) ---
     State getState() const;
+    std::string getStateString() const; // For Web API JSON
     bool isDoorOpen() const;
     bool isAlarmActive() const;
     std::optional<Clock::time_point> getVerificationDeadline() const;
 
+    // --- Static Helpers ---
     static std::string toString(State state);
+    void printStatus();
 
 private:
     // Event Handlers
@@ -49,18 +53,17 @@ private:
     
     // Internal Helpers
     void clearAuthorizationWindow();
-    void printStatusInternal(); // FIXED: Added declaration for the .cpp helper
+    void printStatusInternal(); 
 
-    // MEMBER VARIABLES
-    // Reordered to match Constructor Initialization: 
-    // state_ -> doorOpen_ -> alarmManager_ -> logger_
-    State state_ = State::ArmedIdle;
-    bool doorOpen_ = false;
+private:
+    // Order matches constructor initialization list
+    State state_;
+    bool doorOpen_;
     AlarmManager& alarmManager_;
     AsyncLogger& logger_;
 
-    mutable std::mutex mutex_;
-    Ms authorizationWindow_{Ms(5000)};
+    mutable std::mutex mutex_; // mutable allows locking inside const getters
+    Ms authorizationWindow_;
     std::optional<Clock::time_point> verificationDeadline_;
 };
 
