@@ -169,7 +169,23 @@ Relay NO  ─── Solenoid +
 
 ```bash
 sudo apt update
-sudo apt install -y     cmake build-essential git     libgstreamer1.0-dev     gstreamer1.0-plugins-base     gstreamer1.0-plugins-good     gstreamer1.0-plugins-bad     gstreamer1.0-libcamera     libcamera-dev     libgpiod-dev
+sudo apt install -y     
+    cmake build-essential git \
+    libgstreamer1.0-dev \
+    libgstreamer-plugins-base1.0-dev \
+    libgstreamer-plugins-bad1.0-dev \
+    gstreamer1.0-plugins-base \
+    gstreamer1.0-plugins-good \
+    gstreamer1.0-plugins-bad \
+    gstreamer1.0-plugins-ugly \
+    gstreamer1.0-libcamera \
+    gstreamer1.0-tools \
+    gstreamer1.0-libav \
+    libcamera-dev \
+    libavcodec-dev libavformat-dev libswscale-dev \
+    libgtk-3-dev libjpeg-dev libpng-dev libtiff-dev \
+    libgpiod-dev
+
 ```
 
 ---
@@ -210,23 +226,40 @@ Project Root/
 
 ---
 
+## Build
+
+```bash
+mkdir build && cd build
+cmake .. -DCMAKE_BUILD_TYPE=Release
+make -j4
+```
+
+
+
 #  Workflow
 
 ## Capture Dataset
 ```
 ./CaptureDataset
+# Enter a name, press 'c' ~10–20 times, then 'q'
+# Repeat for each person
+
 ```
 
 ## Build Database
 ```
 ./BuildDatabase
+# Produces database/embeddings.yml
 ```
 
 ## Run System
 ```
 ./faceid_door
-```
+# Press ESC to quit
 
+```
+The door unlocks for **3 seconds** on a confirmed match.  
+A **5-second cooldown** prevents repeated triggers.
 ---
 
 #  Alarm Commands
