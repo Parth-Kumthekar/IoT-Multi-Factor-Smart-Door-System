@@ -5,7 +5,9 @@
 
 extern AsyncLogger gLogger;   
 
-DoorController::DoorController() : relay_(kRelayPin, 0) {
+DoorController::DoorController() : relay_(kRelayPin, 0),
+      greenLed_(kGreenLedPin, 0),
+      redLed_(kRedLedPin, 0){
     // TIMER THREAD
     timerThread_ = std::thread(&DoorController::timerLoop, this);
 
@@ -14,7 +16,7 @@ DoorController::DoorController() : relay_(kRelayPin, 0) {
         onAccessEvent(ev);
     });
 
-    std::cout << "[Door] Controller ready, relay on BCM " << kRelayPin << '\n';
+    std::cout << " Controller ready, relay on BCM " << kRelayPin << '\n';
 }
 
 DoorController::~DoorController() {
@@ -26,9 +28,22 @@ DoorController::~DoorController() {
 }
 
 void DoorController::onAccessEvent(const AccessEvent& ev) {
-    if (ev.result == AuthResult::DENIED) return;   
+    if (ev.result == AuthResult::DENIED){
+        redLed_.high();   // turn ON red LED
+        greenLed_.low();  // ensure green OFF
 
+        std::cout << "[Door] Access denied\n";
+
+        // turn OFF red LED after short delay
+        std::thread([this]() {
+            std::this_thread::sleep_for(std::chrono::seconds(2));
+            redLed_.low();
+        }).detach();
+     return; 
+    }  
+    redLed_.low();
     if (tryUnlock(ev.identity)) {
+        greenLed_.high(); // turn ON green LED
         gLogger.log(ev);             
     }
 }
@@ -60,22 +75,29 @@ bool DoorController::tryUnlock(const std::string& identity) {
 }
 
 void DoorController::timerLoop() {
-    while (running_.load()) {
+   while (running_.load()) {
         std::unique_lock<std::mutex> lk(timerMutex_);
         
         timerCv_.wait(lk, [this]{
             return timerArmed_ || !running_.load();
         });
+
         if (!running_.load()) break;
+
         timerArmed_ = false;
         lk.unlock();
 
-        
         std::this_thread::sleep_for(
             std::chrono::milliseconds(kUnlockDurationMs));
 
+        //  LOCK DOOR
         relay_.low();
         state_.store(State::LOCKED);
-        std::cout << "[Door] Re-locked after " << kUnlockDurationMs << "ms\n";
+
+        // RESET LEDs
+        greenLed_.low();
+        redLed_.low();
+
+        std::cout << "[Door] Re-locked\n";
     }
 }
