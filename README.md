@@ -362,12 +362,7 @@ The project also highlighted the importance of teamwork. Clear task division imp
 In conclusion, the Door Intrusion Alarm System project developed from an initial pitch idea into a fully integrated Raspberry Pi-based security product. The project started with a clear concept of real-time intrusion detection and gradually evolved into a complete system through task division, technical development, GitHub collaboration, product assembly, and testing.
 
 Each member contributed to a different core part of the system: David developed the API, Jinyuyuan designed the main program and FSM, Parth implemented camera integration and face recognition, and Pooja worked on hardware and NFC integration. In addition, all group members took part in the final product assembly, uploaded their code to GitHub, merged their work into the main branch, and completed system testing together.
-```
----
-## picture
-<img width="1280" height="1706" alt="ff0795bbe05c10bd17ccedd955a49808" src="https://github.com/user-attachments/assets/1a8ae6a5-ea79-49a4-b960-ea046ae199e3" />
-<img width="1280" height="1706" alt="e24f691b257cf67265285f468d3b7750" src="https://github.com/user-attachments/assets/495b5320-6d12-4605-a419-bff2036d883c" />
----
+
 # Hardware Setup and Deployment Guide
 
 ## Overview
@@ -478,3 +473,6 @@ Bash
 | **GP14** | Buzzer | Audio Feedback |
 | **GP15** | Status LED | System Status Indicator |
 ---
+## Picture
+<img width="1280" height="1706" alt="e24f691b257cf67265285f468d3b7750" src="https://github.com/user-attachments/assets/caa300a2-4ec9-47ce-ad7b-605a78389e5a" />
+<img width="1280" height="1706" alt="ff0795bbe05c10bd17ccedd955a49808" src="https://github.com/user-attachments/assets/041565aa-aa17-48fd-a255-ffa2cfe952cd" />
