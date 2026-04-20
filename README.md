@@ -104,25 +104,7 @@ The `DoorAlarmFSM` class manages the security logic using explicit states.
 
 This makes the security logic explicit, readable, and easy to test.
 
----
-
-## Project Structure
-```text
-.
-├── CMakeLists.txt
-├── include/
-│   ├── AlarmManager.h
-│   ├── AsyncLogger.h
-│   ├── DoorAlarmFSM.h
-│   ├── DoorAlarmSystem.h
-│   ├── Event.h
-│   └── EventQueue.h
-└── src/
-    ├── DoorAlarmFSM.cpp
-    ├── DoorAlarmSystem.cpp
-    └── main.cpp
-
-DoorAlarmSystem
+## DoorAlarmSystem
 
 Top-level controller of the whole system.
 It:
@@ -393,3 +375,22 @@ Bash
 | **GP22** | Joystick SW | Button Press |
 | **GP14** | Buzzer | Audio Feedback |
 | **GP15** | Status LED | System Status Indicator |
+
+---
+
+## Project Structure
+```text
+.
+├── CMakeLists.txt
+├── include/
+│   ├── AlarmManager.h
+│   ├── AsyncLogger.h
+│   ├── DoorAlarmFSM.h
+│   ├── DoorAlarmSystem.h
+│   ├── Event.h
+│   └── EventQueue.h
+└── src/
+    ├── DoorAlarmFSM.cpp
+    ├── DoorAlarmSystem.cpp
+    └── main.cpp
+
