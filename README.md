@@ -1,213 +1,261 @@
-# Door Alarm Thread Design Project
+#  IoT Multi-Factor Smart Door System — Raspberry Pi 5
 
-## Overview
-This project is a simplified **door access alarm system** implemented in **C++17**.  
-It demonstrates how a multi-threaded event-driven architecture can be used to manage door security logic, user authorization, and alarm handling in a clean and modular way.
+This project presents a secure smart door access system using IoT and multi-factor authentication. It combines multiple verification methods such as RFID, and faical recognition to ensure only authorized users can unlock the door. The system is built using raspberry pi and connected modules, enabling real-time monitoring and remote access control. By requiring more than one authentication factor, it significantly enhances security compared to traditional single-method locking systems.
 
-The system is built around three core ideas:
+A **real-time IoT-based smart door security system** combining:
 
-- **Thread Design**: separate threads handle control logic, timer checking, alarm output, and asynchronous logging.
-- **Event Queue**: all system actions are converted into events and processed in a thread-safe queue.
-- **Finite State Machine (FSM)**: the door alarm behaviour is controlled by explicit system states and transitions.
-
-This project is suitable as a course demonstration of **concurrency design**, **event-driven programming**, and **FSM-based control logic** in an embedded or Raspberry Pi style security system.
+- Face Recognition (OpenCV + ONNX)
+- NFC based Authentication
+- Door Sensor Monitoring
+- FSM-based Alarm System
+- Multi-threaded Event-Driven Architecture
 
 ---
 
-## Main Features
-- Arm and disarm the security system
-- Detect simulated door open and close events
-- Support authorization by **NFC** or **APP**
-- Trigger alarm when the door is opened without valid authorization
-- Use a **verification timeout window** before raising the alarm
-- Print asynchronous system logs with timestamps
-- Demonstrate safe communication between threads using a shared event queue
+#  System Overview
+
+## Smart Door Lock
+- Real-time face recognition using camera
+- Relay-controlled solenoid lock
+- Unlock cooldown + timer-based relocking
+- Uses GStreamer (`libcamerasrc`) pipeline
+
+## Door Alarm System
+- FSM-based control logic
+- Event-driven architecture
+- NFC / App authorization
+- Alarm trigger on unauthorized access
 
 ---
 
-## System Architecture
+#  System Architecture
 
-### 1. Thread Design
-The system uses multiple threads to separate responsibilities:
+## High-Level Architecture
 
-- **Control Thread**  
-  Continuously consumes events from the event queue and sends them to the FSM for processing.
+```mermaid
+flowchart LR
+    CAM[Camera Thread] --> REC[Recognition Thread]
+    REC --> BUS[EventBus]
 
-- **Timer Thread**  
-  Periodically checks whether the authorization window has expired.  
-  If timeout happens, it posts a `VerificationTimeout` event to the queue.
+    BUS --> FSM[DoorAlarmFSM]
+    FSM --> DOOR[Door Controller]
+    FSM --> ALARM[Alarm Manager]
 
-- **Alarm Thread**  
-  Managed by `AlarmManager`, responsible for simulating alarm actions such as buzzer, red LED, and user notification.
-
-- **Logger Thread**  
-  Managed by `AsyncLogger`, prints system logs asynchronously so that logging does not block the main control flow.
-
-This design improves modularity and makes the system easier to extend for real hardware integration.
+    FSM --> LOGGER[Async Logger]
+    LOGGER --> GUI[GUI Server]
+```
 
 ---
 
-### 2. Event Queue
-The `EventQueue` class is the core communication mechanism between threads.
+## Event Flow
 
-It provides:
-- thread-safe event insertion
-- blocking event waiting
-- timed waiting
-- non-blocking pop
-- clean shutdown support
+```mermaid
+flowchart TD
+    A[Camera Frame] --> B[Face Detection]
+    B --> C[Embedding Model]
+    C --> D[Compare Database]
+    D --> E{Match?}
 
-All actions in the system are represented as events, such as:
-- `ArmSystem`
-- `DisarmSystem`
-- `DoorOpened`
-- `DoorClosed`
-- `AuthorizedByNfc`
-- `AuthorizedByApp`
-- `VerificationTimeout`
-- `PrintStatus`
-- `Shutdown`
+    E -->|Yes| F[GRANTED Event]
+    E -->|No| G[DENIED Event]
 
-This event-driven approach reduces direct coupling between modules and makes the control flow clearer.
+    F --> H[FSM]
+    G --> H
+
+    H --> I[Door / Alarm Action]
+```
 
 ---
 
-### 3. Finite State Machine (FSM)
-The `DoorAlarmFSM` class manages the security logic using explicit states.
+## Multi-Threaded Design
 
-#### FSM States
-- `Disarmed`  
-  System is inactive. Door opening is allowed.
+```mermaid
+flowchart TD
+    subgraph Threads
+        T1[Camera Thread]
+        T2[Recognition Thread]
+        T3[Control Thread]
+        T4[Timer Thread]
+        T5[Alarm Thread]
+        T6[Logger Thread]
+        T7[GUI Thread]
+    end
 
-- `ArmedIdle`  
-  System is armed and waiting for events.
-
-- `PendingVerification`  
-  Door has opened while armed, and the system is waiting for valid authorization within a limited time window.
-
-- `AuthorizedEntry`  
-  Valid authorization has been received, so entry is temporarily allowed.
-
-- `AlarmActive`  
-  No valid authorization was received before timeout, so the alarm is triggered.
-
-- `Fault`  
-  Reserved for future fault-handling extension.
-
-#### Example Transition Logic
-- `Disarmed -> ArmedIdle` when the system is armed
-- `ArmedIdle -> PendingVerification` when the door opens
-- `PendingVerification -> AuthorizedEntry` when NFC/APP authorization succeeds in time
-- `PendingVerification -> AlarmActive` when verification times out
-- `AuthorizedEntry -> ArmedIdle` when the door is closed
-- any state -> `Disarmed` when the system is disarmed
-
-This makes the security logic explicit, readable, and easy to test.
+    T1 --> T2
+    T2 --> T3
+    T3 --> T4
+    T3 --> T5
+    T3 --> T6
+    T6 --> T7
+```
 
 ---
 
-## Project Structure
-```text
-.
+## Door Control Flow
+
+```mermaid
+flowchart TD
+    A[Access Event] --> B{Authorized?}
+    B -->|No| C[Ignore]
+    B -->|Yes| D[Check Cooldown]
+
+    D -->|OK| E[Unlock Relay]
+    E --> F[Start Timer]
+    F --> G[Relock Door]
+```
+
+---
+
+## FSM State Machine
+
+```mermaid
+stateDiagram-v2
+    [*] --> Disarmed
+
+    Disarmed --> ArmedIdle : Arm
+    ArmedIdle --> Disarmed : Disarm
+
+    ArmedIdle --> PendingVerification : Door Open
+    PendingVerification --> AuthorizedEntry : NFC/App OK
+    PendingVerification --> AlarmActive : Timeout
+
+    AuthorizedEntry --> ArmedIdle : Door Closed
+    AlarmActive --> Disarmed : Disarm
+```
+
+---
+
+## Event Queue
+
+```mermaid
+flowchart LR
+    Producers --> Queue[EventQueue] --> FSM
+
+    subgraph Producers
+        Camera
+        GUI
+        Timer
+    end
+```
+
+---
+
+#  Hardware
+
+| Component | Notes |
+|----------|------|
+| Raspberry Pi 5 | Main compute |
+| Camera Module | CSI interface |
+| Relay Module | Active HIGH |
+| Solenoid Lock | 12V |
+| Power Supply | 5V + 12V |
+
+---
+
+#  Wiring
+```
+Pi BCM17 ─── Relay IN
+Pi 5V   ─── Relay VCC
+Pi GND  ─── Relay GND
+
+Relay COM ─── 12V +
+Relay NO  ─── Solenoid +
+```
+
+---
+
+#  Software Dependencies
+
+```bash
+sudo apt update
+sudo apt install -y     cmake build-essential git     libgstreamer1.0-dev     gstreamer1.0-plugins-base     gstreamer1.0-plugins-good     gstreamer1.0-plugins-bad     gstreamer1.0-libcamera     libcamera-dev     libgpiod-dev
+```
+
+---
+
+#  Project Structure
+
+```
+Project Root/
+├── main.cpp
 ├── CMakeLists.txt
 ├── include/
-│   ├── AlarmManager.h
+│   ├── AccessEvent.h
 │   ├── AsyncLogger.h
-│   ├── DoorAlarmFSM.h
-│   ├── DoorAlarmSystem.h
-│   ├── Event.h
-│   └── EventQueue.h
-└── src/
-    ├── DoorAlarmFSM.cpp
-    ├── DoorAlarmSystem.cpp
-    └── main.cpp
+│   ├── CameraThread.h
+│   ├── DoorController.h
+│   ├── EventBus.h
+│   ├── FaceRecognizer.h
+│   ├── GpioPin.h
+│   ├── OverrideManager.h
+│   ├── RecognitionThread.h
+│   ├── ThreadSafeQueue.h
+│   └── FrameData.h
+├── src/
+│   ├── AsyncLogger.cpp
+│   ├── CameraThread.cpp
+│   ├── DoorController.cpp
+│   ├── FaceRecognizer.cpp
+│   ├── GUIServer.cpp
+│   ├── RecognitionThread.cpp
+│   └── DoorAlarmSystem.cpp
+├── tools/
+│   ├── capture_dataset.cpp
+│   └── build_database.cpp
+├── models/
+├── dataset/
+└── database/
+```
 
-DoorAlarmSystem
+---
 
-Top-level controller of the whole system.
-It:
+#  Workflow
 
-starts and stops all components
-owns the event queue
-launches the control thread and timer thread
-forwards events into the system
-DoorAlarmFSM
+## Capture Dataset
+```
+./CaptureDataset
+```
 
-Implements the system state machine.
-It:
+## Build Database
+```
+./BuildDatabase
+```
 
-handles all incoming events
-manages state transitions
-controls the authorization window
-interacts with the alarm manager and logger
-EventQueue
+## Run System
+```
+./faceid_door
+```
 
-A thread-safe queue for inter-thread communication.
-It ensures that events are processed safely and in order.
+---
 
-AlarmManager
+#  Alarm Commands
 
-Runs a dedicated alarm thread.
-It simulates alarm behaviour such as:
+- arm
+- disarm
+- door_open
+- door_close
+- nfc_ok
+- app_ok
+- status
+- quit
 
-buzzer ON/OFF
-LED status
-user notification logging
-AsyncLogger
+---
 
-Runs a dedicated logging thread and prints timestamped messages asynchronously.
+#  Tuning
 
-Build Instructions
-Requirements
-C++17 compatible compiler
-CMake 3.16 or above
-Build
-mkdir build
-cd build
-cmake ..
-cmake --build .
-Run
-./door_alarm
+- kMatchThreshold → accuracy
+- kUnlockDurationMs → unlock time
+- kCooldownMs → delay
+- kDetectEvery → frame skipping
 
-On Windows:
+---
 
-door_alarm.exe
-Console Commands
+# Security Notes
 
-After running the program, you can enter the following commands:
+- Not spoof-proof
+- Add liveness detection
+- Use non-root GPIO access
 
-arm        -> arm system
-disarm     -> disarm system
-door_open  -> simulate door open
-door_close -> simulate door close
-nfc_ok     -> simulate valid NFC auth
-app_ok     -> simulate valid APP auth
-status     -> print system status
-help       -> show commands
-quit       -> exit program
-Example Test Flow
-Authorized Access
-arm
-door_open
-nfc_ok
-door_close
+---
 
-Expected result:
-
-system enters PendingVerification
-valid NFC authorization is accepted
-state changes to AuthorizedEntry
-after door closes, system returns to ArmedIdle
-no alarm is triggered
-Unauthorized Access
-arm
-door_open
-wait until timeout
-
-Expected result:
-
-system enters PendingVerification
-no valid authorization is received
-timeout event is generated
-state changes to AlarmActive
-alarm thread reports buzzer/LED warning
+```
