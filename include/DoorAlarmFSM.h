@@ -9,6 +9,10 @@
 #include <optional>
 #include <string>
 
+/**
+ * @class DoorAlarmFSM
+ * @brief Logic engine implementing the security state machine.
+ */
 class DoorAlarmFSM
 {
 public:
@@ -27,23 +31,28 @@ public:
 
     DoorAlarmFSM(AlarmManager& alarmManager, AsyncLogger& logger);
 
+    // Main entry point for state changes
     void handleEvent(const Event& event);
+    
+    // Configuration
     void setAuthorizationWindow(Ms window);
     
-    // Thread-safe Accessors
+    // --- Thread-safe Accessors ---
     State getState() const;
     bool isDoorOpen() const;
     bool isAlarmActive() const;
+    
+    // Returns the point in time when the alarm will trigger if not authorized
     std::optional<Clock::time_point> getVerificationDeadline() const;
 
-    // Static helper for logging and API
+    // Static helper for external classes (API/System) to get state names
     static std::string toString(State state);
 
-    // Public wrapper for status logging
+    // Public wrapper that handles locking before logging status
     void printStatus();
 
 private:
-    // Internal Transition Handlers (Called by handleEvent)
+    // Internal handlers (Assumes mutex is already locked)
     void handleArm(const std::string& source);
     void handleDisarm(const std::string& source);
     void handleDoorOpened(const std::string& source);
@@ -52,7 +61,7 @@ private:
     void handleVerificationTimeout(const std::string& source);
     
     void clearAuthorizationWindow();
-    void printStatusInternal(); // The one that actually does the work
+    void printStatusInternal(); 
 
 private:
     State state_;
@@ -60,7 +69,9 @@ private:
     AlarmManager& alarmManager_;
     AsyncLogger& logger_;
     
-    mutable std::mutex mutex_; // Protected with mutable for const getters
+    // Mutable allows const-qualified getters to perform thread-safe locking
+    mutable std::mutex mutex_; 
+    
     Ms authorizationWindow_;
     std::optional<Clock::time_point> verificationDeadline_;
 };
