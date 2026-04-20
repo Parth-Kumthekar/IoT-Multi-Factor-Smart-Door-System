@@ -7,64 +7,77 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # 1. Find System Dependencies
 find_package(Threads REQUIRED)
 find_package(CURL REQUIRED)
+find_package(OpenCV REQUIRED)
+find_package(PkgConfig REQUIRED)
 
-# 2. Comprehensive Source Definitions
-# CORE_SOURCES: Logic that can be tested WITHOUT Raspberry Pi hardware.
+# IoT & Camera specific modules
+pkg_check_modules(LIBGPIOD REQUIRED libgpiod)
+pkg_check_modules(LIBCAMERA REQUIRED libcamera)
+
+# 2. Source Definitions
+# Core logic shared between main app and tests
 set(CORE_SOURCES
     src/DoorAlarmFSM.cpp
     src/AlarmManager.cpp
     src/AsyncLogger.cpp
     src/EmailAlert.cpp
     src/AccessController.cpp
-    src/EventQueue.cpp 
+    src/OutputController.cpp
+    src/NFCReader.cpp
+    src/GPIOPin.cpp
 )
 
-# HARDWARE_SOURCES: Logic that requires libgpiod or serial drivers (Pi specific).
-set(HARDWARE_SOURCES
-    src/NFCReader.cpp
-    src/OutputController.cpp
-    src/GPIOPin.cpp
-    src/DoorAlarmSystem.cpp
+# Face Recognition specific sources
+set(FACE_ID_SOURCES
+    src/LoggerCam.cpp
+    src/DoorLock.cpp
+    src/FaceRecognizer.cpp
+    src/CameraThread.cpp
+    src/RecognitionThread.cpp
+    #src/GUIServer.cpp
 )
 
 # 3. Main Application Executable
-# Combines everything + main.cpp
+# This now includes both the Door logic and the FaceID logic
 add_executable(door_alarm
     src/main.cpp
+    src/DoorAlarmSystem.cpp
     ${CORE_SOURCES}
-    ${HARDWARE_SOURCES}
+    ${FACE_ID_SOURCES}
 )
 
-# 4. Test Executable
-# Only includes logic files + tests.cpp (Allows testing on a PC/Laptop)
-add_executable(run_tests 
-    tests/tests.cpp 
-    ${CORE_SOURCES}
-)
+# 4. Tools & Utilities
+add_executable(capture_dataset tools/capture_dataset.cpp)
+add_executable(build_database tools/build_database.cpp)
+add_executable(run_tests tests/tests.cpp ${CORE_SOURCES})
 
 # 5. Include Directories
-target_include_directories(door_alarm PRIVATE include vendor)
+target_include_directories(door_alarm PRIVATE 
+    include 
+    vendor 
+    ${OpenCV_INCLUDE_DIRS}
+    ${LIBGPIOD_INCLUDE_DIRS}
+    ${LIBCAMERA_INCLUDE_DIRS}
+)
+
+# Ensure utilities can find headers
+target_include_directories(capture_dataset PRIVATE include ${OpenCV_INCLUDE_DIRS})
+target_include_directories(build_database PRIVATE include ${OpenCV_INCLUDE_DIRS})
 target_include_directories(run_tests PRIVATE include vendor)
 
 # 6. Link Libraries
+# The main app needs EVERYTHING
 target_link_libraries(door_alarm PRIVATE
     Threads::Threads
     CURL::libcurl
     gpiodcxx
+    ${OpenCV_LIBS}
+    ${LIBGPIOD_LIBRARIES}
+    lccv
+    pthread
 )
 
-target_link_libraries(run_tests PRIVATE
-    Threads::Threads
-    CURL::libcurl
-)
-
-# 7. Build Settings
-if(NOT MSVC)
-    set(COMPILE_FLAGS -Wall -Wextra -Wpedantic -O2 -pthread)
-    target_compile_options(door_alarm PRIVATE ${COMPILE_FLAGS})
-    target_compile_options(run_tests PRIVATE ${COMPILE_FLAGS})
-endif()
-
-# 8. CTest Registration
-enable_testing()
-add_test(NAME LogicTests COMMAND run_tests)
+# Link tools with minimal necessary libs
+target_link_libraries(capture_dataset PRIVATE ${OpenCV_LIBS} pthread lccv)
+target_link_libraries(build_database PRIVATE ${OpenCV_LIBS} pthread)
+target_link_libraries(run_tests PRIVATE Threads::Threads CURL::libcurl gpiodcxx)

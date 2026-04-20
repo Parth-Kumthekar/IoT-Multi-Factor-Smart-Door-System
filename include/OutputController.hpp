@@ -60,11 +60,12 @@ private:
     // These are GPIO offsets, not physical pin numbers
 
     /// GPIO offset for the Red LED (Physical Pin 11).
-    unsigned int red_offset = 17;   
+    unsigned int red_offset = 23;   
     
     /// GPIO offset for the Green LED (Physical Pin 13).
     unsigned int green_offset = 27; 
     
     /// GPIO offset for the Buzzer (Physical Pin 15).
-    unsigned int buzzer_offset = 22; 
+    unsigned int buzzer_offset = 22;
+    unsigned int reed_offset = 16; 
 };

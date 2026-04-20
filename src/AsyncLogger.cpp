@@ -12,7 +12,10 @@
  * incoming data without writing it to stdout.
  * @return size_t The number of bytes "processed" (size * nmemb).
  */
+
 size_t write_data(void *buffer, size_t size, size_t nmemb, void *userp) {
+    (void)buffer; 
+    (void)userp;
     return size * nmemb;
 }
 

@@ -34,8 +34,8 @@ public:
 
 private:
     /// File descriptor for the opened serial port.
-    int fd;
-
+   
     /// The string path to the serial device.
     std::string port;
+     int fd;
 };

@@ -11,12 +11,11 @@
 class DoorController {
 public:
     
-    static constexpr unsigned int kRelayPin        = 21; // pin for the solenoid 
-    static constexpr unsigned int kGreenLedPin = 20;
-    static constexpr unsigned int kRedLedPin   = 16;
+    static constexpr unsigned int kRelayPin        = 21;
+      static constexpr unsigned int kGreenLedPin        = 20;
+      static constexpr unsigned int kRedLedPin        = 16;
     static constexpr int          kUnlockDurationMs = 3000;
     static constexpr int          kCooldownMs       = 5000;
-    
 
     DoorController();
     ~DoorController();                   
@@ -38,15 +37,14 @@ private:
 
     // TIMER THREAD
     void timerLoop();
-    GpioPin greenLed_;
-    GpioPin redLed_;    
-    GpioPin  relay_;
-    std::atomic<State>  state_{State::LOCKED};
+
+    GpioPin                               relay_;
+    std::atomic<State>                    state_{State::LOCKED};
     std::chrono::steady_clock::time_point lastUnlock_;
-    bool  firstUnlock_{true};
-    std::mutex  timerMutex_;
-    std::condition_variable  timerCv_;
-    bool  timerArmed_{false};
-    std::thread  timerThread_;
-    std::atomic<bool>  running_{true};
+    bool                                  firstUnlock_{true};
+    std::mutex                            timerMutex_;
+    std::condition_variable               timerCv_;
+    bool                                  timerArmed_{false};
+    std::thread                           timerThread_;
+    std::atomic<bool>                     running_{true};
 };

@@ -5,8 +5,8 @@
 RecognitionThread::RecognitionThread(ThreadSafeQueue<cv::Mat>& queue)
     : queue_(queue) {
     recognizer_.loadModels(
-        "models/haarcascade_frontalface_default.xml",
-        "models/face_recognition.onnx");
+        "/home/team22/IoT-Multi-Factor-Smart-Door-System/models/haarcascade_frontalface_default.xml",
+        "/home/team22/IoT-Multi-Factor-Smart-Door-System/models/face_recognition.onnx");
     recognizer_.loadDatabase("database/embeddings.yml");
 }
 
