@@ -142,13 +142,14 @@ flowchart LR
 
 #  Hardware
 
-| Component | Notes |
-|----------|------|
-| Raspberry Pi 5 | Main compute |
-| Camera Module | CSI interface |
-| Relay Module | Active HIGH |
-| Solenoid Lock | 12V |
-| Power Supply | 5V + 12V |
+| Component            | Notes                                      |
+|----------------------|--------------------------------------------|
+| Raspberry Pi 5       | 4 GB+ recommended                          |
+| Pi Camera Module 3   | Connected via CSI ribbon cable             |
+| 5 V relay module     | Active-HIGH; controls 12 V solenoid lock   |
+| 12 V solenoid lock   | Fail-secure (locked when unpowered)        |
+| 5 V / 3 A PSU        | For the Pi; relay needs its own 12 V rail  |
+
 
 ---
 
