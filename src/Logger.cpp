@@ -1,4 +1,4 @@
-#include "AsyncLogger.h"
+#include "Logger.h"
 #include <iomanip>
 #include <sstream>
 #include <iostream>

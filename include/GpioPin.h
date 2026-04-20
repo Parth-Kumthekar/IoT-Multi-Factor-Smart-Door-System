@@ -50,7 +50,7 @@ public:
 #ifdef REAL_GPIO
         if (line_) gpiod_line_set_value(line_, v);
 #else
-        std::cout << "[GPIO] Pin " << pin_ <<  << v << " \n";
+        std::cout << "[GPIO] Pin " << pin_ << " → " << v << " \n";
 #endif
     }
     void high() { set(1); }
