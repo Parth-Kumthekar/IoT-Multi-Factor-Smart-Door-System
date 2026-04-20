@@ -24,7 +24,7 @@ set(SOURCES
     src/FaceRecognizer.cpp
     src/CameraThread.cpp
     src/RecognitionThread.cpp
-    src/GUIServer.cpp
+    
     
 )
 
