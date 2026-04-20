@@ -1,5 +1,17 @@
 This document outlines the wiring and pin configuration for the Pico W and Raspberry Pi 5 based access control system.
 <img width="2123" height="1307" alt="image" src="https://github.com/user-attachments/assets/1123f9a0-3b3b-4554-b481-ba6fd65ae820" />
+<img width="3275" height="1069" alt="image" src="https://github.com/user-attachments/assets/19d3fb02-0561-4b75-b1c3-ce83f117d835" />
+
+(1) 1.3” Display
+(2) NFC Module
+(3) Joystick
+(4) GPIOs breakout
+(5) Battery Connector
+(6) TF card slot
+(7) Buzzer
+(8) Pico W
+
+
 
 ## 1. ReadPi and Raspberry Pi 5 Interfacing (NFC UID Transfer)
 | Device | ReadPi Pin | RPi 5 Physical Pin | RPi 5 BCM/GPIO | Function |
