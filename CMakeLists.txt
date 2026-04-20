@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(OpenCV REQUIRED)
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(LIBGPIOD REQUIRED libgpiod)
-pkg_check_modules(LIBCAMERA REQUIRED libcameras)
+pkg_check_modules(LIBCAMERA REQUIRED libcamera)
 
 include_directories(
     ${OpenCV_INCLUDE_DIRS}
