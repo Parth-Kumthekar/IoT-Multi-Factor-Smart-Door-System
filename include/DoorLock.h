@@ -11,7 +11,7 @@
 class DoorController {
 public:
     
-    static constexpr unsigned int kRelayPin        = 17; // pin for the solenoid 
+    static constexpr unsigned int kRelayPin        = 21; // pin for the solenoid 
     static constexpr int          kUnlockDurationMs = 3000;
     static constexpr int          kCooldownMs       = 5000;
 
