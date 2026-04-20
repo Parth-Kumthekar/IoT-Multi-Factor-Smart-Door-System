@@ -1,0 +1,8 @@
+build/
+.vs/
+*.obj
+*.exe
+*.bin
+*.recipe
+*.tlog
+*.log
