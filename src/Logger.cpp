@@ -17,7 +17,7 @@ AsyncLogger::AsyncLogger(const std::string& csvPath) : csvPath_(csvPath) {
     if (csv_.tellp() == 0)
         csv_ << "Time,Person,Method,Result,Confidence,Note\n";
 
-    // THREAD: background writer — wakes only when queue has entries
+    // THREAD
     worker_ = std::thread(&AsyncLogger::workerLoop, this);
 }
 

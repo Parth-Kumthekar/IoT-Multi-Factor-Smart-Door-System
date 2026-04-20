@@ -28,40 +28,41 @@ void CameraThread::stop() {
 
 void CameraThread::loop() {
     
-    lccv::PiCamera cam;
-    cam.options->camera      = deviceIndex_;   
-    cam.options->video_width  = width_;
-    cam.options->video_height = height_;
-    cam.options->framerate    = 30;
-    cam.options->verbose      = false;         
+     try {
+        std::string pipeline =
+            "libcamerasrc ! video/x-raw,width=640,height=480,framerate=30/1 "
+            "! videoconvert ! appsink";
 
-    
-    cam.startVideo();
-    std::cout << "LCCV started: "
-              << width_ << "x" << height_ << " @ 30fps\n";
+        cv::VideoCapture cap(pipeline, cv::CAP_GSTREAMER);
 
-    cv::Mat frame;
-    int     emptyCount = 0;
-
-    while (running_.load()) {
-        
-        if (!cam.getVideoFrame(frame, 1000)) {
-            ++emptyCount;
-            if (emptyCount > 10) {
-                std::cerr << "No frames for 10s — "
-                             "check camera cable and config.txt\n";
-                emptyCount = 0;
-            }
-            continue;
+        if (!cap.isOpened()) {
+            std::cerr << "[CAMERA ERROR] Failed to open via GStreamer\n";
+            return;
         }
-        emptyCount = 0;
 
-        if (frame.empty()) continue;
+        std::cout << "[CAMERA] Using libcamera (GStreamer pipeline)\n";
 
-        
-        queue_.pushBounded(frame.clone(), 4);
+        cv::Mat frame;
+
+        while (running_.load()) {
+
+            if (!cap.read(frame)) {
+                std::cerr << "[CAMERA ERROR] Frame read failed\n";
+                continue;
+            }
+
+            if (frame.empty()) {
+                std::cerr << "[CAMERA WARNING] Empty frame\n";
+                continue;
+            }
+
+            queue_.pushBounded(frame.clone(), 4);
+        }
+
+        cap.release();
+        std::cout << "[CAMERA] Stopped\n";
     }
-
-    cam.stopVideo();
-    
+    catch (const std::exception& e) {
+        std::cerr << "[CAMERA EXCEPTION] " << e.what() << std::endl;
+    }
 }
