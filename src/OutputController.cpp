@@ -1,92 +1,82 @@
 #include "OutputController.hpp"
+#include <thread>
+#include <chrono>
 
 /**
  * @brief Initializes the GPIO chip and claims output lines.
- * @details Targets /dev/gpiochip4 for the Raspberry Pi 5 (RP1). 
- * Requests Red, Green, and Buzzer lines in a single bulk request for atomicity.
- * @return true if hardware was successfully claimed, false on exception (e.g., chip busy).
  */
 bool OutputController::init()
 {
     try {
         // gpiochip4 is the standard for RP1 on Raspberry Pi 5
-        chip = std::make_shared<gpiod::chip>("/dev/gpiochip4");
+        chip = gpiod::chip(chip_path);
 
         gpiod::line_settings settings;
-        settings.set_direction(gpiod::line::direction::OUTPUT);
-        settings.set_output_value(gpiod::line::value::INACTIVE);
+        settings.set_direction(gpiod::line_direction::OUTPUT);
+        settings.set_output_value(gpiod::line_value::INACTIVE);
 
         gpiod::line_config cfg;
         // Efficiently request all three lines in a single bulk operation
         cfg.add_line_settings({red_offset, green_offset, buzzer_offset}, settings);
 
-        auto builder = chip->prepare_request();
-        builder.set_line_config(cfg);
-        builder.set_consumer("smart_door_out");
+        // Build and execute the request
+        request = chip.prepare_config()
+                      .set_line_config(cfg)
+                      .set_consumer("smart_door_out")
+                      .request();
 
-        req = std::make_shared<gpiod::line_request>(builder.do_request());
         return true;
     } catch (...) {
-        // Safe fail-state: prevent system crash if hardware is inaccessible
+        // Safe fail-state for Raspberry Pi hardware access
         return false;
     }
 }
 
-/**
- * @brief Controls the state of the Red LED.
- * @param state true for ACTIVE (ON), false for INACTIVE (OFF).
- */
 void OutputController::setRedLed(bool state)
 {
-    if (req) {
-        req->set_value(red_offset, state ? gpiod::line::value::ACTIVE : gpiod::line::value::INACTIVE);
-    }
+    request.set_value(red_offset, state ? gpiod::line_value::ACTIVE : gpiod::line_value::INACTIVE);
 }
 
-/**
- * @brief Controls the state of the Green LED.
- * @param state true for ACTIVE (ON), false for INACTIVE (OFF).
- */
 void OutputController::setGreenLed(bool state)
 {
-    if (req) {
-        req->set_value(green_offset, state ? gpiod::line::value::ACTIVE : gpiod::line::value::INACTIVE);
-    }
+    request.set_value(green_offset, state ? gpiod::line_value::ACTIVE : gpiod::line_value::INACTIVE);
 }
 
-/**
- * @brief Controls the state of the Piezo Buzzer.
- * @param state true for ACTIVE (ON), false for INACTIVE (OFF).
- */
 void OutputController::setBuzzer(bool state)
 {
-    if (req) {
-        req->set_value(buzzer_offset, state ? gpiod::line::value::ACTIVE : gpiod::line::value::INACTIVE);
-    }
+    request.set_value(buzzer_offset, state ? gpiod::line_value::ACTIVE : gpiod::line_value::INACTIVE);
 }
 
 /**
- * @brief Visual and audible "Access Granted" signal.
- * * Turns Green LED ON, Red LED and Buzzer OFF.
+ * @brief "Access Granted" signal.
+ * Added a sleep so the green light is actually visible.
  */
 void OutputController::granted()
 {
-    if (req) {
-        setGreenLed(true);
-        setRedLed(false);
-        setBuzzer(false);
-    }
+    setGreenLed(true);
+    setRedLed(false);
+    setBuzzer(false);
+    
+    // Allow the user to see the green light for 2 seconds
+    std::this_thread::sleep_for(std::chrono::seconds(2));
+    setGreenLed(false);
 }
 
 /**
- * @brief Visual and audible "Access Denied" signal.
- * * Turns Red LED and Buzzer ON, Green LED OFF.
+ * @brief "Access Denied" signal.
+ * Added a pulse loop for better user feedback.
  */
 void OutputController::denied()
 {
-    if (req) {
+    setGreenLed(false);
+    
+    // Pulse red and buzzer 3 times
+    for (int i = 0; i < 3; ++i) {
         setRedLed(true);
-        setGreenLed(false);
         setBuzzer(true);
+        std::this_thread::sleep_for(std::chrono::milliseconds(200));
+        setRedLed(false);
+        setBuzzer(false);
+        std::this_thread::sleep_for(std::chrono::milliseconds(200));
     }
 }

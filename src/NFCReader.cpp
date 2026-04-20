@@ -6,45 +6,49 @@
 
 /**
  * @brief Constructor for the NFC hardware interface.
- * @param p The device path (e.g., "/dev/ttyAMA0" for RPi hardware UART).
+ * FIX: Initialization list ordered to match the Header declaration.
  */
 NFCReader::NFCReader(const std::string &p)
     : port(p), fd(-1) {}
 
 /**
- * @brief Opens the serial port in Read-Only mode.
- * @details Uses O_NOCTTY to prevent the port from becoming the process's 
- * controlling terminal, ensuring stability.
- * @return true if the file descriptor was successfully acquired.
+ * @brief Opens the serial port.
  */
 bool NFCReader::init()
 {
-    fd = open(port.c_str(), O_RDONLY | O_NOCTTY);
+    // O_RDONLY: Read only for security tags
+    // O_NOCTTY: Don't let this port control the terminal
+    // O_NDELAY: Non-blocking open to prevent the system from hanging if the hardware is disconnected
+    fd = open(port.c_str(), O_RDONLY | O_NOCTTY | O_NDELAY);
+    
     if (fd < 0) {
-        // Log to stderr for system diagnostics
-        std::cerr << "[NFC] Failed to open port: " << port << std::endl;
+        std::cerr << "[NFC ERROR] Could not open " << port << ". Check UART permissions." << std::endl;
+        return false;
     }
-    return fd >= 0;
+
+    // After opening, we clear the NDELAY flag so readUID can block efficiently 
+    // inside its dedicated thread without spinning the CPU.
+    fcntl(fd, F_SETFL, 0); 
+    
+    return true;
 }
 
 /**
  * @brief Reads and sanitizes a UID from the serial buffer.
- * @details This is a blocking read. In the multi-threaded DoorAlarmSystem, 
- * this runs in its own nfcThread_ to prevent UI/Logic stuttering.
- * @return std::string The cleaned UID or an empty string on read failure/timeout.
  */
 std::string NFCReader::readUID()
 {
+    if (fd < 0) return "";
+
     char buf[64] = {0};
 
     // Read raw data from the serial driver
-    int n = read(fd, buf, sizeof(buf));
+    ssize_t n = read(fd, buf, sizeof(buf) - 1);
     if (n <= 0) return "";
 
-    // Convert to string safely using the actual number of bytes read
     std::string s(buf, n); 
 
-    // Sanitization: Remove non-printable CRLF characters often sent by NFC modules
+    // Sanitization: Remove CRLF characters
     s.erase(std::remove(s.begin(), s.end(), '\n'), s.end());
     s.erase(std::remove(s.begin(), s.end(), '\r'), s.end());
 

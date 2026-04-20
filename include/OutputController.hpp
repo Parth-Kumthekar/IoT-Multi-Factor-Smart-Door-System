@@ -1,68 +1,43 @@
 #pragma once
 #include <gpiod.hpp>
-#include <memory>
-#include <vector>
+#include <string>
 
 /**
  * @class OutputController
- * @brief Manages the physical feedback components (LEDs and Buzzer).
- * * This class provides a high-level interface to drive the system's actuators.
- * It abstracts the specific GPIO offsets and line requests, allowing the FSM
- * to trigger "Granted" or "Denied" feedback without needing to manage 
- * individual hardware pins.
+ * @brief Manages physical feedback components (LEDs and Buzzer).
  */
 class OutputController {
 public:
+    OutputController() = default;
+
     /**
-     * @brief Initializes the GPIO chip and requests output lines.
-     * * Specifically targets the RP1 chip (gpiochip4) for Raspberry Pi 5.
-     * @return true if the chip was opened and lines were successfully claimed.
+     * @brief Initializes gpiochip4 (RP1) and requests lines.
      */
     bool init();
 
-    /**
-     * @brief Visual and audible feedback for authorized access.
-     * * Synchronously sets the Green LED to active and ensures Red/Buzzer are inactive.
-     */
+    /** @brief Green LED on, Red/Buzzer off. */
     void granted();
 
-    /**
-     * @brief Visual and audible feedback for unauthorized access or security breaches.
-     * * Synchronously activates the Red LED and Buzzer to alert the user/environment.
-     */
+    /** @brief Red LED and Buzzer pulse. */
     void denied();
 
-    /**
-     * @brief Manual control for the Red Status LED.
-     * @param state true to enable current flow to the LED.
-     */
     void setRedLed(bool state);
-
-    /**
-     * @brief Manual control for the Green Status LED.
-     * @param state true to enable current flow to the LED.
-     */
     void setGreenLed(bool state);
-
-    /**
-     * @brief Manual control for the piezoelectric Buzzer.
-     * @param state true to activate the audible alarm.
-     */
     void setBuzzer(bool state);
 
 private:
-    /** @brief Shared pointer to the GPIO chip resource for safe lifecycle management. */
-    std::shared_ptr<gpiod::chip> chip;
+    /** * FIX: Reordered to match logical initialization flow.
+     * We define the chip name and offsets first.
+     */
+    const std::string chip_path = "/dev/gpiochip4"; 
+    
+    unsigned int red_offset = 17;   // BCM 17
+    unsigned int green_offset = 27; // BCM 27
+    unsigned int buzzer_offset = 22; // BCM 22
 
-    /** @brief Shared pointer to the bulk line request managing the three outputs. */
-    std::shared_ptr<gpiod::line_request> req;
-
-    /** @brief GPIO offset for the Red LED (BCM 17 / Physical Pin 11). */
-    unsigned int red_offset = 17;
-
-    /** @brief GPIO offset for the Green LED (BCM 27 / Physical Pin 13). */
-    unsigned int green_offset = 27;
-
-    /** @brief GPIO offset for the Buzzer (BCM 22 / Physical Pin 15). */
-    unsigned int buzzer_offset = 22;
+    /** * libgpiod v2 objects. 
+     * Note: In modern libgpiod, the request object holds the lines.
+     */
+    gpiod::chip chip;
+    gpiod::line_request request;
 };

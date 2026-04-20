@@ -8,6 +8,7 @@
 #include "AlarmManager.h"
 #include "AsyncLogger.h"
 #include "OutputController.hpp" // Mocked or actual
+#include "EventQueue.h"
 
 /**
  * @brief Test Case 1: The "Happy Path"
@@ -97,7 +98,7 @@ void test_event_queue_concurrency() {
     // Consumer: Try to pop them
     int count = 0;
     while(count < 100) {
-        Event e;
+        Event e(EventType::PrintStatus); // Provide a default type for testing
         if(queue.waitAndPop(e)) count++;
     }
 
