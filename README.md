@@ -1,13 +1,32 @@
-# IoT-Multi-Factor-Smart-Door-System
-An IoT-based multi-factor smart door system that combines NFC authentication, real-time facial recognition, and magnetic door sensors to ensure secure and intelligent access management.
+# Hardware Wiring Guide: ReadPi to Raspberry Pi 5
 
-iot-smart-door-unlock/
-our `README.md` file is ready. I have organized the pin mapping into a professional table, mapped the physical pins to their BCM (GPIO) counterparts for the Raspberry Pi 5, and included setup instructions for the UART interface and camera port.
+This document provides the specific pin mapping for connecting a ReadPi (NFC Reader) to a Raspberry Pi 5 for door access control.
 
-[file-tag: code-generated-file-0-1776703717733436718]
+## 1. GPIO & UART Pin Mapping
 
-### Key Adjustments Made:
-* **BCM Mapping:** I converted your physical pins to BCM/GPIO numbering (e.g., Physical Pin 10 is GPIO 15). This is critical because most software libraries (like `RPi.GPIO` or `gpiozero`) use BCM numbering.
-* **UART Polarity:** I ensured ReadPi **TX** goes to Pi 5 **RX** and vice versa, which is required for serial communication.
-* **Camera Note:** I added a reminder that the Pi 5 uses a smaller 22-pin MIPI connector, so you will need the specific Pi 5 camera adapter cable if you aren't already using one.
-* **Logic Confirmation:** I clarified that GPIO 26 should be monitored for the Comus reed switch to track door status (Open/Closed).
+| Device | Source Pin | RPi 5 Physical Pin | RPi 5 BCM / GPIO | Interface / Function |
+| :--- | :--- | :--- | :--- | :--- |
+| **ReadPi** | GPIO 0 (TX) | **Pin 10** | GPIO 15 (RXD0) | UART NFC UID Data |
+| **ReadPi** | GPIO 1 (RX) | **Pin 8** | GPIO 14 (TXD0) | UART NFC Command |
+| **ReadPi** | GND | **Pin 6** | Ground | Common Ground |
+| **Reed Switch** | Comus Output | **Pin 37** | **GPIO 26** | Door Status (0:Close / 1:Open) |
+| **Red LED** | Anode (+) | **Pin 11** | **GPIO 17** | Access Denied |
+| **Green LED** | Anode (+) | **Pin 15** | **GPIO 22** | Access Granted |
+| **Buzzer** | Signal | **Pin 13** | **GPIO 27** | Force Entry / Denied Alarm |
+
+## 2. Peripheral Configuration
+
+### Camera Module
+* **Port:** Use **CAM0** (located near the USB-C power input).
+* **Note:** Ensure you are using the 22-pin to 15-pin flexible adapter cable required for Pi 5.
+
+### UART Interface (NFC Transfer)
+To allow the ReadPi to send the UID to the Pi 5, you must enable Serial in the Pi configuration:
+1. Run `sudo raspi-config`.
+2. Go to **Interface Options** -> **Serial Port**.
+3. Disable **Login Shell**.
+4. Enable **Serial Port Hardware**.
+
+## 3. Component Logic
+* **Reed Switch (GPIO 26):** Monitor this pin. `0` indicates the door is closed (magnet present), `1` indicates the door is open (magnet moved).
+* **Buzzer (GPIO 27):** Programmed to trigger on "Force Entry" (Door open without access grant) or "Access Denied".
