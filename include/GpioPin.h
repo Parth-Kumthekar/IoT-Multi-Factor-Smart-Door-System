@@ -31,7 +31,7 @@ public:
         std::cout << "[GPIO] Output pin " << pin_
                   << " on " << gpiod_chip_name(chip_) << " ready\n";
 #else
-        std::cout << "[GPIO] Pin " << pin_ << " (mock)\n";
+        std::cout << " Pin " << pin_ << " \n";
 #endif
     }
 
@@ -50,7 +50,7 @@ public:
 #ifdef REAL_GPIO
         if (line_) gpiod_line_set_value(line_, v);
 #else
-        std::cout << "[GPIO] Pin " << pin_ << " → " << v << " (mock)\n";
+        std::cout << "[GPIO] Pin " << pin_ << " → " << v << " \n";
 #endif
     }
     void high() { set(1); }

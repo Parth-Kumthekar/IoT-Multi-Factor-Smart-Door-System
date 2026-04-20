@@ -1,5 +1,3 @@
-
-
 #include <opencv2/opencv.hpp>
 #include <filesystem>
 #include <iostream>
@@ -8,7 +6,11 @@
 namespace fs = std::filesystem;
 
 int main() {
-    cv::VideoCapture cap(0, cv::CAP_V4L2);
+    std::string pipeline =
+            "libcamerasrc ! video/x-raw,format=NV12, width=640,height=480,framerate=30/1 ! videoconvert ! appsink";
+
+        cv::VideoCapture cap(pipeline, cv::CAP_GSTREAMER);
+    ;
     if (!cap.isOpened()) {
         std::cerr << "Cannot open camera\n";
         return 1;

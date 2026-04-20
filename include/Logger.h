@@ -5,22 +5,21 @@
 #include "ThreadSafeQueue.h"
 #include "AccessEvent.h"
 
-class Logger {
+class AsyncLogger {
 public:
-    explicit Logger(const std::string& csvPath = "database/access_log.csv");
-    ~Logger();                  
+    explicit AsyncLogger(const std::string& csvPath = "database/access_log.csv");
+    ~AsyncLogger();                  
 
-    Logger(const Logger&)            = delete;
-    Logger& operator=(const Logger&) = delete;
+    AsyncLogger(const AsyncLogger&)            = delete;
+    AsyncLogger& operator=(const AsyncLogger&) = delete;
 
-    // Thread-safe
+   
     void log(AccessEvent ev);
 
     const std::vector<AccessEvent>& entries() const;
 
 private:
     void workerLoop();               
-
     std::string                  csvPath_;
     ThreadSafeQueue<AccessEvent> queue_;
     std::vector<AccessEvent>     entries_;

@@ -11,33 +11,33 @@ static std::string timeStr(std::chrono::system_clock::time_point tp) {
     return ss.str();
 }
 
-Logger::Logger(const std::string& csvPath) : csvPath_(csvPath) {
+AsyncLogger::AsyncLogger(const std::string& csvPath) : csvPath_(csvPath) {
     std::filesystem::create_directories("database");
     csv_.open(csvPath_, std::ios::app);
     if (csv_.tellp() == 0)
         csv_ << "Time,Person,Method,Result,Confidence,Note\n";
 
-    // THREADS
-    worker_ = std::thread(&Logger::workerLoop, this);
+    // THREAD
+    worker_ = std::thread(&AsyncLogger::workerLoop, this);
 }
 
-Logger::~Logger() {
+AsyncLogger::~AsyncLogger() {
     queue_.shutdown();               
     if (worker_.joinable())
         worker_.join();              
     csv_.flush();
 }
 
-void Logger::log(AccessEvent ev) {
+void AsyncLogger::log(AccessEvent ev) {
     queue_.push(std::move(ev));      
 }
 
-void Logger::workerLoop() {
+void AsyncLogger::workerLoop() {
     while (true) {
         auto ev = queue_.pop();      
-        if (!ev) break;             
+        if (!ev) break;              
 
-        // Write CSV row
+        
         csv_ << '"' << timeStr(ev->timestamp) << "\","
              << '"' << ev->identity           << "\","
              << '"' << AccessEvent::methodStr(ev->method) << "\","
@@ -46,7 +46,7 @@ void Logger::workerLoop() {
              << '"' << ev->note               << "\"\n";
         csv_.flush();
 
-        
+        // Print to console
         std::cout << "[LOG] " << timeStr(ev->timestamp)
                   << " | " << AccessEvent::methodStr(ev->method)
                   << " | " << ev->identity
@@ -54,7 +54,7 @@ void Logger::workerLoop() {
         if (!ev->note.empty()) std::cout << " | " << ev->note;
         std::cout << '\n';
 
-        
+        // Store in memory for GUI/API
         {
             std::lock_guard<std::mutex> lk(entriesMutex_);
             entries_.push_back(*ev);
@@ -62,6 +62,6 @@ void Logger::workerLoop() {
     }
 }
 
-const std::vector<AccessEvent>& Logger::entries() const {
-    return entries_;  
+const std::vector<AccessEvent>& AsyncLogger::entries() const {
+    return entries_; 
 }

@@ -3,7 +3,7 @@
 #include "Logger.h"
 #include <iostream>
 
-extern Logger gLogger;   
+extern AsyncLogger gLogger;   
 
 DoorController::DoorController() : relay_(kRelayPin, 0) {
     // TIMER THREAD
