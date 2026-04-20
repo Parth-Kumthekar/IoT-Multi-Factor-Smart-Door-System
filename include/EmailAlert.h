@@ -1,5 +1,4 @@
 #pragma once
-
 #include <string>
 
 class EmailAlert {
@@ -11,9 +10,7 @@ public:
                const std::string& recipientEmail);
 
     bool isConfigured() const;
-
-    bool sendIntrusionAlert(const std::string& subject,
-                            const std::string& body);
+    bool sendIntrusionAlert(const std::string& subject, const std::string& body);
 
 private:
     std::string smtpServer_;

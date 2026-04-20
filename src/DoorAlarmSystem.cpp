@@ -1,9 +1,11 @@
 #include "DoorAlarmSystem.h"
 #include <iostream>
+#include <csignal>
 
 DoorAlarmSystem::DoorAlarmSystem()
     : fsm_(alarmManager_, logger_)
 {
+    // Constructor remains simple
 }
 
 DoorAlarmSystem::~DoorAlarmSystem()
@@ -15,12 +17,11 @@ void DoorAlarmSystem::start()
 {
     if (running_) return;
 
-    // 1. Initialize Hardware first
+    // 1. Initialize Hardware
     if (!nfcReader_.init()) {
         logger_.log("SYSTEM ERROR: NFC Reader failed to initialize on /dev/ttyAMA0");
     }
 
-    // UPDATED: Using gpiochip0 based on your terminal gpiodetect results
     if (!outputController_.init()) {
         logger_.log("SYSTEM ERROR: Output Controller (GPIO) failed to initialize on gpiochip0");
     }
@@ -28,29 +29,31 @@ void DoorAlarmSystem::start()
     running_ = true;
 
     // 2. Start Support Threads
-    logger_.start();
-    alarmManager_.start(logger_);
+    logger_.start();             // Note: Ensure AsyncLogger is updated to save to a .csv file!
+    alarmManager_.start(logger_); // Note: Ensure AlarmManager triggers the Email thread!
 
     // 3. Start Hardware Monitoring
     reedSwitch_.setCallback([this](int value) {
         onReedSwitchChange(value);
     });
 
-    // UPDATED: Using chip 0 (pinctrl-rp1) for Raspberry Pi 5
     reedSwitch_.start(26, 0); 
     
-    logger_.log("SYSTEM: Hardware mapping confirmed: Reed Switch on Pin 37 (GPIO 26).");
-    logger_.log("SYSTEM: Started with Hardware Integration.");
-    
-    // Ensure FSM window is exactly 5 seconds
+    // Set 5-second window
     fsm_.setAuthorizationWindow(std::chrono::milliseconds(5000));
     
-    logger_.log("SYSTEM: FSM initial state = " + DoorAlarmFSM::toString(fsm_.getState()));
+    logger_.log("SYSTEM: Initial State = " + DoorAlarmFSM::toString(fsm_.getState()));
 
     // 4. Launch Internal Processing Threads
     nfcThread_ = std::thread(&DoorAlarmSystem::nfcLoop, this);
     controlThread_ = std::thread(&DoorAlarmSystem::controlLoop, this);
     timerThread_ = std::thread(&DoorAlarmSystem::timerLoop, this);
+
+    // 5. NEW: Launch Web Dashboard API Thread
+    apiThread_ = std::thread(&DoorAlarmSystem::apiLoop, this);
+
+    logger_.log("SYSTEM: Web Dashboard API started on port 3000.");
+    logger_.log("SYSTEM: All threads active.");
 }
 
 void DoorAlarmSystem::stop()
@@ -59,18 +62,59 @@ void DoorAlarmSystem::stop()
 
     running_ = false;
 
+    // Stop the Web Server first
+    svr_.stop();
+
     postEvent(EventType::Shutdown, "main");
     eventQueue_.shutdown();
 
     reedSwitch_.stop();
 
+    // Join all threads
     if (nfcThread_.joinable())      nfcThread_.join();
     if (controlThread_.joinable())  controlThread_.join();
     if (timerThread_.joinable())    timerThread_.join();
+    if (apiThread_.joinable())      apiThread_.join(); // Join the API thread
 
     alarmManager_.stop();
     logger_.log("SYSTEM: Stopped.");
     logger_.stop();
+}
+
+// --- NEW: WEB DASHBOARD API IMPLEMENTATION ---
+void DoorAlarmSystem::apiLoop()
+{
+    // Endpoint for Dashboard Status
+    svr_.Get("/api/status", [this](const httplib::Request&, httplib::Response& res) {
+        // Protect state access if your FSM isn't thread-safe for reads
+        std::lock_guard<std::mutex> lock(stateMtx_);
+        
+        auto state = fsm_.getState();
+        
+        // Build JSON Response
+        std::string json = "{";
+        json += "\"ok\":true,";
+        json += "\"state\":\"" + DoorAlarmFSM::toString(state) + "\",";
+        json += "\"alarmActive\":" + std::string(state == DoorAlarmFSM::State::AlarmActive ? "true" : "false") + ",";
+        json += "\"doorOpen\":" + std::string(outputController_.isRedLedOn() ? "true" : "false"); // Using LED as proxy for sensor state
+        json += "}";
+
+        res.set_header("Access-Control-Allow-Origin", "*"); // Allow Web Dashboard Access
+        res.set_content(json, "application/json");
+    });
+
+    // Endpoint for Manual Alarm Clear from Dashboard
+    svr_.Post("/api/alarm/clear", [this](const httplib::Request&, httplib::Response& res) {
+        logger_.log("WEB: Remote alarm clear requested.");
+        // If your FSM doesn't have a clear event, you might need to add one
+        // postEvent(EventType::ManualReset, "web_dashboard"); 
+        res.set_header("Access-Control-Allow-Origin", "*");
+        res.set_content("{\"ok\":true}", "application/json");
+    });
+
+    if (!svr_.listen("0.0.0.0", 3000)) {
+        logger_.log("SYSTEM ERROR: Web Server failed to bind to port 3000");
+    }
 }
 
 void DoorAlarmSystem::postEvent(EventType type, const std::string& source)
@@ -79,12 +123,7 @@ void DoorAlarmSystem::postEvent(EventType type, const std::string& source)
 }
 
 void DoorAlarmSystem::onReedSwitchChange(int value) {
-    // 1. Immediate Hardware Mirror (Visual Feedback)
     outputController_.setRedLed(value == 1);
-
-    // 2. DEBOUNCE LOGIC:
-    // Physical switches "bounce" (flicker) for a few milliseconds.
-    // We wait 50ms to ensure the signal is stable before telling the FSM.
     std::this_thread::sleep_for(std::chrono::milliseconds(50));
 
     if (value == 1) {
@@ -101,13 +140,9 @@ void DoorAlarmSystem::nfcLoop()
     while (running_)
     {
         std::string uid = nfcReader_.readUID();
-
         if (!uid.empty())
         {
-            // Note: The FSM handleAuthorization will now check if the door is open.
-            // If the door is open, the event will be ignored there.
             logger_.log("NFC THREAD: Detected UID " + uid);
-
             if (accessController_.check(uid)) {
                 postEvent(EventType::AuthorizedByNfc, uid);
             } else {
@@ -124,7 +159,6 @@ void DoorAlarmSystem::controlLoop()
     while (true)
     {
         Event event(EventType::PrintStatus);
-
         if (!eventQueue_.waitAndPop(event)) break;
 
         if (event.type == EventType::Shutdown) {
@@ -136,9 +170,8 @@ void DoorAlarmSystem::controlLoop()
 
         auto currentState = fsm_.getState();
         if (currentState == DoorAlarmFSM::State::AuthorizedEntry) {
-            outputController_.granted(); // Green LED + Solenoid
+            outputController_.granted(); 
         } else if (currentState == DoorAlarmFSM::State::AlarmActive) {
-            // AlarmManager handles the buzzer, OutputController handles visual
             outputController_.denied();  
         }
     }
@@ -148,20 +181,16 @@ void DoorAlarmSystem::timerLoop()
 {
     while (running_)
     {
-        // Check frequently (every 50ms) to see if time has run out
         std::this_thread::sleep_for(std::chrono::milliseconds(50));
-
         const auto state = fsm_.getState();
         const auto deadline = fsm_.getVerificationDeadline();
 
-        // If we are waiting for a scan and the 5 seconds are up:
         if (state == DoorAlarmFSM::State::PendingVerification && deadline.has_value())
         {
             if (std::chrono::steady_clock::now() >= deadline.value())
             {
                 logger_.log("TIMER: Grace period expired. Triggering Timeout Event.");
                 postEvent(EventType::VerificationTimeout, "timer");
-                // Wait a bit to prevent event spam
                 std::this_thread::sleep_for(std::chrono::milliseconds(500));
             }
         }

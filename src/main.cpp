@@ -1,18 +1,23 @@
 #include "DoorAlarmSystem.h"
 #include <iostream>
 #include <csignal>
-#include <atomic>
+#include <condition_variable>
+#include <mutex>
 
-// Atomic flag to handle Ctrl+C gracefully
-std::atomic<bool> keepRunning(true);
+std::condition_variable shutdown_cv;
+std::mutex shutdown_mtx;
+bool should_exit = false;
 
 void signalHandler(int signum) {
     std::cout << "\nInterrupt signal (" << signum << ") received. Shutting down...\n";
-    keepRunning = false;
+    {
+        std::lock_guard<std::mutex> lock(shutdown_mtx);
+        should_exit = true;
+    }
+    shutdown_cv.notify_one();
 }
 
 int main() {
-    // Register signal handler for Ctrl+C
     signal(SIGINT, signalHandler);
 
     try {
@@ -21,14 +26,11 @@ int main() {
         std::cout << "--- Raspberry Pi 5 Smart Door System Starting ---\n";
         system.start();
         
-        std::cout << "System is ACTIVE.\n";
-        std::cout << "Monitoring Door Sensor and NFC Reader...\n";
-        std::cout << "Press Ctrl+C to exit.\n";
+        std::cout << "System is ACTIVE. Press Ctrl+C to exit.\n";
 
-        // Main thread stays alive while background threads do the work
-        while (keepRunning) {
-            std::this_thread::sleep_for(std::chrono::seconds(1));
-        }
+        // Main thread waits here effectively forever until signalHandler is called
+        std::unique_lock<std::mutex> lock(shutdown_mtx);
+        shutdown_cv.wait(lock, []{ return should_exit; });
 
         system.stop();
         std::cout << "System shut down cleanly.\n";

@@ -1,11 +1,18 @@
 #include "DoorController.hpp"
+#include "DoorAlarmSystem.h" // We need this to post events
 #include <iostream>
 
-DoorController::DoorController(int reedPin, AccessController& ac, OutputController& oc, NFCReader& nfc)
-    : reedSwitch(reedPin, false), accessController(ac), outputController(oc), nfcReader(nfc) {}
+// Pass a pointer or reference to the main system to "Post" events
+DoorController::DoorController(int reedPin, DoorAlarmSystem& system, OutputController& oc)
+    : reedSwitch(reedPin, false), mainSystem(system), outputController(oc) {}
 
 void DoorController::initialize() {
-    reedSwitch.registerCallback([this]() { onDoorOpen(); }, 50);
+    // The callback now just notifies the System, it doesn't do logic
+    reedSwitch.registerCallback([this]() { 
+        // We report the physical event to the System
+        mainSystem.postEvent(EventType::DoorOpened, "PhysicalReedSwitch");
+    }, 50);
+    
     reedSwitch.start();
 }
 
@@ -13,14 +20,7 @@ void DoorController::stop() {
     reedSwitch.stop();
 }
 
-void DoorController::onDoorOpen() {
-    std::cout << "Door opened! Waiting for NFC..." << std::endl;
-    std::string uid = nfcReader.readUID();
-    if (accessController.isAuthorized(uid)) {
-        std::cout << "Access Granted" << std::endl;
-        outputController.setAccessGranted();
-    } else {
-        std::cout << "Access Denied" << std::endl;
-        outputController.setAccessDenied();
-    }
-}
+// REMOVED: onDoorOpen logic that was manually reading NFC.
+// Reason: The NFC loop in DoorAlarmSystem is already constantly polling.
+// When a card is tapped, the NFC loop posts an event, and the FSM 
+// decides if that card was tapped within the 5-second window.

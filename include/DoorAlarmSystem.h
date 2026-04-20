@@ -15,41 +15,38 @@
 #include <atomic>
 #include <thread>
 #include <string>
+// Add these includes
+#include "httplib.h" 
+#include <mutex>
 
-class DoorAlarmSystem
-{
+// ... existing includes ...
+
+class DoorAlarmSystem {
 public:
     DoorAlarmSystem();
     ~DoorAlarmSystem();
 
     void start();
     void stop();
-    
-    // Allows any thread to push events (Door open, NFC scan, etc.)
     void postEvent(EventType type, const std::string& source);
 
 private:
-    using Clock = std::chrono::steady_clock;
-    using Ms = std::chrono::milliseconds;
-
-    // --- Core Logic Loops ---
-    void controlLoop(); // Processes the event queue
-    void timerLoop();   // Handles the 5-second verification timeout
-
-    // --- Hardware Monitoring Loops ---
-    void nfcLoop();     // Constantly polls UART for NFC tags
-    void onReedSwitchChange(int value); // Callback for the door sensor
-
-private:
-    std::atomic<bool> running_{false};
+    void controlLoop(); 
+    void timerLoop();   
+    void apiLoop();     
+    void nfcLoop(); 
+    void onReedSwitchChange(int value);
 
     // Infrastructure
+    std::atomic<bool> running_{false};
+    std::mutex stateMtx_; 
+
     EventQueue eventQueue_;
-    AsyncLogger logger_;
-    AlarmManager alarmManager_;
+    AsyncLogger logger_;       // Handles local CSV/Database saving internally
+    AlarmManager alarmManager_; // Handles Siren + Email Alerts internally
     DoorAlarmFSM fsm_;
 
-    // Hardware Interface Objects
+    // Hardware
     NFCReader nfcReader_;
     AccessController accessController_;
     OutputController outputController_;
@@ -59,6 +56,9 @@ private:
     std::thread controlThread_;
     std::thread timerThread_;
     std::thread nfcThread_;
+    std::thread apiThread_;
+    
+    httplib::Server svr_; 
 };
 
-#endif
+#endif // DOORALARMSYSTEM_H
