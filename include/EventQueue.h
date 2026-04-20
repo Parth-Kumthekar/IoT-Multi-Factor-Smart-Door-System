@@ -10,11 +10,10 @@
 
 /**
  * @class EventQueue
- * @brief A thread-safe, blocking queue for synchronizing system events.
- * * This class implements a Producer-Consumer pattern, allowing multiple hardware 
- * threads (NFC, GPIO, Web API) to safely push events to the main logic thread.
- * It utilizes condition variables to eliminate CPU polling, directly addressing 
- * the real-time requirements of the School of Engineering coursework.
+ * @brief A thread-safe, blocking queue for Event objects.
+ * * This class facilitates communication between producer threads (hardware sensors, 
+ * network APIs) and consumer threads (the main logic FSM). It uses a monitor 
+ * pattern to ensure that concurrent access is safe and efficient.
  */
 class EventQueue
 {
@@ -22,20 +21,23 @@ public:
     /** @brief Default constructor. */
     EventQueue() = default;
 
-    /** @brief Deleted copy constructor to prevent unsafe thread-sharing. */
+    /// Deleted copy constructor to prevent accidental duplication of the synchronization primitives.
     EventQueue(const EventQueue&) = delete;
-    /** @brief Deleted assignment operator to enforce strict ownership. */
+    /// Deleted assignment operator to prevent accidental duplication of the synchronization primitives.
     EventQueue& operator=(const EventQueue&) = delete;
 
-    /** @brief Destructor ensures a clean shutdown of the synchronization primitives. */
+    /**
+     * @brief Destroy the Event Queue object.
+     * @details Ensures the queue is shut down so that any blocking threads are released.
+     */
     ~EventQueue()
     {
         shutdown();
     }
 
     /**
-     * @brief Thread-safe push of an event via const reference.
-     * @param event The event to be copied into the queue.
+     * @brief Adds an event to the queue by copying it.
+     * @param event The event to be added.
      */
     void push(const Event& event)
     {
@@ -51,8 +53,8 @@ public:
     }
 
     /**
-     * @brief Thread-safe push of an event via rvalue reference (Move Semantics).
-     * @param event The event to be moved into the queue, reducing memory overhead.
+     * @brief Adds an event to the queue by moving it (rvalue).
+     * @param event The event to be moved into the queue.
      */
     void push(Event&& event)
     {
@@ -68,11 +70,10 @@ public:
     }
 
     /**
-     * @brief Blocking wait for an event.
-     * * Suspends the calling thread until an event is available or the queue shuts down.
-     * This ensures 0% CPU usage while the system is idle.
-     * @param outEvent Reference to store the popped event.
-     * @return true if an event was successfully retrieved, false if the queue is shutting down.
+     * @brief Blocks the calling thread until an event is available or the queue shuts down.
+     * @param[out] outEvent The event popped from the front of the queue.
+     * @return true if an event was successfully popped.
+     * @return false if the queue was shut down and no events remain.
      */
     bool waitAndPop(Event& outEvent)
     {
@@ -92,9 +93,10 @@ public:
     }
 
     /**
-     * @brief Non-blocking attempt to pop an event.
-     * @param outEvent Reference to store the popped event.
-     * @return true if an event was available, false otherwise.
+     * @brief Attempts to pop an event without blocking.
+     * @param[out] outEvent The event popped if the queue was not empty.
+     * @return true if an event was available.
+     * @return false if the queue was empty.
      */
     bool tryPop(Event& outEvent)
     {
@@ -111,11 +113,13 @@ public:
     }
 
     /**
-     * @brief Timed wait for an event.
-     * * Useful for the FSM to check for events while simultaneously handling timeouts.
-     * @param outEvent Reference to store the popped event.
-     * @param timeout The maximum time to wait before returning false.
-     * @return true if an event was retrieved within the timeout period.
+     * @brief Blocks the calling thread until an event is available, a timeout occurs, or shutdown.
+     * @tparam Rep Arithmetic type representing the number of ticks.
+     * @tparam Period std::ratio representing the tick period.
+     * @param[out] outEvent The event popped if successful.
+     * @param timeout The maximum duration to wait.
+     * @return true if an event was popped before the timeout.
+     * @return false if the timeout was reached or the queue is shut down.
      */
     template <typename Rep, typename Period>
     bool waitForAndPop(Event& outEvent, const std::chrono::duration<Rep, Period>& timeout)
@@ -136,7 +140,9 @@ public:
         return true;
     }
 
-    /** @brief Signals the queue to stop accepting events and wakes all waiting threads. */
+    /**
+     * @brief Flags the queue as shutting down and wakes all waiting threads.
+     */
     void shutdown()
     {
         {
@@ -146,21 +152,21 @@ public:
         cv_.notify_all();
     }
 
-    /** @brief Thread-safe check for shutdown status. */
+    /** @brief Checks if the shutdown flag has been set. */
     bool isShutdown() const
     {
         std::lock_guard<std::mutex> lock(mutex_);
         return shutdown_;
     }
 
-    /** @brief Thread-safe check if the queue is empty. */
+    /** @brief Returns true if the queue contains no events. */
     bool empty() const
     {
         std::lock_guard<std::mutex> lock(mutex_);
         return queue_.empty();
     }
 
-    /** @brief Returns the current number of events pending in the queue. */
+    /** @brief Returns the current number of events in the queue. */
     std::size_t size() const
     {
         std::lock_guard<std::mutex> lock(mutex_);
@@ -168,16 +174,16 @@ public:
     }
 
 private:
-    /** @brief Synchronization primitive for thread safety. */
+    /// Mutex for protecting the underlying std::queue and shutdown flag.
     mutable std::mutex mutex_;
-
-    /** @brief Condition variable for thread wake-up signaling. */
+    
+    /// Condition variable to signal availability of new events or shutdown.
     std::condition_variable cv_;
-
-    /** @brief Underlying container for the events. */
+    
+    /// The underlying non-thread-safe container.
     std::queue<Event> queue_;
-
-    /** @brief Flag indicating if the system is transitioning to a shutdown state. */
+    
+    /// Flag to stop processing and release blocked threads.
     bool shutdown_ = false;
 };
 

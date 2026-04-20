@@ -3,19 +3,20 @@
 #include <iostream>
 
 /**
- * @brief Initializes the GPIO line and spawns the monitoring worker thread.
- * @param pin The BCM pin number to request.
- * @param chipNo The index of the GPIO chip (usually 0 or 4 on RPi 5).
+ * @brief Initializes the GPIO line and spawns a background monitoring thread.
+ * @details Configures the pin as an input with edge detection set to BOTH (rising and falling).
+ * It uses the libgpiod request builder to assign a consumer name ("smart_door") and 
+ * prepares the hardware line for event polling.
+ * * @param pin The GPIO line offset to monitor.
+ * @param chipNo The index of the gpiochip (e.g., 0 for /dev/gpiochip0).
  */
 void GPIOPin::start(int pin, int chipNo)
 {
     pinNum = pin;
 
-    // Use libgpiod v2 style chip path and resource acquisition
     std::string chipPath = "/dev/gpiochip" + std::to_string(chipNo);
     chip = std::make_shared<gpiod::chip>(chipPath);
 
-    // Configure for dual-edge detection to capture both Open and Close events
     gpiod::line_settings settings;
     settings.set_direction(gpiod::line::direction::INPUT);
     settings.set_edge_detection(gpiod::line::edge::BOTH);
@@ -27,7 +28,6 @@ void GPIOPin::start(int pin, int chipNo)
     builder.set_line_config(cfg);
     builder.set_consumer("smart_door");
 
-    // Request the line from the kernel
     request = std::make_shared<gpiod::line_request>(builder.do_request());
 
     running = true;
@@ -35,15 +35,17 @@ void GPIOPin::start(int pin, int chipNo)
 }
 
 /**
- * @brief Background loop that monitors for hardware interrupts.
- * * Uses wait_edge_events() to suspend the thread, ensuring 0% CPU 
- * usage when the pin state is static.
+ * @brief Internal worker loop that polls for hardware interrupts.
+ * @details This function runs in a dedicated thread, blocking for up to 500ms on 
+ * wait_edge_events(). When an interrupt occurs, it reads the event buffer, 
+ * determines if the edge was RISING (1) or FALLING (0), and executes the 
+ * registered callback.
  */
 void GPIOPin::worker()
 {
     while (running)
     {
-        // 500ms timeout allows the thread to check the 'running' flag periodically
+        // Blocking wait to minimize CPU usage
         if (request->wait_edge_events(std::chrono::milliseconds(500)))
         {
             gpiod::edge_event_buffer buf;
@@ -53,8 +55,10 @@ void GPIOPin::worker()
             {
                 auto event = buf.get_event(i);
 
-                // Translate hardware edge type to a binary integer (1 for High/Rising, 0 for Low/Falling)
-                int val = (event.type() == gpiod::edge_event::event_type::RISING_EDGE) ? 1 : 0;
+                // Map RISING_EDGE to 1 and everything else (FALLING_EDGE) to 0
+                int val =
+                    (event.type() ==
+                     gpiod::edge_event::event_type::RISING_EDGE) ? 1 : 0;
 
                 if (callback)
                     callback(val);
@@ -64,7 +68,9 @@ void GPIOPin::worker()
 }
 
 /**
- * @brief Safely joins the worker thread before the object is destroyed.
+ * @brief Safely terminates the monitoring thread.
+ * @details Sets the running flag to false and joins the worker thread to ensure
+ * all resources are cleaned up before the object is destroyed.
  */
 void GPIOPin::stop()
 {

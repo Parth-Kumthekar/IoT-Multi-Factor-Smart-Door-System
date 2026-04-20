@@ -4,27 +4,23 @@
 
 /**
  * @class AccessController
- * @brief Manages the authorization logic for the IoT Door Lock system.
- * * This class encapsulates the "Allowed Users" list and provides a thread-safe 
- * interface to verify NFC Unique Identifiers (UIDs). It follows the SOLID 
- * Single Responsibility Principle by strictly handling access logic.
+ * @brief Manages and validates UID-based access permissions.
+ * * This class maintains an internal whitelist of authorized unique identifiers
+ * and provides a mechanism to verify if a given UID has access.
  */
 class AccessController {
 public:
     /**
-     * @brief Validates an NFC UID against the authorized list.
-     * * This method performs a lookup within the internal vector to determine
-     * if the scanned credential has permission to unlock the door.
-     * * @param uid The Unique Identifier string retrieved from the NFC sensor.
-     * @return true if the UID is authorized, false otherwise.
+     * @brief Validates if a specific UID is in the allowed list.
+     * * @param uid The unique identifier string to be checked.
+     * @return true If the UID is found in the authorized list.
+     * @return false If the UID is not recognized or access is denied.
      */
     bool check(const std::string &uid);
 
 private:
-    /**
-     * @brief List of authorized NFC UIDs.
-     * @note In a production environment, this could be moved to an encrypted 
-     * local database or the CSV logger.
+    /** * @brief List of authorized hardware UIDs.
+     * @details This list is currently hardcoded with specific hex-string identifiers.
      */
     std::vector<std::string> allowed = {
         "040ADB8A7111",

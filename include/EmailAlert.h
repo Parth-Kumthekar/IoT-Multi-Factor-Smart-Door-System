@@ -3,28 +3,27 @@
 
 /**
  * @class EmailAlert
- * @brief Provides remote notification capabilities via SMTP.
- * * This class encapsulates the network logic required to send security alerts 
- * to a designated recipient. It is used by the AlarmManager to provide 
- * off-site monitoring when a security breach is detected, following the 
- * "High Reliability" requirement of the School of Engineering.
+ * @brief Handles SMTP communication for sending security notifications.
+ * * This class encapsulates the credentials and server settings required to 
+ * dispatch emails. It is typically utilized by the AlarmManager to notify 
+ * administrators when a security breach is detected.
  */
 class EmailAlert {
 public:
     /**
      * @brief Default Constructor.
-     * * Initializes the alert system using pre-configured Team 22 credentials.
-     * This ensures the system is "Plug-and-Play" for markers and users.
+     * @details Uses the hardcoded Team 22 credentials defined in EmailAlert.cpp.
      */
     EmailAlert();
 
     /**
-     * @brief Parameterized Constructor for custom network configurations.
-     * @param smtpServer The address of the outgoing mail server.
-     * @param smtpPort The communication port (e.g., 465 or 587).
-     * @param senderEmail The system's automated email address.
-     * @param senderPassword The secure app-specific password/token.
-     * @param recipientEmail The end-user's notification address.
+     * @brief Parameterized Constructor.
+     * @details Allows overriding credentials at runtime if needed.
+     * * @param smtpServer The address of the outgoing mail server.
+     * @param smtpPort The port number (usually 587 for STARTTLS or 465 for SSL).
+     * @param senderEmail The email address used to authenticate and send the alert.
+     * @param senderPassword The password or app-specific token for the sender account.
+     * @param recipientEmail The destination address where alerts will be sent.
      */
     EmailAlert(const std::string& smtpServer,
                int smtpPort,
@@ -33,34 +32,29 @@ public:
                const std::string& recipientEmail);
 
     /**
-     * @brief Dispatches an email notification.
-     * * This method is called by the AlarmManager. It connects to the SMTP 
-     * server and attempts to send the alert body.
-     * @param subject The title of the alert (e.g., "SECURITY BREACH").
-     * @param body The detailed log of the event causing the alarm.
-     * @return true if the email was successfully handed off to the server, false otherwise.
+     * @brief Main sending function called by AlarmManager.
+     * @param subject The subject line of the email.
+     * @param body The main content/reason for the alert.
+     * @return true If the email was successfully handed off to the SMTP server.
+     * @return false If authentication failed or the server was unreachable.
      */
     bool send(const std::string& subject, const std::string& body);
 
     /**
-     * @brief Checks if the SMTP credentials have been properly loaded.
-     * @return true if the system is ready to send alerts.
+     * @brief Validates if the SMTP settings are populated.
+     * @return true if all required fields are non-empty.
      */
     bool isConfigured() const;
 
 private:
-    /** @brief The SMTP relay hostname. */
+    /// The SMTP server hostname.
     std::string smtpServer_;
-    
-    /** @brief The network port used for the SMTP handshake. */
+    /// The connection port for the mail server.
     int smtpPort_;
-    
-    /** @brief The originating email address. */
+    /// The authorized sender account.
     std::string senderEmail_;
-    
-    /** @brief Secure credentials for SMTP authentication. */
+    /// Credentials for the sender account.
     std::string senderPassword_;
-    
-    /** @brief The target address for security notifications. */
+    /// The target recipient for all system alerts.
     std::string recipientEmail_;
 };

@@ -7,50 +7,48 @@
 
 /**
  * @class DoorController
- * @brief Manages low-level hardware interactions for the physical door interface.
- * * This class encapsulates the GPIO interactions for the reed switch and coordinates
- * with the NFC reader and output controllers. It facilitates event-driven 
- * hardware responses by utilizing interrupt-style callbacks when physical 
- * sensors change state.
+ * @brief High-level hardware abstraction for managing physical door components.
+ * * This class orchestrates the interaction between the magnetic reed switch, 
+ * the NFC reader, and the output signals. It serves as the direct interface 
+ * to the physical entry point.
  */
 class DoorController {
 public:
     /**
-     * @brief Constructs the controller with references to required hardware and logic modules.
-     * @param reedPin The GPIO pin number assigned to the magnetic reed switch.
-     * @param ac Reference to the AccessController for credential verification.
-     * @param oc Reference to the OutputController for driving locks/leds.
-     * @param nfc Reference to the NFCReader hardware module.
+     * @brief Construct a new Door Controller object.
+     * * @param reedPin The GPIO pin number assigned to the reed switch sensor.
+     * @param ac Reference to the logic handling access permissions.
+     * @param oc Reference to the hardware signaling (Siren/LEDs).
+     * @param nfc Reference to the physical NFC reader hardware.
      */
     DoorController(int reedPin, AccessController& ac, OutputController& oc, NFCReader& nfc);
 
     /**
-     * @brief Configures GPIO modes and attaches interrupt service routines (ISRs).
+     * @brief Configures hardware pins and prepares sensors for monitoring.
+     * @details Should be called after instantiation to ensure GPIO and NFC bus are ready.
      */
     void initialize();
 
     /**
-     * @brief Safely detaches hardware interrupts and places outputs in a secure state.
+     * @brief Safely deactivates hardware monitoring and releases pin resources.
      */
     void stop();
 
 private:
-    /** @brief GPIO interface for the door's magnetic contact sensor. */
+    /// GPIO pin object representing the magnetic door sensor.
     GPIOPin reedSwitch;
 
-    /** @brief Reference to authorization logic (Single Responsibility Principle). */
+    /// Reference to the shared access validation logic.
     AccessController& accessController;
 
-    /** @brief Reference to hardware output drivers (Solenoid/Buzzer). */
+    /// Reference to the shared output hardware controller.
     OutputController& outputController;
 
-    /** @brief Reference to the NFC hardware interface. */
+    /// Reference to the shared NFC reader interface.
     NFCReader& nfcReader;
 
     /**
-     * @brief Internal callback triggered by the GPIOPin interrupt when the door opens.
-     * * This implements the "Event Driven" requirement of the coursework by 
-     * responding to hardware signals without CPU polling.
+     * @brief Internal callback triggered when the reed switch detects a state change.
      */
     void onDoorOpen();
 };

@@ -1,82 +1,95 @@
 #include "OutputController.hpp"
-#include <thread>
-#include <chrono>
 
 /**
- * @brief Initializes the GPIO chip and claims output lines.
+ * @brief Claims the GPIO hardware and configures the output pins.
+ * @details Specifically targets `/dev/gpiochip4` (the RP1 peripheral on Raspberry Pi 5). 
+ * It uses a bulk request to configure the Red LED, Green LED, and Buzzer offsets 
+ * simultaneously, setting them all as OUTPUT with an initial INACTIVE state.
+ * @return true if the chip was opened and lines were successfully requested.
+ * @return false if the chip is busy or the process lacks necessary GPIO permissions.
  */
 bool OutputController::init()
 {
     try {
         // gpiochip4 is the standard for RP1 on Raspberry Pi 5
-        chip = gpiod::chip(chip_path);
+        chip = std::make_shared<gpiod::chip>("/dev/gpiochip4");
 
         gpiod::line_settings settings;
-        settings.set_direction(gpiod::line_direction::OUTPUT);
-        settings.set_output_value(gpiod::line_value::INACTIVE);
+        settings.set_direction(gpiod::line::direction::OUTPUT);
+        settings.set_output_value(gpiod::line::value::INACTIVE);
 
         gpiod::line_config cfg;
-        // Efficiently request all three lines in a single bulk operation
+        // Request all three lines at once
         cfg.add_line_settings({red_offset, green_offset, buzzer_offset}, settings);
 
-        // Build and execute the request
-        request = chip.prepare_config()
-                      .set_line_config(cfg)
-                      .set_consumer("smart_door_out")
-                      .request();
+        auto builder = chip->prepare_request();
+        builder.set_line_config(cfg);
+        builder.set_consumer("smart_door_out");
 
+        req = std::make_shared<gpiod::line_request>(builder.do_request());
         return true;
     } catch (...) {
-        // Safe fail-state for Raspberry Pi hardware access
         return false;
     }
 }
 
+/**
+ * @brief Sets the logical state of the Red LED.
+ * @param state true for ACTIVE (On), false for INACTIVE (Off).
+ */
 void OutputController::setRedLed(bool state)
 {
-    request.set_value(red_offset, state ? gpiod::line_value::ACTIVE : gpiod::line_value::INACTIVE);
-}
-
-void OutputController::setGreenLed(bool state)
-{
-    request.set_value(green_offset, state ? gpiod::line_value::ACTIVE : gpiod::line_value::INACTIVE);
-}
-
-void OutputController::setBuzzer(bool state)
-{
-    request.set_value(buzzer_offset, state ? gpiod::line_value::ACTIVE : gpiod::line_value::INACTIVE);
+    if (req) {
+        req->set_value(red_offset, state ? gpiod::line::value::ACTIVE : gpiod::line::value::INACTIVE);
+    }
 }
 
 /**
- * @brief "Access Granted" signal.
- * Added a sleep so the green light is actually visible.
+ * @brief Sets the logical state of the Green LED.
+ * @param state true for ACTIVE (On), false for INACTIVE (Off).
+ */
+void OutputController::setGreenLed(bool state)
+{
+    if (req) {
+        req->set_value(green_offset, state ? gpiod::line::value::ACTIVE : gpiod::line::value::INACTIVE);
+    }
+}
+
+/**
+ * @brief Sets the logical state of the Buzzer.
+ * @param state true for ACTIVE (On), false for INACTIVE (Off).
+ */
+void OutputController::setBuzzer(bool state)
+{
+    if (req) {
+        req->set_value(buzzer_offset, state ? gpiod::line::value::ACTIVE : gpiod::line::value::INACTIVE);
+    }
+}
+
+/**
+ * @brief Executes the "Access Granted" signaling pattern.
+ * @details Synchronously updates the state of all three outputs: Green LED ON, 
+ * Red LED OFF, and Buzzer OFF.
  */
 void OutputController::granted()
 {
-    setGreenLed(true);
-    setRedLed(false);
-    setBuzzer(false);
-    
-    // Allow the user to see the green light for 2 seconds
-    std::this_thread::sleep_for(std::chrono::seconds(2));
-    setGreenLed(false);
+    if (req) {
+        setGreenLed(true);
+        setRedLed(false);
+        setBuzzer(false);
+    }
 }
 
 /**
- * @brief "Access Denied" signal.
- * Added a pulse loop for better user feedback.
+ * @brief Executes the "Access Denied" signaling pattern.
+ * @details Synchronously updates the state of all three outputs: Red LED ON, 
+ * Buzzer ON, and Green LED OFF.
  */
 void OutputController::denied()
 {
-    setGreenLed(false);
-    
-    // Pulse red and buzzer 3 times
-    for (int i = 0; i < 3; ++i) {
+    if (req) {
         setRedLed(true);
+        setGreenLed(false);
         setBuzzer(true);
-        std::this_thread::sleep_for(std::chrono::milliseconds(200));
-        setRedLed(false);
-        setBuzzer(false);
-        std::this_thread::sleep_for(std::chrono::milliseconds(200));
     }
 }

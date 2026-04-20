@@ -3,44 +3,34 @@
 #include <iostream>
 
 /**
- * @brief Initializes all output hardware (Relay, LEDs, Buzzer).
- * @details This implementation uses the libgpiod v2 builder pattern to 
- * ensure that the GPIO chip remains open for the duration of the program.
+ * @brief Initializes the GPIO hardware for all output peripherals.
+ * @details Specifically targets `/dev/gpiochip4` to claim lines for the 
+ * door relay, buzzer, and status LEDs. Each line is requested individually 
+ * with a default output value of 0 (LOW) to ensure the system starts 
+ * in a secure, silent state.
+ * * @return true if all GPIO lines were successfully requested.
+ * @return false if the chip could not be opened or a line is already in use.
  */
 bool OutputHandler::init() {
     try {
-        // 1. Maintain the chip as a persistent object (ensure it's a member variable in .hpp)
-        // chip_ = std::make_unique<gpiod::chip>("/dev/gpiochip4");
-        
-        gpiod::line_settings out_settings;
-        out_settings.set_direction(gpiod::line::direction::OUTPUT);
-        out_settings.set_output_value(gpiod::line::value::INACTIVE);
-
-        // 2. Requesting lines individually is acceptable, but 
-        // using a builder for a single bulk request is more efficient.
-        // For simplicity, we stick to your individual structure but ensure persistence:
-        
+        // Open GPIO chip
         gpiod::chip chip("/dev/gpiochip4");
 
-        auto request_line = [&](int pin, const std::string& name) {
-            gpiod::line_config cfg;
-            cfg.add_line_settings(pin, out_settings);
-            
-            return chip.prepare_request()
-                .set_consumer(name)
-                .set_line_config(cfg)
-                .do_request();
-        };
+        // Configure line settings for outputs
+        gpiod::line_settings out_settings;
+        out_settings.set_direction(gpiod::line::direction::OUTPUT);
+        out_settings.set_output_value(0);  // Start LOW
 
-        relay_request  = request_line(rp,  "door_relay");
-        green_request  = request_line(gp,  "green_led");
-        red_request    = request_line(rdp, "red_led");
-        buzzer_request = request_line(bp,  "alarm_buzzer");
+        // Request each output line individually
+        relay_request = gpiod::line_request(chip.get_line(rp), out_settings);
+        green_request = gpiod::line_request(chip.get_line(gp), out_settings);
+        red_request   = gpiod::line_request(chip.get_line(rdp), out_settings);
+        buzzer_request= gpiod::line_request(chip.get_line(bp), out_settings);
 
-        std::cout << "[HARDWARE] OutputHandler: All lines successfully claimed." << std::endl;
+        std::cout << "OutputHandler GPIO initialized successfully." << std::endl;
         return true;
     } catch (const std::exception &e) {
-        std::cerr << "[CRITICAL] OutputHandler init error: " << e.what() << std::endl;
+        std::cerr << "OutputHandler init error: " << e.what() << std::endl;
         return false;
     }
 }

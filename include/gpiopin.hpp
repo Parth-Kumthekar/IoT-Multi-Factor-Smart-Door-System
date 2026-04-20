@@ -6,58 +6,59 @@
 
 /**
  * @class GPIOPin
- * @brief Modern Linux GPIO abstraction using libgpiod.
- * * This class manages hardware pin interaction on the Raspberry Pi. It 
- * encapsulates a background worker thread that monitors for edge transitions, 
- * allowing the system to respond to physical inputs via asynchronous callbacks 
- * rather than CPU-intensive polling.
+ * @brief Manages a physical GPIO pin using libgpiod with asynchronous monitoring.
+ * * This class abstracts the complexities of the GPIO character device. It monitors 
+ * a specific pin for state changes (e.g., a reed switch opening/closing) in a 
+ * dedicated background thread and notifies listeners via a callback.
  */
 class GPIOPin {
 public:
-    /** @brief Function signature for GPIO event notifications. */
+    /**
+     * @brief Type definition for the pin-state change callback.
+     * @param value The new state of the pin (usually 0 for LOW, 1 for HIGH).
+     */
     using Callback = std::function<void(int value)>;
 
     /**
-     * @brief Initializes the GPIO pin and starts the edge-detection worker thread.
-     * @param pin The BCM pin number on the Raspberry Pi header.
-     * @param chip The GPIO chip index (defaulting to 0 for RPi).
+     * @brief Opens the GPIO chip and begins monitoring the specified pin.
+     * @param pin The hardware pin number to monitor.
+     * @param chip The index of the GPIO chip (defaults to 0).
      */
     void start(int pin, int chip = 0);
 
     /**
-     * @brief Safely releases the GPIO line and joins the worker thread.
+     * @brief Stops the background monitoring thread and releases hardware resources.
      */
     void stop();
 
     /**
-     * @brief Registers a handler to be executed when a pin state change occurs.
-     * @param cb The callback function (e.g., a lambda or class member).
+     * @brief Registers a function to be executed when the pin state changes.
+     * @param cb A callable object (lambda, function pointer, or std::bind).
      */
     void setCallback(Callback cb) { callback = cb; }
 
 private:
     /**
-     * @brief Background loop that waits for hardware edge events.
-     * * Utilizing libgpiod's event waiting mechanism, this thread remains 
-     * suspended until a hardware transition occurs, ensuring high efficiency.
+     * @brief Internal thread function that polls for GPIO events.
+     * @details This function waits for edge events and triggers the registered callback.
      */
     void worker();
 
-    /** @brief Shared reference to the GPIO chip resource. */
+    /// Smart pointer to the GPIO chip device.
     std::shared_ptr<gpiod::chip> chip;
 
-    /** @brief Shared reference to the active line request/configuration. */
+    /// Smart pointer to the specific line request (input configuration).
     std::shared_ptr<gpiod::line_request> request;
 
-    /** @brief The dedicated thread for hardware event monitoring. */
+    /// Background thread handle for the monitoring loop.
     std::thread thr;
 
-    /** @brief Atomic-like flag for controlling the worker thread lifecycle. */
+    /// Flag used to safely exit the worker thread loop.
     bool running = false;
 
-    /** @brief The physical pin number currently being managed. */
+    /// The pin number currently assigned to this instance.
     int pinNum;
 
-    /** @brief The client-provided handler for pin events. */
+    /// The user-defined callback executed when an event is detected.
     Callback callback;
 };

@@ -1,0 +1,56 @@
+# --- Project Info ---
+PROJECT_NAME           = "Smart Door Alarm System"
+PROJECT_NUMBER         = 1.0
+OUTPUT_DIRECTORY       = docs
+CREATE_SUBDIRECTORIES  = NO
+OUTPUT_LANGUAGE        = English
+
+# --- Input Configuration ---
+# This tells Doxygen to look in your two specific folders
+INPUT                  = include src
+FILE_PATTERNS          = *.cpp *.h *.hpp
+RECURSIVE              = YES
+STRIP_FROM_PATH        = include src
+
+# --- Extraction Settings ---
+# We want to see everything, including private members and internal logic
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
+EXTRACT_LOCAL_CLASSES  = YES
+HIDE_UNDOC_MEMBERS     = NO
+
+# --- Build Settings ---
+# Optimized for C++ output
+SEPARATE_MEMBER_PAGES  = NO
+TAB_SIZE               = 4
+OPTIMIZE_OUTPUT_FOR_C  = NO
+MARKDOWN_SUPPORT       = YES
+BUILTIN_STL_SUPPORT    = YES
+
+# --- HTML Output ---
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html
+HTML_FILE_EXTENSION    = .html
+# Use the built-in navigation tree on the left side
+GENERATE_TREEVIEW      = YES
+
+# --- LaTeX Output ---
+# Set to NO unless you specifically need a PDF version
+GENERATE_LATEX         = NO
+
+# --- Diagrams (Requires Graphviz/Dot) ---
+# This is the "magic" part that draws your system architecture
+HAVE_DOT               = YES
+DOT_NUM_THREADS        = 4
+CLASS_GRAPH            = YES
+COLLABORATION_GRAPH    = YES
+GROUP_GRAPHS           = YES
+TEMPLATE_RELATIONS     = YES
+INCLUDE_GRAPH          = YES
+INCLUDED_BY_GRAPH      = YES
+CALL_GRAPH             = YES
+CALLER_GRAPH           = NO
+DIRECTORY_GRAPH        = YES
+DOT_IMAGE_FORMAT       = svg
+INTERACTIVE_SVG        = YES
