@@ -96,7 +96,7 @@ std::string GUIServer::handleRequest(const std::string& req) {
 
     // POST /unlock
     if (req.find("POST /unlock") != std::string::npos) {
-        Logger::instance().log("Admin", AccessMethod::MANUAL,
+        AsyncLogger::instance().log("Admin", AccessMethod::MANUAL,
                                AccessResult::GRANTED, "Manual unlock via GUI");
         std::string body = "{\"ok\":true}";
         std::ostringstream r;
@@ -114,7 +114,7 @@ std::string GUIServer::handleRequest(const std::string& req) {
             auto end = req.find('"', pos);
             if (end != std::string::npos) note = req.substr(pos, end-pos);
         }
-        Logger::instance().log("Admin", AccessMethod::NOTE,
+        AsyncLogger::instance().log("Admin", AccessMethod::NOTE,
                                AccessResult::GRANTED, note);
         std::string body = "{\"ok\":true}";
         std::ostringstream r;
@@ -131,15 +131,15 @@ std::string GUIServer::handleRequest(const std::string& req) {
 }
 
 std::string GUIServer::jsonLogs() {
-    const auto& entries = Logger::instance().entries();
+    const auto& entries = AsyncLogger::instance().entries();
     std::ostringstream j;
     j << "[";
     for (size_t i = 0; i < entries.size(); ++i) {
         const auto& e = entries[i];
         j << "{\"time\":\"" << e.timestamp << "\","
           <<  "\"person\":\"" << e.person << "\","
-          <<  "\"method\":\"" << Logger::methodStr(e.method) << "\","
-          <<  "\"result\":\"" << Logger::resultStr(e.result) << "\","
+          <<  "\"method\":\"" << AsyncLogger::methodStr(e.method) << "\","
+          <<  "\"result\":\"" << AsyncLogger::resultStr(e.result) << "\","
           <<  "\"note\":\"" << e.note << "\"}";
         if (i+1 < entries.size()) j << ",";
     }

@@ -30,29 +30,28 @@ void CameraThread::loop() {
     
      try {
         std::string pipeline =
-            "libcamerasrc ! video/x-raw,width=640,height=480,framerate=30/1 "
-            "! videoconvert ! appsink";
+            "libcamerasrc ! video/x-raw,format=NV12, width=640,height=480,framerate=30/1 ! videoconvert ! appsink";
 
         cv::VideoCapture cap(pipeline, cv::CAP_GSTREAMER);
 
         if (!cap.isOpened()) {
-            std::cerr << "[CAMERA ERROR] Failed to open via GStreamer\n";
+            std::cerr << "Failed to open via GStreamer\n";
             return;
         }
 
-        std::cout << "[CAMERA] Using libcamera (GStreamer pipeline)\n";
+        std::cout << "Using libcamera\n";
 
         cv::Mat frame;
 
         while (running_.load()) {
 
             if (!cap.read(frame)) {
-                std::cerr << "[CAMERA ERROR] Frame read failed\n";
+                std::cerr << " Frame read failed\n";
                 continue;
             }
 
             if (frame.empty()) {
-                std::cerr << "[CAMERA WARNING] Empty frame\n";
+                std::cerr << "Empty frame\n";
                 continue;
             }
 
@@ -60,9 +59,9 @@ void CameraThread::loop() {
         }
 
         cap.release();
-        std::cout << "[CAMERA] Stopped\n";
+        std::cout << " Stopped\n";
     }
     catch (const std::exception& e) {
-        std::cerr << "[CAMERA EXCEPTION] " << e.what() << std::endl;
+
     }
 }

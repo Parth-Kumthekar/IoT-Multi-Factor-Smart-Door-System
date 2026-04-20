@@ -16,7 +16,7 @@
 
 
 // Global logger 
-Logger gLogger("database/access_log.csv");
+AsyncLogger gLogger("database/access_log.csv");
 
 int main() {
 
