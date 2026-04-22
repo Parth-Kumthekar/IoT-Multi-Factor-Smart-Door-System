@@ -1,17 +1,14 @@
 #include "OutputController.hpp"
+#include <thread>
+#include <iostream>
 
 /**
  * @brief Claims the GPIO hardware and configures the output pins.
- * @details Specifically targets `/dev/gpiochip4` (the RP1 peripheral on Raspberry Pi 5). 
- * It uses a bulk request to configure the Red LED, Green LED, and Buzzer offsets 
- * simultaneously, setting them all as OUTPUT with an initial INACTIVE state.
- * @return true if the chip was opened and lines were successfully requested.
- * @return false if the chip is busy or the process lacks necessary GPIO permissions.
  */
 bool OutputController::init()
 {
+    std::lock_guard<std::mutex> lock(mtx_);
     try {
-        // gpiochip4 is the standard for RP1 on Raspberry Pi 5
         chip = std::make_shared<gpiod::chip>("/dev/gpiochip4");
 
         gpiod::line_settings settings;
@@ -19,7 +16,6 @@ bool OutputController::init()
         settings.set_output_value(gpiod::line::value::INACTIVE);
 
         gpiod::line_config cfg;
-        // Request all three lines at once
         cfg.add_line_settings({red_offset, green_offset, buzzer_offset}, settings);
 
         auto builder = chip->prepare_request();
@@ -28,68 +24,59 @@ bool OutputController::init()
 
         req = std::make_shared<gpiod::line_request>(builder.do_request());
         return true;
-    } catch (...) {
+        
+    } catch (const std::exception& e) {
+        std::cerr << "GPIO Hardware Error: " << e.what() << std::endl;
         return false;
     }
 }
 
-/**
- * @brief Sets the logical state of the Red LED.
- * @param state true for ACTIVE (On), false for INACTIVE (Off).
- */
 void OutputController::setRedLed(bool state)
 {
+    std::lock_guard<std::mutex> lock(mtx_);
     if (req) {
         req->set_value(red_offset, state ? gpiod::line::value::ACTIVE : gpiod::line::value::INACTIVE);
     }
 }
 
-/**
- * @brief Sets the logical state of the Green LED.
- * @param state true for ACTIVE (On), false for INACTIVE (Off).
- */
 void OutputController::setGreenLed(bool state)
 {
+    std::lock_guard<std::mutex> lock(mtx_);
     if (req) {
         req->set_value(green_offset, state ? gpiod::line::value::ACTIVE : gpiod::line::value::INACTIVE);
     }
 }
 
-/**
- * @brief Sets the logical state of the Buzzer.
- * @param state true for ACTIVE (On), false for INACTIVE (Off).
- */
 void OutputController::setBuzzer(bool state)
 {
+    std::lock_guard<std::mutex> lock(mtx_);
     if (req) {
         req->set_value(buzzer_offset, state ? gpiod::line::value::ACTIVE : gpiod::line::value::INACTIVE);
     }
 }
 
-/**
- * @brief Executes the "Access Granted" signaling pattern.
- * @details Synchronously updates the state of all three outputs: Green LED ON, 
- * Red LED OFF, and Buzzer OFF.
- */
-void OutputController::granted()
-{
-    if (req) {
-        setGreenLed(true);
-        setRedLed(false);
+void OutputController::granted() {
+    // Just use the internal thread-safe setters you already have
+    setGreenLed(true);
+    setRedLed(false);
+    setBuzzer(true);
+
+    std::thread([this]() {
+        std::this_thread::sleep_for(std::chrono::milliseconds(200));
         setBuzzer(false);
-    }
+    }).detach();
 }
 
-/**
- * @brief Executes the "Access Denied" signaling pattern.
- * @details Synchronously updates the state of all three outputs: Red LED ON, 
- * Buzzer ON, and Green LED OFF.
- */
 void OutputController::denied()
 {
-    if (req) {
+    std::thread([this]() {
         setRedLed(true);
         setGreenLed(false);
         setBuzzer(true);
-    }
+        
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+        
+        setBuzzer(false);
+        setRedLed(false);
+    }).detach(); 
 }

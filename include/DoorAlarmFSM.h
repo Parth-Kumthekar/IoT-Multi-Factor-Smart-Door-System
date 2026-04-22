@@ -52,6 +52,11 @@ public:
      * @param event The event (Door, Card, System) to be processed.
      */
     void handleEvent(const Event& event);
+    
+    /** * @brief Updates the internal physical door state. 
+     * @param isOpen True if sensor detects door is open.
+     */
+    void setDoorState(bool isOpen);
 
     /**
      * @brief Configures the grace period for UID verification.
@@ -106,7 +111,7 @@ private:
     State state_;
     
     /// Cached physical state of the door sensor.
-    bool doorOpen_;
+    bool doorOpen_ = false;
     
     /// Dependency: Hardware alarm interface.
     AlarmManager& alarmManager_;

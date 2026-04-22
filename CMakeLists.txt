@@ -1,6 +1,7 @@
-cmake_minimum_required(VERSION 3.16)
+﻿cmake_minimum_required(VERSION 3.16)
 project(SmartDoorSystem VERSION 1.0.0 LANGUAGES CXX)
 
+add_definitions(-DREAL_GPIO)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
@@ -28,6 +29,7 @@ set(CORE_SOURCES
 )
 
 # Face Recognition specific sources
+
 set(FACE_ID_SOURCES
     src/LoggerCam.cpp
     src/DoorLock.cpp
@@ -40,6 +42,7 @@ set(FACE_ID_SOURCES
 # 3. Main Application Executable
 # This now includes both the Door logic and the FaceID logic
 add_executable(door_alarm
+#src/main_1stintegration.cpp
     src/main.cpp
     src/DoorAlarmSystem.cpp
     ${CORE_SOURCES}

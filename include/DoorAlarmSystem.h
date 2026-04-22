@@ -6,7 +6,7 @@
 #include "DoorAlarmFSM.h"
 #include "EventQueue.h"
 
-// Hardware and Logic Includes from other branches
+// Hardware and Logic Includes
 #include "NFCReader.hpp"
 #include "AccessController.hpp"
 #include "OutputController.hpp"
@@ -15,22 +15,20 @@
 #include <atomic>
 #include <thread>
 #include <string>
-// Add these includes
-#include "httplib.h" 
 #include <mutex>
+#include "httplib.h" 
 
 /**
  * @class DoorAlarmSystem
  * @brief The primary orchestrator for the door security project.
- * * This class encapsulates all hardware components, the state machine, and 
- * infrastructure services. It manages multiple execution threads for 
- * hardware polling (NFC, GPIO), the core logic loop, and the REST API server.
+ * @details Encapsulates hardware components, the state machine, and 
+ * infrastructure services. It manages multiple threads for hardware polling,
+ * core logic, and the REST API.
  */
 class DoorAlarmSystem {
 public:
     /**
      * @brief Construct a new Door Alarm System object.
-     * @details Initializes hardware controllers, the FSM, and required buffers.
      */
     DoorAlarmSystem();
 
@@ -58,71 +56,49 @@ public:
     void postEvent(EventType type, const std::string& source);
 
 private:
-    /**
-     * @brief The core logic thread. Consumes events from the queue and updates the FSM.
-     */
-    void controlLoop(); 
+    // --- Background Service Threads ---
+    void controlLoop();  ///< Core logic thread: consumes events and updates FSM.
+    void timerLoop();    ///< Monitors time-sensitive logic and auto-resets.
+    void apiLoop();      ///< HTTP server for remote monitoring.
+    void nfcLoop();      ///< Polling thread for NFC hardware.
 
-    /**
-     * @brief Monitors time-sensitive logic, such as the verification window timeout.
-     */
-    void timerLoop();   
-
-    /**
-     * @brief Background thread running the HTTP server for remote monitoring/API access.
-     */
-    void apiLoop();     
-
-    /**
-     * @brief Dedicated thread for polling the NFC reader hardware.
-     */
-    void nfcLoop(); 
-
-    /**
-     * @brief Callback function triggered by GPIO interrupts when the door sensor changes.
-     * @param value The current state of the pin (0 or 1).
-     */
+    // --- Hardware Callbacks ---
     void onReedSwitchChange(int value);
+    void onButtonPress(int value);
 
-    // Infrastructure
-    /// Global flag indicating if the system's background threads should remain active.
+    // --- Logic Helpers ---
+    /**
+     * @brief Centralized OR-gate logic for the Green LED.
+     * @details (FSM Authorized AND Door Closed) OR (External Camera Active).
+     */
+    void updateGreenLedLogic();
+
+    // --- Infrastructure ---
     std::atomic<bool> running_{false};
-    
-    /// Mutex for protecting shared system-wide configuration or state access.
     std::mutex stateMtx_; 
-
-    /// Thread-safe queue for buffering events between hardware threads and the control loop.
     EventQueue eventQueue_;
-    
-    /// Service for non-blocking logging to disk/CSV.
     AsyncLogger logger_;       
-
-    /// Logic for managing siren states and alerts.
     AlarmManager alarmManager_; 
-
-    /// The core Finite State Machine logic.
     DoorAlarmFSM fsm_;
 
-    // Hardware
-    /// Interface for the physical NFC/RFID reader.
+    // --- Hardware Interfaces ---
     NFCReader nfcReader_;
-    
-    /// Logic for validating scanned UIDs against a whitelist.
     AccessController accessController_;
-    
-    /// Controller for physical outputs (Siren, LEDs, etc.).
     OutputController outputController_;
     
-    /// GPIO interface for the magnetic door reed switch.
-    GPIOPin reedSwitch_;
+    GPIOPin reedSwitch_;   ///< Magnetic door sensor.
+    GPIOPin exitButton_;   ///< Internal push button for exit.
+    GPIOPin cameraTrigger_; ///< External input from Camera Block (Pin 17).
 
-    // Threads
-    std::thread controlThread_; ///< Handle for the logic processing thread.
-    std::thread timerThread_;   ///< Handle for the temporal monitoring thread.
-    std::thread nfcThread_;     ///< Handle for the hardware polling thread.
-    std::thread apiThread_;     ///< Handle for the web server thread.
+    // --- State Tracking ---
+    bool cameraActive_;    ///< Tracks the physical state of the Camera Trigger pin.
+
+    // --- Thread Management ---
+    std::thread controlThread_;
+    std::thread timerThread_; 
+    std::thread nfcThread_;   
+    std::thread apiThread_;   
     
-    /// The REST API server instance provided by httplib.
     httplib::Server svr_; 
 };
 

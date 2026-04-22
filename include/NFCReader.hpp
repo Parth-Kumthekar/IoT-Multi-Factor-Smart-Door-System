@@ -14,7 +14,7 @@ public:
      * @brief Construct a new NFCReader object.
      * @param port The filesystem path to the serial device (e.g., "/dev/ttyAMA0").
      */
-    NFCReader(const std::string &port = "/dev/ttyAMA0");
+    NFCReader(const std::string &port = "/dev/ttyACM0");
 
     /**
      * @brief Initializes the serial port and the NFC hardware module.
